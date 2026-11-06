@@ -6,6 +6,7 @@ Steps:
 1. Download the pack into a short temporary folder and unpack it, with these commands (no git or Python needed yet; Windows 10 and 11 have curl and tar built in):
    - Mac: `mkdir -p ~/Downloads/claude-setup && cd ~/Downloads/claude-setup && curl -fsSL -o pack.zip https://github.com/Zoke-Hub/claude-setup/archive/refs/heads/main.zip && unzip -q -o pack.zip`
    - Windows (PowerShell): `New-Item -ItemType Directory -Force "$env:USERPROFILE\Downloads\claude-setup" | Out-Null; Set-Location "$env:USERPROFILE\Downloads\claude-setup"; curl.exe -fsSL -o pack.zip https://github.com/Zoke-Hub/claude-setup/archive/refs/heads/main.zip; tar -xf pack.zip`
+   On Windows, if Apple's Bonjour is on this computer, a "Local Security Authority" pop-up may come up once during this download (Windows blocking Bonjour's name-lookup add-in). It's harmless and nothing setup needs is blocked: tell the user they can close it; the bootstrap in step 2 says how to stop it for good.
    The pack is then in the `claude-setup-main` folder inside it: run every later command from there. Read SETUP.md in it fully before doing anything else; it is the detailed step list, and it says which Python command to use (`python3.12` on a Mac, `py -3.12` on Windows). Its parts about owner codes, zips and `strip-owner` don't apply to this pack: skip them.
 2. Run the bootstrap script for this system from the pack folder, before anything else:
    - Mac: `bash bootstrap-mac.sh`. It checks for Homebrew first.

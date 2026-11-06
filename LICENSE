@@ -1,0 +1,53 @@
+Claude setup pack
+Copyright 2026 Zoke. All rights reserved, except as this licence allows.
+
+Use and Share Licence 1.0
+
+This licence covers the setup pack's own files: its rules and house notes, its
+scripts (sync.py, the bootstrap scripts and the setup builder), and Zoke's own
+skills in it (animation, logo-recreation, cutout, chat-archive,
+local-transcribe and earshot's skill). It does not cover the third-party parts
+listed at the end.
+
+1. Use. You may install and use the setup pack on any number of computers, for
+   any purpose, including paid work. Selling the setup pack itself is not
+   allowed (see section 2).
+
+2. Share. You may give copies of the setup pack to others, as long as each copy
+   is whole and unchanged, keeps this licence and the copyright line above,
+   and is given free of charge.
+
+3. Your own copy. Once installed, the rules, notes and settings are yours to
+   change for your own use on your own computers. You may not share changed
+   copies, make new works from the setup pack, or copy any part of it into
+   other tools or packs.
+
+4. Fixes. You may fix something that does not work on your computer: a path, a
+   version, an error, or a setting. To share a fix, send it to Zoke (an issue
+   or a pull request on this repository), not a changed copy.
+
+5. Credit. Every copy keeps the copyright line, this licence, and the
+   "by Zoke" credits in the setup pack and its tools.
+
+6. Your work. What you make with the setup pack is yours. It puts no credit or
+   mark on it.
+
+7. No warranty. The setup pack is provided as it is, without warranty of any
+   kind. Zoke is not liable for any loss or damage that comes from using it.
+
+8. Ending. If you break these terms, your permission to use and share the
+   setup pack ends.
+
+Third-party parts, under their own licences, not this one:
+
+- Skills in skills/ that carry their own LICENSE file: under that licence.
+  HeyGen's retired hyperframes skills and motion-graphics also carry a
+  SOURCE.md that says where they come from.
+- Skills the setup downloads while it installs, which are not in this
+  repository: real-sfx (github.com/Clipwing/skills), HeyGen's hyperframes,
+  hyperframes-cli, hyperframes-registry and media-use
+  (github.com/heygen-com/hyperframes), and the optional Higgsfield skills
+  (github.com/higgsfield-ai/skills). Each comes from its maker under its
+  maker's terms.
+- The three tools the setup can install (Folio, PulseWise and MarkRoom) come
+  from github.com/Zoke-Hub/claude-tools under their own licence.

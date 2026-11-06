@@ -1,0 +1,35 @@
+{
+  "name": "northfield",
+  "title": "Northfield Makers Guild",
+  "viewBox": [1760, 880],
+  "centre": [440, 440],
+  "R": 500,
+  "order": 6,
+  "emblem_half": 0.88,
+  "inks": {"navy": "#24304F", "teal": "#2A9D8F", "slate": "#4A5A73", "amber": "#D98F2B"},
+  "fonts": {
+    "Khand": {"500": "fonts/Khand-Medium.ttf", "600": "fonts/Khand-SemiBold.ttf"},
+    "Josefin Sans": {"700": "fonts/JosefinSans-Bold.ttf"}
+  },
+  "segment": [
+    {"type": "polygon", "ink": "teal", "round": 0.008,
+     "points": [[-0.118, -0.612], [0.118, -0.612], [0.064, -0.418], [0, -0.372], [-0.064, -0.418]]},
+    {"type": "polyline", "ink": "slate", "width": 0.02, "points": [[0, -0.338], [0, -0.168]]},
+    {"type": "disc", "ink": "slate", "centre": [0, -0.122], "r": 0.026},
+    {"type": "polyline", "ink": "amber", "width": 0.016, "points": [[0.092, -0.402], [0.214, -0.296]]}
+  ],
+  "once": [
+    {"type": "ring", "ink": "slate", "centre": [0, 0], "r": 0.058, "width": 0.024},
+    {"type": "ring", "ink": "navy", "centre": [0, 0], "r": 0.68, "width": 0.012}
+  ],
+  "ring_text": [
+    {"text": "MADE BY HAND", "family": "Josefin Sans", "weight": 700, "ink": "navy",
+     "side": "top", "inner": 0.722, "outer": 0.818, "from": 205, "to": 335},
+    {"text": "NORTHFIELD MAKERS GUILD", "family": "Khand", "weight": 600, "italic": true, "ink": "amber",
+     "side": "bottom", "inner": 0.736, "outer": 0.794, "from": 160, "to": 20}
+  ],
+  "wordmark": {
+    "family": "Khand", "weight": 500, "ink": "navy", "anchor": "middle",
+    "rows": [["Northfield", 1.652, -0.205, 1.183], ["Makers Guild", 1.652, 0.205, 1.500]]
+  }
+}

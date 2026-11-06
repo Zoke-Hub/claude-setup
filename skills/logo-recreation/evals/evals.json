@@ -1,0 +1,25 @@
+{
+  "skill_name": "logo-recreation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "this logo is from a screenshot and its really blurry, can you recreate it properly as an svg? dont just trace it. its for a video so i need a clean png too",
+      "expected_output": "Searches for a sharper original, measures the logo (symmetry/grid), builds geometry + live text from a spec, verifies with an overlay, delivers SVG + transparent PNG + fonts and an honest report.",
+      "files": [
+        "examples/northfield/source_crop.png"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I ran this client's logo through an auto vectoriser and it looks terrible, the small text is just blobs. They don't have the original file. Can you get me a good quality version?",
+      "expected_output": "Does not deliver a trace. Looks for the original online first, then rebuilds by measurement with the lettering as live text in a matched open-licence font.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "need a vector of this wordmark-only logo (no symbol, just the company name in two lines with a line under it). only have a 300px jpg",
+      "expected_output": "Recognises there is no rotational symmetry, skips averaging, measures rows and the rule directly, matches the typeface with the fit test, builds and checks.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+__pycache__/
+.DS_Store
+# the skills setup downloads land here while it installs
+/skills/real-sfx/
+/skills/hyperframes/
+/skills/hyperframes-cli/
+/skills/hyperframes-registry/
+/skills/media-use/
+/skills/higgsfield-brandkit/
+/skills/higgsfield-faceless-video/
+/skills/higgsfield-generate/
+/skills/higgsfield-marketplace-cards/
+/skills/higgsfield-product-photoshoot/
+/skills/higgsfield-soul-id/
+/skills/higgsfield-video-explainer/
+/skills/higgsfield-websites/
+/skills/higgsfield-youtube-thumbnail/

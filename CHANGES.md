@@ -3,6 +3,11 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-07.220800 · version 2026-11-06.073618
+
+- **The tools from GitHub** update through the tools repo's `UPDATE.md`: only the tools whose files changed, and also
+  when an update keeps their version number (`claude plugin update` alone missed those).
+
 ## Build 2026-11-07.215142 · version 2026-11-06.073618
 
 - **Updates:** setup first checks whether this computer has the pack already. If it does, it shows what's new, keeps the

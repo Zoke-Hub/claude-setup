@@ -225,7 +225,9 @@ GitHub, or not installed.
 - **What each needs:** MarkRoom: Node, Python 3.10+ with Pillow (the shared cut-out venv has it), ffmpeg, and a
   claude.ai account whose artifacts allow a database, comments and file uploads. PulseWise and Folio: the Claude desktop
   app; Folio Claude Code 2.1.308 or newer, and its summaries use Haiku on the user's own usage.
-- **Updating** a GitHub install: `claude plugin update <tool>@zoke`, then a new chat.
+- **Updating** a GitHub install: follow the tools repo's `UPDATE.md` (https://github.com/Zoke-Hub/claude-tools/blob/main/UPDATE.md):
+  it updates only the tools whose files changed, and reinstalls one (keeping its data) when an update kept its version
+  number, which `claude plugin update` alone doesn't pick up. Then a new chat.
 - **The owner's edition** keeps the tools as folders (its working copies): nothing is moved and nothing comes from GitHub.
 - Without a tool, everything else works: without MarkRoom, review pictures and videos go in the chat; without
   PulseWise, long scripts run the same with no progress bar.
@@ -356,7 +358,7 @@ In `~/.claude/skills`: abilities Claude loads when a task needs them.
 
 Installed: <the tools installed from GitHub, or none>.
 
-- **Update one:** `claude plugin update <tool>@zoke` in a terminal, then open a new chat.
+- **Update them:** send Claude "Update Folio, PulseWise and MarkRoom from https://github.com/Zoke-Hub/claude-tools: read its UPDATE.md and follow it.", then open a new chat.
 - **What they need:** MarkRoom: Node, Python 3.10+ with Pillow, ffmpeg, and a claude.ai account whose artifacts allow a database, comments and file uploads. Folio: Claude Code 2.1.308 or newer; its summaries use Haiku, on your own usage. PulseWise and Folio: the Claude desktop app.
 - **Open a new chat** so they load.
 

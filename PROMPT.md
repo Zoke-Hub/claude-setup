@@ -13,7 +13,7 @@ Steps:
    - **There:** this is an update. Run `sync.py news` with this system's Python and tell the user in a few lines what this setup file changes: its "What's new" entries and the files it would change. The version number can be the same as the one installed (each build has its own stamp), so go by what `news` says, not the number. Then do only what the update needs:
      - Step 3: run the bootstrap; it installs only tools that are missing.
      - Step 4: don't ask again. `install` keeps this computer's transcription languages and Higgsfield choice when those flags are left out; ask only if the user wants to change one. Ask about earshot only if `news` lists a change to it and its tool isn't installed.
-     - Step 5: run `sync.py install` without `--transcription` and `--higgsfield`; add `--cutout-env` or `--parakeet` only if `sync.py check` reports the cut-out tool or Parakeet missing. It writes only the files that are new or changed, keeps the user's own changes, and says what it updated. Then run `sync.py tools` and update the tools that are already installed (offer the others only if the user asks).
+     - Step 5: run `sync.py install` without `--transcription` and `--higgsfield`; add `--cutout-env` or `--parakeet` only if `sync.py check` reports the cut-out tool or Parakeet missing. It writes only the files that are new or changed, keeps the user's own changes, and says what it updated. Then update the tools already installed from GitHub by following https://github.com/Zoke-Hub/claude-tools/blob/main/UPDATE.md (it updates only the ones whose files changed, also when their version number stayed the same); offer the others only if the user asks.
      - Steps 6 and 7: as written. Run the test cut-out or test transcription only if `news` lists a change to the cutout or local-transcribe skill or the cut-out tool.
      - Steps 8 to 10: skip them, unless `news` lists a change to one of them or `sync.py check` says something there isn't set up yet.
      - Step 11: delete the temporary folder, then end with the update report at the end of this prompt instead of the full report.
@@ -127,7 +127,7 @@ In `~/.claude/skills`: abilities Claude loads when a task needs them.
 
 Installed: <the tools installed from GitHub>.
 
-- **Update one:** `claude plugin update <tool>@zoke` in a terminal, then open a new chat.
+- **Update them:** send Claude "Update Folio, PulseWise and MarkRoom from https://github.com/Zoke-Hub/claude-tools: read its UPDATE.md and follow it.", then open a new chat.
 - **What they need:** MarkRoom: Node, Python 3.10+ with Pillow, ffmpeg, and a claude.ai account whose artifacts allow a database, comments and file uploads. Folio: Claude Code 2.1.308 or newer; its summaries use Haiku, on your own usage. PulseWise and Folio: the Claude desktop app.
 - **Open a new chat** so they load.
 

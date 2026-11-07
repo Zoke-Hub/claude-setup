@@ -21,6 +21,10 @@ Whenever the user asks to open the dashboard or a review or feedback page, build
   included; open, post to and check the MarkRoom. Plain
   "MarkRoom" only in titles and headers. "The dashboard", "the board", "the review page" or "Redline" from the user all
   mean the MarkRoom: answer with "the MarkRoom", without remarking on the wording.
+- **Link to what changed, every time:** whenever Claude changes anything in a MarkRoom (a new board, round or file,
+  replies, notes marked done, tabs closed or reopened), the turn's final message links straight to the changed file:
+  the board's url with `#open-<file id>` on the end ("in the [MarkRoom](<board url>#open-<file id>)"), one link per
+  changed file, never a bare board link. The page opens that file even over a newer round. The skill has the details.
 
 **Why:** the user prefers the MarkRoom's layout (the tool bar on the frame, the notes panel beside it, the preview always
 in view), with video, full screen and older rounds in one place. The naming rule also sits in the always-loaded line in

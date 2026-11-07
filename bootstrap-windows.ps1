@@ -54,7 +54,7 @@ $tools = @(
   @{ n = "node + npx";                  t = { (Has "node") -and (Has "npx") };    id = "OpenJS.NodeJS.LTS";  why = "hyperframes, markroom, explainers" },
   @{ n = "uv + uvx";                    t = { (Has "uv") -and (Has "uvx") };      id = "astral-sh.uv";       why = "venvs (cut-out, video-use), the Fetch MCP" },
   @{ n = "ffmpeg full build";           t = { FfmpegFullOk };                      id = "Gyan.FFmpeg";        why = "renders, drawtext + subtitles, transcription audio" },
-  @{ n = "yt-dlp";                      t = { Has "yt-dlp" };                      id = "yt-dlp.yt-dlp";      why = "watch skill: downloading videos" },
+  @{ n = "yt-dlp";                      t = { Has "yt-dlp" };                      id = "yt-dlp.yt-dlp";      why = "watch skill: downloading videos"; skipDeps = $true },  # its package pulls a second FFmpeg; the full build above serves it
   @{ n = "deno";                        t = { Has "deno" };                        id = "DenoLand.Deno";      why = "yt-dlp's JavaScript runtime for YouTube" },
   @{ n = "Google Chrome";               t = { ChromeOk };                          id = "Google.Chrome";      why = "headless stills, logo PNGs" }
 )
@@ -62,7 +62,7 @@ Say ""
 Say "TOOLS"
 $missing = @()
 foreach ($x in $tools) {
-  if (& $x.t) { Ok $x.n $x.why } else { No $x.n ("winget install --id {0} -e   ({1})" -f $x.id, $x.why); $missing += $x }
+  if (& $x.t) { Ok $x.n $x.why } else { No $x.n ("winget install --id {0} -e{2}   ({1})" -f $x.id, $x.why, $(if ($x.skipDeps) { " --skip-dependencies" } else { "" })); $missing += $x }
 }
 
 # Bonjour's name-lookup add-in (mdnsNSP.dll) with Windows' LSA protection on: Windows blocks the add-in inside lsass and
@@ -99,7 +99,8 @@ if (-not $Install) {
 # ---------------------------------------------------------------- 3. install
 foreach ($x in $missing) {
   Say ("Installing {0} ({1})" -f $x.n, $x.id)
-  winget install --id $x.id -e --silent --accept-source-agreements --accept-package-agreements
+  $extra = @(); if ($x.skipDeps) { $extra = @("--skip-dependencies") }
+  winget install --id $x.id -e --silent --accept-source-agreements --accept-package-agreements @extra
   if ($LASTEXITCODE -ne 0) { Say ("  winget reported an error for {0}; the user may need to run the same command in their own PowerShell." -f $x.id) }
 }
 Refresh-Path

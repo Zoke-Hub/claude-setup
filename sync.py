@@ -10,6 +10,8 @@
   python3 sync.py install --higgsfield yes|no            # the optional higgsfield skills (MANIFEST "optional_skills");
                                                          # left out, they stay as they are (updated only where installed)
   python3 sync.py cleanup                  # list old duplicates/leftovers; add --yes to remove them
+  python3 sync.py news                     # on a computer that has the pack: what this setup file changes here
+  python3 sync.py earshot                  # earshot's tool (~2.4 GB), at the version this pack was checked with
   python3 sync.py install --owner-code '<code>'   # the owner's own edition (owner.bin); give the same code to every command
   python3 sync.py unlock --owner-code '<code>'    # open the owner's edition right after unzipping (OWNER.md says what next)
   python3 sync.py strip-owner --zip "<the zip>"   # after a general install: take owner.bin out of the zip and this folder
@@ -121,6 +123,8 @@ _code = next((sys.argv[i + 1] for i, x in enumerate(sys.argv[:-1]) if x == "--ow
 if _code is not None:
     print("Owner's own edition: unlocked." if owner_open(_code) else "General pack.")
 MANIFEST = json.loads((PACK / "MANIFEST.json").read_text(encoding="utf-8"))
+# each build's own stamp: tells builds apart when the version number stays the same (older packs had none)
+BUILD = MANIFEST.get("build") or MANIFEST["version"]
 STAMP = time.strftime("%Y%m%d-%H%M%S")
 BACKUP = CLAUDE / "sync-backups" / STAMP
 RULES_MARK = "# Global rules"
@@ -185,6 +189,9 @@ LANG_TEXT = {
 HOOK_SH = "block-elevenlabs-transcription.sh"     # macOS / Linux: bash + jq
 HOOK_PY = "block-elevenlabs-transcription.py"     # Windows: same rules in Python, also covers the PowerShell tool
 PATCH = "extras/video-use-windows-paths.patch"
+# skill folders with no SKILL.md of their own that belong where they are: video-use (a clone) and the Claude app's own
+# synced-skills folder, which clean-up never lists
+APP_SKILL_FOLDERS = {"video-use", "synced"}
 SEEDS = MANIFEST.get("seed_skills", [])
 CUTOUT_PKGS = ["torch", "transformers>=4.57,<5", "timm", "kornia", "einops", "opencv-python", "pillow", "numpy"]
 
@@ -201,6 +208,20 @@ KEPT, REMOVED_KEPT, ASK_OK = [], [], set()
 def known(rel, h):
     """a setup file wrote exactly this content at this path (this pack, the last install, or an earlier pack)"""
     return h == MANIFEST["files"].get(rel) or h == REC.get("files", {}).get(rel) or h in EARLIER.get("files", {}).get(rel, [])
+
+UPSTREAM = MANIFEST.get("upstream", {})          # every version a downloaded skill's maker published: {path: {git blob: time}}
+UPSTREAM_PINS = MANIFEST.get("upstream_pins", {})  # each such skill's pinned commit time
+MAKER_OLDER, MAKER_NEWER = [], []                # this install: makers' older copies updated, newer copies kept
+
+def maker_copy(rel, p):
+    """'older' or 'newer' when the file at p is a version the skill's maker published before or after this pack's pin,
+    not the person's own change; else None. Compared as git does: the file's contents (LF line ends) as a blob id"""
+    seen = UPSTREAM.get(rel)
+    if not seen: return None
+    data = p.read_bytes().replace(b"\r\n", b"\n")
+    at = seen.get(hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest())
+    if at is None: return None
+    return "older" if at <= UPSTREAM_PINS.get(Path(rel).parts[1], 0) else "newer"
 
 def untouched_tree(prefix, path):
     """every file in an installed folder is still as a setup file wrote it (generated typings and caches aside)"""
@@ -282,7 +303,7 @@ def set_lang(choice):
     secs = sections(cur)
     if LANG_HEAD in secs: cur = cur.replace(secs[LANG_HEAD], "")
     backup(cm); cm.parent.mkdir(parents=True, exist_ok=True)
-    cm.write_text(cur.rstrip() + "\n\n" + LANG_HEAD + "\n\n" + LANG_TEXT[choice] + "\n", encoding="utf-8")
+    cm.write_text(cur.rstrip() + "\n\n" + LANG_HEAD + "\n\n" + LANG_TEXT[choice] + "\n", encoding="utf-8", newline="\n")
 
 def cutout_probe():
     """run the cut-out machine check (GPU / RAM -> precision, working size, memory cap), save it in the venv's machine.json
@@ -300,7 +321,7 @@ def cutout_probe():
     cm = CLAUDE / "CLAUDE.md"; cur = cm.read_text(encoding="utf-8") if cm.exists() else ""
     secs = sections(cur)
     if CUT_HEAD in secs: cur = cur.replace(secs[CUT_HEAD], "")
-    backup(cm); cm.write_text(cur.rstrip() + "\n\n" + CUT_HEAD + "\n\n" + line + "\n", encoding="utf-8")
+    backup(cm); cm.write_text(cur.rstrip() + "\n\n" + CUT_HEAD + "\n\n" + line + "\n", encoding="utf-8", newline="\n")
     return f"{p['device']}, {p['memory_gb']:g} GB: {p['precision']} precision at {p['size']}"
 
 def whisper_prefetch():
@@ -322,10 +343,11 @@ def whisper_prefetch():
         return f"FAILED ({e}); it will download on first use instead"
 
 def short_patch():
-    """the patch copied to a short path: under a long unzip folder, git apply failed with 'Filename too long'"""
+    """the patch copied to a short path (under a long unzip folder, git apply failed with 'Filename too long'), with LF
+    line ends: video-use's files are LF, and a patch saved with Windows line ends matches none of their lines"""
     import tempfile
     q = Path(tempfile.gettempdir()) / "csp-video-use.patch"
-    shutil.copyfile(PACK / PATCH, q)
+    q.write_bytes((PACK / PATCH).read_bytes().replace(b"\r\n", b"\n"))
     return q
 
 def patch_state():
@@ -362,7 +384,7 @@ def install_fetch():
     d = json.loads(cj.read_text(encoding="utf-8")) if cj.exists() else {}
     backup(cj)
     d.setdefault("mcpServers", {})["fetch"] = {"type": "stdio", "command": uvx, "args": ["mcp-server-fetch"], "env": {}}
-    cj.write_text(json.dumps(d, indent=2) + "\n", encoding="utf-8")
+    cj.write_text(json.dumps(d, indent=2) + "\n", encoding="utf-8", newline="\n")
     return "added to ~/.claude.json (backed up first)"
 
 def parakeet_ok():
@@ -430,7 +452,7 @@ def cleanup_items(project):
             if not p.is_dir(): continue
             m = re.match(r"(.+?)(?:[ _-](?:copy|old|backup|bak|orig)| \d+|-v\d+)$", p.name, re.I)
             if m and m.group(1) in names: items.append((p, f"old copy of the {m.group(1)} skill", "move" if OWNER_ED else "ask"))
-            elif not (p / "SKILL.md").exists() and p.name != "video-use": items.append((p, "skill folder with no SKILL.md", "move" if OWNER_ED else "ask"))
+            elif not (p / "SKILL.md").exists() and p.name not in APP_SKILL_FOLDERS: items.append((p, "skill folder with no SKILL.md", "move" if OWNER_ED else "ask"))
         plug = CLAUDE / "plugins"
         for sk in plug.rglob("SKILL.md") if plug.exists() else []:
             if sk.parent.name in names and "cache" not in str(sk).lower():
@@ -506,7 +528,7 @@ def apply_items(items):
             if p.parent.name == "memory" and idx.exists():               # drop the moved note's index line
                 lines = idx.read_text(encoding="utf-8").splitlines(keepends=True)
                 keep = [l for l in lines if f"({p.name})" not in l]
-                if len(keep) != len(lines): backup(idx); idx.write_text("".join(keep), encoding="utf-8")
+                if len(keep) != len(lines): backup(idx); idx.write_text("".join(keep), encoding="utf-8", newline="\n")
         else:
             shutil.rmtree(p) if p.is_dir() else p.unlink(); print("deleted", p)
 
@@ -571,33 +593,38 @@ def merged_claude_md(cur):
     if OWNER_ED or h in EARLIER.get("blocks", {}) or (base and mine.strip() == base.strip()):
         return put(block)                                          # the pack's own block, unchanged: replaced
     if not base:                                                   # no earlier version known: keep theirs, park the new one
-        q = UPDATES / "CLAUDE-rules-block.md"; q.parent.mkdir(parents=True, exist_ok=True); q.write_text(block, encoding="utf-8")
+        q = UPDATES / "CLAUDE-rules-block.md"; q.parent.mkdir(parents=True, exist_ok=True); q.write_text(block, encoding="utf-8", newline="\n")
         RULES_NOTE.append(f"your rules block differs from every version a setup file shipped: kept as it is; the new block is in {q}")
         return cur
     merged, conflicts = merge3(base.strip().splitlines(), mine.strip().splitlines(), block.strip().splitlines())
     if conflicts:
         q = UPDATES / "CLAUDE-rules-conflicts.md"; q.parent.mkdir(parents=True, exist_ok=True)
-        q.write_text("Lines the setup pack changed where you had changed the same lines (yours were kept):\n\n" + "\n".join(conflicts) + "\n", encoding="utf-8")
+        q.write_text("Lines the setup pack changed where you had changed the same lines (yours were kept):\n\n" + "\n".join(conflicts) + "\n", encoding="utf-8", newline="\n")
         RULES_NOTE.append(f"the rules block was merged, keeping your lines; {len(conflicts)} pack line(s) clashed with yours and are in {q}")
     else: RULES_NOTE.append("the rules block was merged: the pack's updates are in, and your own lines are kept")
     return put("\n".join(merged) + "\n")
 
-def hook_cmd():
-    if IS_WIN:                                                     # no bash/jq needed: the Python port, run by this Python
-        return f'"{Path(sys.executable).as_posix()}" "{(CLAUDE / "hooks" / HOOK_PY).as_posix()}"'
-    return str(CLAUDE / "hooks" / HOOK_SH)
+def hook_handler():
+    """the ElevenLabs block hook's handler. Windows: the Python port, run by this Python in exec form (the program and its
+    arguments apart, so no shell runs it): a shell-form hook needs Git Bash, which a new computer lacks until setup
+    installs Git, and a failing PreToolUse hook there blocks every command until the app restarts"""
+    if IS_WIN:
+        return {"type": "command", "command": str(Path(sys.executable)), "args": ["-I", str(CLAUDE / "hooks" / HOOK_PY)], "timeout": 10}
+    return {"type": "command", "command": str(CLAUDE / "hooks" / HOOK_SH), "timeout": 10}
 
 def merged_settings(cur):
-    s = dict(cur or {})
+    s = json.loads(json.dumps(cur or {}))    # a full copy: with a shallow one, the changes landed in `cur` too, so an update
+                                             # compared equal and never saved settings.json
     perms = s.setdefault("permissions", {})
     deny = perms.setdefault("deny", [])
     rule = "mcp__*__creative_transcribe_audio"
     if not any("creative_transcribe_audio" in d for d in deny): deny.append(rule)
     hooks = s.setdefault("hooks", {}).setdefault("PreToolUse", [])
     want = {"matcher": ("Bash|PowerShell|" if IS_WIN else "Bash|") + "mcp__.*__creative_transcribe_audio",
-            "hooks": [{"type": "command", "command": hook_cmd(), "timeout": 10}]}
-    if IS_WIN:                                                     # an older pack registered the bash version: swap it
-        hooks[:] = [h for h in hooks if not ("block-elevenlabs-transcription" in json.dumps(h) and HOOK_SH in json.dumps(h))]
+            "hooks": [hook_handler()]}
+    if IS_WIN:                                                     # an older pack's entry (the bash version, or the Python
+        hooks[:] = [h for h in hooks                               # one in shell form) gives way to the exec-form one
+                    if not ("block-elevenlabs-transcription" in json.dumps(h) and h != want)]
         s.setdefault("env", {}).setdefault("PYTHONUTF8", "1")      # video-use's helpers print and write non-ASCII
     if not any("block-elevenlabs-transcription" in json.dumps(h) for h in hooks): hooks.append(want)
     plugin_dirs(s, MODS)                                           # each mod this pack carries loads in every chat from its folder
@@ -631,7 +658,7 @@ def prune_tool_settings():
     if not sp.exists(): return
     cur = json.loads(sp.read_text(encoding="utf-8")); new = json.loads(json.dumps(cur))
     plugin_dirs(new, [])
-    if new != cur: backup(sp); sp.write_text(json.dumps(new, indent=2) + "\n", encoding="utf-8")
+    if new != cur: backup(sp); sp.write_text(json.dumps(new, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 def mods_off(s):
     """the pack's mods that settings.json doesn't load"""
@@ -694,6 +721,10 @@ YOURS = []
 
 def kept_report():
     """what the update left as the person had it, and where the pack's new versions went"""
+    if MAKER_OLDER: print(f"\nUPDATED {len(MAKER_OLDER)} file(s) that were an older copy from the skill's own maker (not your changes; backed up first)")
+    if MAKER_NEWER:
+        print("\nKEPT, NEWER FROM THE MAKER: these files are a newer copy from the skill's own maker than this setup file has")
+        for d in MAKER_NEWER: print(f"  {d}")
     if not (KEPT or REMOVED_KEPT or RULES_NOTE): return
     print("\nKEPT AS YOU HAD IT (the update never undoes your changes; merge what you want, by hand or by asking Claude)")
     for d, q in KEPT: print(f"  changed by you   {d}\n                   the pack's new version: {q}")
@@ -727,7 +758,7 @@ def compare(project):
             else: missing.append(str(d))
         elif sha(d) != h:
             if OWNER_ED or known(rel, sha(d)): differ.append(str(d))
-            else: yours.append(str(d) + "  (changed by you; kept)")
+            else: yours.append(str(d) + ("  (a newer copy from its maker; kept)" if maker_copy(rel, d) == "newer" else "  (changed by you; kept)"))
         else: same += 1
     if not lang_choice():
         missing.append(f"{CLAUDE / 'CLAUDE.md'}  (section '{LANG_HEAD}': ask the user 'English only' or 'English + Hindi and "
@@ -928,6 +959,9 @@ def fetch_downloads():
 
 def cmd_install(project, cutout_env, parakeet, transcription=None):
     n, rec = 0, {}
+    print(f"Updating the setup pack installed here (build {REC.get('build') or 'before builds were stamped'}) to build {BUILD}: "
+          "only files that are new or changed are written, and your own changes are kept" if REC_FILE.exists()
+          else f"First install of the setup pack (build {BUILD})")
     for name in SEEDS: SEED_NEW[name] = not (CLAUDE / "skills" / name).exists()
     for line in fetch_downloads(): print(line)
     for rel, h in MANIFEST["files"].items():
@@ -939,44 +973,49 @@ def cmd_install(project, cutout_env, parakeet, transcription=None):
         if rel == "global/CLAUDE.md":
             cur = d.read_text(encoding="utf-8") if d.exists() else None
             new = merged_claude_md(cur)
-            if new != cur: backup(d); d.write_text(new, encoding="utf-8"); n += 1
+            if new != cur: backup(d); d.write_text(new, encoding="utf-8", newline="\n"); n += 1
             continue
         if rel == "memory/MEMORY.md":
             cur = d.read_text(encoding="utf-8") if d.exists() else None
             new = merged_index(cur, src.read_text(encoding="utf-8"))
-            if new != cur: backup(d); d.write_text(new, encoding="utf-8"); n += 1
+            if new != cur: backup(d); d.write_text(new, encoding="utf-8", newline="\n"); n += 1
             continue
         if not d.exists():
             if rel in REC.get("files", {}) and not OWNER_ED:       # the person removed a pack file: it stays removed
                 REMOVED_KEPT.append((d, park(rel))); continue
         elif sha(d) == h: rec[rel] = h; continue
-        elif not OWNER_ED and not known(rel, sha(d)):              # the person changed it: theirs stays, the new one is parked
-            KEPT.append((d, park(rel)))
+        elif not OWNER_ED and not known(rel, sha(d)) and (mc := maker_copy(rel, d)) != "older":
+            if mc == "newer": MAKER_NEWER.append(d)                # the maker's own newer copy: kept as it is
+            else: KEPT.append((d, park(rel)))                      # the person changed it: theirs stays, the new one is parked
             if rel in REC.get("files", {}): rec[rel] = REC["files"][rel]
             continue
+        elif not OWNER_ED and not known(rel, sha(d)): MAKER_OLDER.append(d)   # the maker's older copy: updated (backed up)
         backup(d); shutil.copy2(src, d); n += 1; rec[rel] = h
         if d.suffix in (".sh", ".py", ".mjs") and os.name != "nt": d.chmod(d.stat().st_mode | 0o111)
     cm = CLAUDE / "CLAUDE.md"                                      # this OS's own sections go after the rules block
     add = missing_sections(cm.read_text(encoding="utf-8") if cm.exists() else None)
     if add:
         cur = cm.read_text(encoding="utf-8") if cm.exists() else ""
-        backup(cm); cm.write_text(cur.rstrip() + "\n\n" + "\n".join(x.rstrip() + "\n" for x in add.values()), encoding="utf-8"); n += 1
+        backup(cm); cm.write_text(cur.rstrip() + "\n\n" + "\n".join(x.rstrip() + "\n" for x in add.values()), encoding="utf-8", newline="\n"); n += 1
     sp = CLAUDE / "settings.json"
     cur = json.loads(sp.read_text(encoding="utf-8")) if sp.exists() else None
     new = merged_settings(cur)
-    if new != cur: backup(sp); sp.write_text(json.dumps(new, indent=2) + "\n", encoding="utf-8"); n += 1
+    if new != cur: backup(sp); sp.write_text(json.dumps(new, indent=2) + "\n", encoding="utf-8", newline="\n"); n += 1
+    for p in (cm, sp):                                             # Windows line ends an older pack (or an edit) left: LF,
+        if p.exists() and b"\r\n" in p.read_bytes():              # the text itself unchanged (Python reads both as one)
+            backup(p); p.write_bytes(p.read_bytes().replace(b"\r\n", b"\n")); n += 1
     old = old_version_items()                                      # the older version's installs, where nobody changed them
     if [x for x in old if x[2] not in ("ask", "report")]: print("clearing the older version's installs:"); apply_items(old); n += len(old)
     REC_FILE.parent.mkdir(parents=True, exist_ok=True)              # what this install wrote: the next update's base
-    REC_FILE.write_text(json.dumps({"version": MANIFEST["version"], "files": {**REC.get("files", {}), **rec},
-                                    "rules_block": (PACK / "global/CLAUDE.md").read_text(encoding="utf-8")}, indent=0), encoding="utf-8")
+    REC_FILE.write_text(json.dumps({"version": MANIFEST["version"], "build": BUILD, "files": {**REC.get("files", {}), **rec},
+                                    "rules_block": (PACK / "global/CLAUDE.md").read_text(encoding="utf-8")}, indent=0), encoding="utf-8", newline="\n")
     hp = CLAUDE / "setup-pack" / "history.json"                    # this computer's builder keeps every fingerprint too
     hist = load_json(hp, {"files": {}, "blocks": {}})
     for r, hs in EARLIER.get("files", {}).items():
         for x in hs:
             if x not in hist["files"].setdefault(r, []): hist["files"][r].append(x)
     for k, v in EARLIER.get("blocks", {}).items(): hist.setdefault("blocks", {}).setdefault(k, v)   # never blank a kept text
-    if EARLIER.get("files"): hp.write_text(json.dumps(hist, indent=0), encoding="utf-8")
+    if EARLIER.get("files"): hp.write_text(json.dumps(hist, indent=0), encoding="utf-8", newline="\n")
     print(f"installed/updated {n} files (backups: {BACKUP if BACKUP.exists() else 'none needed'})")
     kept_report()
     vu = CLAUDE / "skills/video-use"
@@ -1019,9 +1058,92 @@ def cmd_install(project, cutout_env, parakeet, transcription=None):
     print()
     return cmd_check(project)
 
+def news_entries(since):
+    """CHANGES.md's entries for builds after `since` (a build stamp; empty: every entry): [(heading, text)]"""
+    f = PACK / "CHANGES.md"
+    if not f.exists(): return []
+    parts = re.split(r"(?m)^## ", f.read_text(encoding="utf-8"))[1:]
+    out = []
+    for p in parts:
+        head, _, body = p.partition("\n")
+        stamp = re.match(r"Build (\S+)", head)
+        if stamp and (not since or stamp.group(1) > since): out.append((head.strip(), body.strip()))
+    return out
+
+def cmd_news():
+    """What this setup file brings to this computer: CHANGES.md's entries for the builds since the one installed here, and
+    the files that are new or changed against this computer's copies. Builds are told apart by their own stamp
+    (MANIFEST "build"), not the version number, which can stay the same; files are compared by their contents."""
+    if not REC_FILE.exists():
+        print(f"NEWS: the setup pack isn't installed on this computer yet: build {BUILD} is a first install."); return 0
+    had = REC.get("build") or ""
+    print(f"NEWS: installed here: build {had or 'from before builds were stamped'} (version {REC.get('version', '?')}); "
+          f"this setup file: build {BUILD} (version {MANIFEST['version']})")
+    entries = news_entries(had)
+    if had == BUILD: print("\nThis build is the one installed here: nothing new in it.")
+    for head, body in entries: print(f"\n{head}\n{body}")
+    groups = {}
+    for rel, h in MANIFEST["files"].items():
+        d = dest(rel, None)
+        if d is None or tool_file(rel) or opt_skip(rel) or seeded(rel) or rel in SECTION_FILES \
+                or rel in ("global/CLAUDE.md", "memory/MEMORY.md"): continue
+        if d.exists() and sha(d) == h: continue
+        mc = None if not d.exists() or OWNER_ED or known(rel, sha(d)) else maker_copy(rel, d)
+        kind = ("new" if not d.exists() else "updated" if OWNER_ED or known(rel, sha(d)) else
+                "updated (an older copy from its maker)" if mc == "older" else "kept (a newer copy from its maker)" if mc == "newer"
+                else "yours, kept (the new one is parked)")
+        parts = Path(rel).parts
+        area = f"skill {parts[1]}" if parts[0] == "skills" else "house notes" if parts[1:2] == ("house",) else "/".join(parts[:2])
+        groups.setdefault(area, {}).setdefault(kind, []).append(rel)
+    print("\nFILES THIS INSTALL WOULD CHANGE (by contents, against this computer's copies):" if groups else
+          "\nFILES: every file of this setup file is already here as it ships.")
+    for area in sorted(groups):
+        print(f"  {area}: " + "; ".join(f"{len(v)} {k}" for k, v in groups[area].items()))
+    return 0
+
+EARSHOT_REPO = "https://github.com/Leonxlnx/earshot"
+EARSHOT_COMMIT = "591fa3e028032e6dce56620a20e932e35667e8d8"      # earshot 0.4.0, the version this pack was checked with
+
+def cmd_earshot():
+    """earshot's tool for the earshot skill (about 2.4 GB with its two listening models), only on the person's yes: cloned
+    at the commit this pack was checked with into ~/.claude/tools/earshot, in its own venv (CPU torch), then its own
+    checks. A working copy already there is left as it is."""
+    home = CLAUDE / "tools" / "earshot"
+    py = venv_py(home / ".venv")
+    say = lambda s: print(s, flush=True)
+    def step(what, cmd, timeout=3600):
+        say(f"earshot: {what} ...")
+        try: code = subprocess.run(cmd, timeout=timeout).returncode
+        except Exception as e: code = f"{type(e).__name__}: {e}"
+        if code != 0: say(f"earshot: {what} FAILED ({code}); run `{' '.join(map(str, cmd))}` to see why, or install it again later")
+        return code == 0
+    if py.exists():
+        r = run([str(py), "-m", "earshot", "doctor", "--load"], timeout=900)
+        if r and r.returncode == 0 and "problems: []" in r.stdout:
+            say(f"earshot: already installed in {home} and its check passes (problems: []): nothing to do"); return 0
+        say("earshot: installed but its check didn't pass: finishing the install")
+    if not (home / ".git").exists():
+        if home.exists() and any(home.iterdir()):
+            say(f"earshot: {home} holds other files and isn't earshot's clone: not touching it"); return 1
+        home.parent.mkdir(parents=True, exist_ok=True)
+        if not (step("cloning (OpenSSL on Windows: no LSA pop-ups)", git_cmd() + ["clone", "-q", EARSHOT_REPO, str(home)], 900) and
+                step(f"checking out {EARSHOT_COMMIT[:7]}", git_cmd() + ["-C", str(home), "-c", "advice.detachedHead=false", "checkout", "-q", EARSHOT_COMMIT], 300)):
+            return 1
+    torch = [str(py), "-m", "pip", "install", "torch"] + ([] if IS_MAC else ["--index-url", "https://download.pytorch.org/whl/cpu"])
+    ok = ((py.exists() or step("making its venv", [sys.executable, "-m", "venv", str(home / ".venv")], 600)) and
+          step("installing torch (CPU)", torch) and
+          step("installing earshot", [str(py), "-m", "pip", "install", "-e", f"{home}[mcp]"]) and
+          step("fetching its two listening models (about 1.1 GB, once)", [str(py), "-m", "earshot", "doctor", "--fetch"]))
+    if not ok: return 1
+    r = run([str(py), "-m", "earshot", "doctor", "--load"], timeout=900)
+    good = bool(r and r.returncode == 0 and "problems: []" in r.stdout)
+    say(f"earshot: {'installed, check passed (problems: [])' if good else 'installed, but its check reports problems:'}")
+    if not good and r: say(r.stdout[-1500:] + r.stderr[-800:])
+    return 0 if good else 1
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("mode", choices=["check", "install", "cleanup", "unlock", "strip-owner", "tools"])
+    ap.add_argument("mode", choices=["check", "install", "cleanup", "unlock", "strip-owner", "tools", "earshot", "news"])
     ap.add_argument("--project", help="optional: a project folder whose old leftovers (cut-out venv, tool copies, skill zips) to clean up or reuse")
     ap.add_argument("--cutout-env", action="store_true", help="also build ~/.claude/venvs/cutout and fetch the BiRefNet HR model")
     ap.add_argument("--parakeet", action="store_true", help="also install Parakeet TDT 0.6B v3 for hyperframes / local-transcribe (~640 MB)")
@@ -1044,5 +1166,7 @@ if __name__ == "__main__":
     if a.mode == "unlock": sys.exit(0 if MANIFEST.get("edition") == "personal" else 1)   # the message above says which
     if a.mode == "strip-owner": sys.exit(cmd_strip_owner(a.zip))
     if a.mode == "tools": sys.exit(cmd_tools(a.install, a.set_aside))
+    if a.mode == "earshot": sys.exit(cmd_earshot())
+    if a.mode == "news": sys.exit(cmd_news())
     if a.higgsfield: OPT_CHOICE["higgsfield"] = a.higgsfield == "yes"
     sys.exit(cmd_check(project) if a.mode == "check" else cmd_install(project, a.cutout_env, a.parakeet, a.transcription))

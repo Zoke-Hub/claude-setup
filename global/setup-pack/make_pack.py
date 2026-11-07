@@ -72,7 +72,7 @@ SKILL_STOCK = {"real-sfx/config.json": "real-sfx/config.example.json"}   # its l
 # this builder, installed on every computer as ~/.claude/setup-pack (pack/ also holds the staged pack while building)
 BUILDER_FILES = ["make_pack.py", "PROMPT.md", "templates/CLAUDE-sections-mac.md", "templates/CLAUDE-sections-windows.md",
                  "templates/README-git.md", "templates/PROMPT-git.md", "templates/LICENSE-git.txt",
-                 "templates/unfold-README.md",
+                 "templates/unfold-README.md", "templates/cutout-test.jpg", "CHANGES.md",
                  "pack/sync.py", "pack/SETUP.md",
                  "pack/bootstrap-mac.sh", "pack/bootstrap-windows.ps1"]
 OPTIONAL_SKILLS = {"higgsfield": "higgsfield-"}   # skill groups setup asks about (name prefix); installed only on a yes
@@ -86,10 +86,10 @@ DOWNLOADS = [
     {"label": "Higgsfield's skills", "repo": "https://github.com/higgsfield-ai/skills", "group": "higgsfield", "prefix": "higgsfield-"},
 ]
 # HeyGen's skills it retired upstream on 2026-10-21 (folded into hyperframes and media-use). The git edition keeps this
-# computer's copies, which are HeyGen's version of 2026-10-04: each gets HeyGen's Apache licence and a SOURCE.md, and any
-# file that differs from HeyGen's says so at its end (Apache 2.0, section 4)
-KEPT_RETIRED = {"repo": "https://github.com/heygen-com/hyperframes", "commit": "0c3e244269aae698149214379280377a9f7a2f2b",
-                "date": "4 October 2026", "skills": ["hyperframes-animation", "hyperframes-audio", "hyperframes-core",
+# computer's copies, which are HeyGen's last version before it retired them (commit 207c8a4d, 21 October 2026): each gets
+# HeyGen's Apache licence and a SOURCE.md, and any file that differs from HeyGen's says so at its end (Apache 2.0, section 4)
+KEPT_RETIRED = {"repo": "https://github.com/heygen-com/hyperframes", "commit": "207c8a4daf6480d697f203784f1fd422727569e3",
+                "date": "21 October 2026", "skills": ["hyperframes-animation", "hyperframes-audio", "hyperframes-core",
                 "hyperframes-creative", "hyperframes-keyframes", "hyperframes-studio", "motion-graphics"]}
 GIT_REPO = "Zoke-Hub/claude-setup"     # where the git edition is published (its README and PROMPT.md name it)
 GIT_TEMPLATES = {"README.md": "templates/README-git.md", "PROMPT.md": "templates/PROMPT-git.md", "LICENSE": "templates/LICENSE-git.txt"}
@@ -117,6 +117,14 @@ OWNER_TEXT = CL / "house-private/setup-pack-owner.md"
 # every general file and rules block any setup file has shipped (sha256 per path, block texts by hash): an update uses it to
 # tell the pack's own files, unchanged, from files the person changed, and only updates the first kind. Shipped as earlier.json.
 HISTORY = HERE / "history.json"
+# what each build changed, newest first, shipped in the pack; the next build's entry is written as "## In this build" and
+# the build stamps it. setup shows the entries newer than the build a computer has (`sync.py news`)
+CHANGES = HERE / "CHANGES.md"
+# the stamp of the last build that went through: a newest entry stamped by a build that didn't (a crash, a power cut) is
+# stamped again by the next one
+LAST_BUILD = HERE / "last-build.txt"
+# a small CC0 photo for setup's cut-out test, so no one has to find one online
+TEST_PHOTO = HERE / "templates/cutout-test.jpg"
 ALLOWED = {"/users/<user>/"}                       # a generic placeholder in a third-party doc, not a real path
 CREDIT_OK = ("SETUP.md", "MANIFEST.json", "global/house/protected-tools.md", "global/setup-pack/PROMPT.md",
              "global/setup-pack/pack/SETUP.md", "global/setup-pack/templates/unfold-README.md",
@@ -125,6 +133,17 @@ CREDIT_OK = ("SETUP.md", "MANIFEST.json", "global/house/protected-tools.md", "gl
              "global/mods/pulsewise/", "global/mods/folio/",   # where the tools' maker may be credited: the tools themselves only
              "global/setup-pack/make_pack.py", "global/setup-pack/templates/README-git.md",      # and the builder and git
              "global/setup-pack/templates/PROMPT-git.md", "global/setup-pack/templates/LICENSE-git.txt")   # templates, which name the repos
+# Notes, rules and the owner's own skills that name files outside ~/.claude point at nothing on another computer: no setup
+# file carries those (a project's tools once stayed behind that way). Each build lists them. Places setup or the system
+# makes, where setup files go and where a skill saves its output are fine; so are notes that record one machine or the
+# pack itself (OWNER_CFG "outside_ok": note file names). OWNER_CFG "project_roots" (folder names such as a projects
+# folder's) also catches relative mentions of a project's files.
+OUTSIDE_OK_HOME = {".claude", ".claude.json", ".config", ".cache", ".local", ".npm", ".Trash", "Library", "Downloads",
+                   "FolioPacks", "documents/chat-archives"}
+OUTSIDE_OK_ABS = ("c:/program", "c:/windows")
+_START = r"(?:~|\$HOME|%USERPROFILE%|\$env:USERPROFILE|/[Uu]sers/[^/\s`'\"]+|\b[A-Za-z]:)[\\/]"
+PATH_RE = re.compile(_START + r"[^\s`'\"()<>|*]+")              # a bare path ends at a space
+SPAN_PATH_RE = re.compile(_START + r"[^`'\"()<>|*]+")           # inside `code` it may hold spaces ("My Projects")
 
 def copytree(src, dst, skip=frozenset()):
     for p in src.rglob("*"):
@@ -144,7 +163,7 @@ def scan(pack, cfg):
     """every owner's trace (and the credited name outside the credits) in the staged pack: [(file, term)]"""
     traces, name, bad = cfg.get("traces", []) + cfg.get("personal_skills", []), cfg.get("credited_name"), []   # the owner's own skills are never named
     for p in sorted(pack.rglob("*")):
-        if not p.is_file() or p.name == "owner.bin": continue
+        if not p.is_file() or p.name == "owner.bin" or "__pycache__" in p.parts: continue   # caches never ship
         rel = p.relative_to(pack).as_posix()
         raw = p.read_bytes()
         low = (raw.decode("utf-8", "ignore") + "\n" + raw.decode("latin-1", "ignore")).lower()
@@ -167,15 +186,34 @@ def git_fetch(repo, commit, paths, into):
     git("-C", str(into), "-c", "core.autocrlf=false", "fetch", "-q", "--depth", "1", "--filter=blob:none", "origin", commit)
     git("-C", str(into), "-c", "core.autocrlf=false", "checkout", "-q", "FETCH_HEAD")
 
+def upstream_history(repo, src_to_pack, into, commit):
+    """every version of every file under the source folders that `repo` ever published, read from its commits and trees
+    only (no file contents are downloaded): ({pack path: {git blob id: unix time it was first published}}, the unix time
+    of `commit`). setup uses it to tell a maker's older or newer copy of a file from the person's own change."""
+    git("init", "-q", str(into)); git("-C", str(into), "remote", "add", "origin", repo)
+    git("-C", str(into), "fetch", "-q", "--filter=blob:none", "origin", "HEAD")
+    log = git("-C", str(into), "log", "--reverse", "--format=@%ct", "--raw", "--no-abbrev", "--no-renames", "FETCH_HEAD", "--", *src_to_pack)
+    seen, at = {}, 0
+    for line in log.splitlines():
+        if line.startswith("@"): at = int(line[1:]); continue
+        if not line.startswith(":") or "\t" not in line: continue
+        info, path = line.split("\t", 1); blob = info.split()[3]
+        src = next((s for s in src_to_pack if path.startswith(s + "/")), None)
+        if src and set(blob) != {"0"}: seen.setdefault(src_to_pack[src] + path[len(src):], {}).setdefault(blob, at)
+    return seen, int(git("-C", str(into), "log", "-1", "--format=%ct", commit).strip())
+
 def fetch_sources(tmp):
     """the git edition's downloaded skills: pin each repo to its newest commit, fetch it, and fingerprint every file
-    exactly as setup will fetch it. Returns (MANIFEST "downloads", their files {pack path: sha256}, HeyGen's LICENSE)"""
-    downloads, files, heygen_licence = [], {}, None
+    exactly as setup will fetch it. Returns (MANIFEST "downloads", their files {pack path: sha256}, HeyGen's LICENSE,
+    every version their makers published {pack path: {blob: time}}, and each skill's pinned commit time)"""
+    downloads, files, heygen_licence, upstream, pins = [], {}, None, {}, {}
     for i, d in enumerate(DOWNLOADS):
         commit = git("ls-remote", d["repo"], "HEAD").split()[0]
         into = tmp / f"dl{i}"
         git_fetch(d["repo"], commit, list(d.get("skills", {})), into)
         skills = d.get("skills") or {x.name: x.name for x in sorted(into.iterdir()) if x.is_dir() and x.name.startswith(d["prefix"])}
+        hist, when = upstream_history(d["repo"], {src: f"skills/{name}" for src, name in skills.items()}, tmp / f"hist{i}", commit)
+        upstream.update(hist); pins.update({name: when for name in skills.values()})
         entry = {"label": d["label"], "repo": d["repo"], "commit": commit, "skills": skills}
         if d.get("group"): entry["group"] = d["group"]
         for src, name in skills.items():
@@ -188,7 +226,13 @@ def fetch_sources(tmp):
         if stock: entry["stock"] = stock
         if "heygen-com" in d["repo"] and (into / "LICENSE").is_file(): heygen_licence = (into / "LICENSE").read_bytes()
         downloads.append(entry)
-    return downloads, files, heygen_licence
+    return downloads, files, heygen_licence, upstream, pins
+
+def retired_history(tmp):
+    """HeyGen's published versions of its retired skills, and the time of the commit this pack keeps them at"""
+    k = KEPT_RETIRED
+    hist, when = upstream_history(k["repo"], {f"skills/{s}": f"skills/{s}" for s in k["skills"]}, tmp / "hist-retired", k["commit"])
+    return hist, {s: when for s in k["skills"]}
 
 def keep_retired(root, tmp, licence):
     """HeyGen's retired skills as installed here: HeyGen's licence and a SOURCE.md beside each, and a line at the end of
@@ -219,6 +263,47 @@ def keep_retired(root, tmp, licence):
             "2.0 (`LICENSE` beside this file). A file that differs from HeyGen's copy says so at its end.\n",
             encoding="utf-8", newline="\n")
     return marked
+
+def outside_ok(s):
+    """a path setup or the system makes, or a placeholder"""
+    low = s.lower()
+    if "<" in s or any(a in low for a in ALLOWED): return True
+    if re.match(r"[a-z]:/", low):
+        return low.startswith(OUTSIDE_OK_ABS) or bool(re.match(r"c:/[u]sers/[^/]+/(\.claude|appdata)(/|$)", low))
+    rest = re.sub(r"^(~|\$home|%userprofile%|\$env:userprofile|/[u]sers/[^/]+)/", "", low)
+    return any(rest == x.lower() or rest.startswith(x.lower() + "/") for x in OUTSIDE_OK_HOME)
+
+def outside_refs(pairs, ok_notes=(), roots=()):
+    """(pack path, file) pairs of notes, rules and own skills -> {pack path: [paths outside ~/.claude they name]}"""
+    found = {}
+    for rel, p in pairs:
+        if "/originals/" in rel or "/superseded/" in rel or Path(rel).name in ok_notes: continue   # kept for the record
+        text, hits = p.read_text(encoding="utf-8", errors="ignore"), []
+        for span in re.findall(r"`([^`\n]+)`", text):                   # paths in code marks, spaces and all
+            for part in re.split(r"\s+(?=~|\$HOME|%USERPROFILE%|\$env:|/[Uu]sers/|\b[A-Za-z]:[\\/])", span):
+                hits += [m.group(0) for m in SPAN_PATH_RE.finditer(part)]
+                hits += [part for r in roots if r in part]
+        bare = re.sub(r"`[^`\n]+`", " ", text)
+        hits += [m.group(0) for m in PATH_RE.finditer(bare)]
+        hits += [m.group(0) for r in roots for m in re.finditer(re.escape(r) + r"[^\s`'\"()<>|*,;]*", bare)]
+        for s in hits:
+            s = s.strip().rstrip(".,;:").replace("\\", "/")
+            if s and not outside_ok(s) and s not in found.setdefault(rel, []): found[rel].append(s)
+    return {k: v for k, v in found.items() if v}
+
+def ref_pairs(root, own_skills=()):
+    """what outside_refs reads in a staged pack: the rules, house notes, private notes and the owner's own skills (Markdown);
+    third-party skills are left out, their paths are examples"""
+    bases = [root / "global"] + [root / "skills" / s for s in sorted(OWN_SKILLS | set(own_skills))]
+    return [(p.relative_to(root).as_posix(), p) for b in bases if b.exists() for p in sorted(b.rglob("*.md"))]
+
+def report_outside(found):
+    if not found: return
+    print("\nPOINTS OUTSIDE THE PACK: these notes and skills name files outside ~/.claude, which no setup file carries, so on "
+          "another computer they point at nothing. Bring what's needed into ~/.claude (a skill, or house-private for private "
+          "things), or say in the note that it stays on one machine:")
+    for rel, paths in sorted(found.items()):
+        print(f"  {rel}: {', '.join(paths[:3])}" + (f" (+{len(paths) - 3} more)" if len(paths) > 3 else ""))
 
 def listing(root):
     """every pack file under global/, skills/ and extras/ with its sha256"""
@@ -269,27 +354,28 @@ def stage(root, personal, own, leave_out=(), tools=True, own_skills=(), leave_sk
     nxt = re.search(r"\n# (?!#)", rules[rules.index("# Global rules") + 1:])
     cut = rules.index("# Global rules") + 1 + nxt.start() + 1 if nxt else len(rules)
     block = rules[rules.index("# Global rules"):cut]
-    (root / "global/CLAUDE.md").write_text((block if personal else strip_personal(block, own)).rstrip() + "\n", encoding="utf-8")
+    (root / "global/CLAUDE.md").write_text((block if personal else strip_personal(block, own)).rstrip() + "\n", encoding="utf-8", newline="\n")
     # each OS's own sections: the Mac's from this CLAUDE.md on a Mac (kept as the template too), else from the template
     mac_t = HERE / "templates/CLAUDE-sections-mac.md"
     if sys.platform == "darwin":
         mac = "\n\n".join(x.strip() for x in re.split(r"\n(?=# (?!#))", "\n" + rules[cut:])
                           if x.strip() and not x.lstrip().startswith(NOT_PACKED_SECTIONS)) + "\n"
-        if not mac_t.exists() or mac_t.read_text(encoding="utf-8") != mac: mac_t.write_text(mac, encoding="utf-8")
+        if not mac_t.exists() or mac_t.read_text(encoding="utf-8") != mac: mac_t.write_text(mac, encoding="utf-8", newline="\n")
     else: mac = mac_t.read_text(encoding="utf-8")
-    (root / "global/CLAUDE-sections-mac.md").write_text(mac, encoding="utf-8")
+    (root / "global/CLAUDE-sections-mac.md").write_text(mac, encoding="utf-8", newline="\n")
     # video-use's local path fixes, so a new clone matches this one (sync.py applies the patch after cloning)
     vu = CL / "skills/video-use"
     d = subprocess.run(["git", "-C", str(vu), "diff", "--", "helpers/render.py", "helpers/grade.py"],
                        capture_output=True, text=True, encoding="utf-8").stdout if (vu / ".git").exists() else ""
-    if d: (root / "extras").mkdir(exist_ok=True); (root / "extras/video-use-windows-paths.patch").write_text(d, encoding="utf-8")
+    if TEST_PHOTO.exists(): (root / "extras").mkdir(exist_ok=True); shutil.copy2(TEST_PHOTO, root / "extras/cutout-test.jpg")
+    if d: (root / "extras").mkdir(exist_ok=True); (root / "extras/video-use-windows-paths.patch").write_text(d, encoding="utf-8", newline="\n")
     shutil.copy2(CL / "hooks/block-elevenlabs-transcription.sh", root / "global/hooks/")    # macOS / Linux
     shutil.copy2(CL / "hooks/block-elevenlabs-transcription.py", root / "global/hooks/")    # Windows (same rules)
     shutil.copy2(HERE / "templates/CLAUDE-sections-windows.md", root / "global/")          # Windows' own sections
     if personal:                                                   # the owner's Personal section goes to both OSes
         mine = next(x for x in re.split(r"\n(?=# (?!#))", "\n" + rules[cut:]) if x.lstrip().startswith(PERSONAL_HEAD))
         for f in ("global/CLAUDE-sections-mac.md", "global/CLAUDE-sections-windows.md"):
-            (root / f).write_text((root / f).read_text(encoding="utf-8").rstrip() + "\n\n" + mine.strip() + "\n", encoding="utf-8")
+            (root / f).write_text((root / f).read_text(encoding="utf-8").rstrip() + "\n\n" + mine.strip() + "\n", encoding="utf-8", newline="\n")
     for s in sorted((CL / "skills").iterdir()):
         if s.is_dir() and s.name not in LOCAL_SKILLS and (tools or s.name not in TOOL_SKILLS) and (personal or s.name not in own_skills) \
                 and s.name not in leave_skills:
@@ -301,7 +387,7 @@ def stage(root, personal, own, leave_out=(), tools=True, own_skills=(), leave_sk
         copytree(CL / "house-private", root / "global/house-private", skip=set(leave_out))
     else:                                                          # general notes only (house-private is never read)
         copytree(CL / "house", root / "global/house", skip={f"{n}.md" for n in own})
-        readme = root / "global/house/README.md"; readme.write_text(strip_personal(readme.read_text(encoding="utf-8"), own), encoding="utf-8")
+        readme = root / "global/house/README.md"; readme.write_text(strip_personal(readme.read_text(encoding="utf-8"), own), encoding="utf-8", newline="\n")
     if personal and UNFOLD.exists():                               # the Unfold presets' installer part, owner's edition only
         u = root / "global/ae-presets/unfold"
         copytree(UNFOLD, u, skip={x for x in (y.name for y in UNFOLD.iterdir()) if x not in UNFOLD_SHIP})
@@ -316,7 +402,7 @@ def stage(root, personal, own, leave_out=(), tools=True, own_skills=(), leave_sk
         listed = {x["name"]: x for x in market.get("plugins", [])}
         market["plugins"] = [listed.get(m) or {"name": m, "source": f"./{m}", "description":
                              json.loads((CL / "mods" / m / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))["description"]} for m in mods]
-        (root / "global/mods/.claude-plugin/marketplace.json").write_text(json.dumps(market, indent=2) + "\n", encoding="utf-8")
+        (root / "global/mods/.claude-plugin/marketplace.json").write_text(json.dumps(market, indent=2) + "\n", encoding="utf-8", newline="\n")
     for f in BUILDER_FILES:                                        # the builder, so every computer can build its own
         if f in OWNER_BUILDER_FILES and not personal: continue     # (Unfold's README template: owner's edition only)
         q = root / "global/setup-pack" / f; q.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(HERE / f, q)
@@ -328,6 +414,22 @@ def stage(root, personal, own, leave_out=(), tools=True, own_skills=(), leave_sk
                 raise SystemExit(f"possible secret in {p} - not packing")
     for p in list(root.rglob(".DS_Store")): p.unlink()             # Finder files: never listed, never zipped
     return listing(root)
+
+def stamp_changes(build, version):
+    """CHANGES.md with its "## In this build" entry stamped with this build, copied into the pack; the stamped text, for
+    the builder to keep once the build has gone through (None when there is nothing to stamp)"""
+    if not CHANGES.exists(): print("no CHANGES.md: this build has no what's-new list"); return None
+    t = CHANGES.read_text(encoding="utf-8")
+    top = re.search(r"(?m)^## Build (\S+) · version \S+$", t)
+    done = LAST_BUILD.read_text(encoding="utf-8").strip() if LAST_BUILD.exists() else ""
+    if "## In this build" not in t and top and top.group(1) != done:     # stamped by a build that never finished
+        t = t[:top.start()] + "## In this build" + t[top.end():]
+    if "## In this build" not in t:
+        print("CHANGES.md has no '## In this build' entry: this build adds nothing to its what's-new list")
+        (PACK / "CHANGES.md").write_text(t, encoding="utf-8", newline="\n"); return None
+    t = t.replace("## In this build", f"## Build {build} · version {version}", 1)
+    (PACK / "CHANGES.md").write_text(t, encoding="utf-8", newline="\n")
+    return t
 
 def lock():
     """sync.py's owner lock (one copy of the code)"""
@@ -351,8 +453,13 @@ def main():
     ap.add_argument("--git", action="store_true", help="the git edition: no tools inside; setup installs the ticked ones from GitHub")
     ap.add_argument("--repo", help="with --git: write the git edition as a repository's files into this folder (empty, or an "
                                    "earlier git edition's repo) instead of a zip")
+    ap.add_argument("--no-tools", action="store_true", help="leave MarkRoom, PulseWise and Folio out of a zip (for an owner's "
+                                   "computer that keeps its own working copies of them; its loaded copies stay as they are)")
+    ap.add_argument("--version", help="keep a published version number (YYYY-MM-DD.HHMMSS) for this build; every build still "
+                                      "gets its own stamp, which setup uses to tell builds apart and list what's new")
     a = ap.parse_args()
     if a.repo and not a.git: raise SystemExit("--repo is for the git edition: add --git")
+    if a.version and not re.fullmatch(r"\d{4}-\d{2}-\d{2}\.\d{6}", a.version): raise SystemExit("--version looks like 2026-11-06.073618")
     out_dir = Path(os.path.expanduser(a.out)).resolve(); out_dir.mkdir(parents=True, exist_ok=True)
     cfg = json.loads(OWNER_CFG.read_text(encoding="utf-8")) if OWNER_CFG.exists() else None
     own = cfg.get("personal_house", []) if cfg else []
@@ -367,47 +474,55 @@ def main():
         print("This computer has no owner's edition: building the general setup file."); full = False
     elif full and not (code and code_ok(cfg, code, ns)):
         print("Code was wrong: building the general setup file."); full = False
-    version = time.strftime("%Y-%m-%d.%H%M%S")
-    meta = {"version": version, "made": time.strftime("%Y-%m-%d %H:%M"), "retired_skills": RETIRED, "seed_skills": SEED_SKILLS,
+    build = time.strftime("%Y-%m-%d.%H%M%S")                       # this build's own stamp, whatever the version says
+    version = a.version or build
+    meta = {"version": version, "build": build, "made": time.strftime("%Y-%m-%d %H:%M"), "retired_skills": RETIRED, "seed_skills": SEED_SKILLS,
             "seed_files": ["skills/" + k for k in SKILL_STOCK],
             "replaced_house_notes": REPLACED_HOUSE, "retired_mods": RETIRED_MODS}
+    changes = stamp_changes(build, version)                        # this build's what's-new entry, stamped first so every
+    if changes: CHANGES.write_text(changes, encoding="utf-8", newline="\n")   # copy (the pack's, the builder's) carries it
     if a.git: meta["tool_source"] = {"repo": TOOL_REPO, "marketplace": TOOL_MARKETPLACE, "tools": ["folio", "pulsewise", "markroom"]}
     (PACK / ns["OWNER_FILE"]).unlink(missing_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         mine = Path(tmp)
-        mine_files = stage(mine, True, own, cfg.get("leave_out_private", [])) if full else {}
+        mine_files = stage(mine, True, own, cfg.get("leave_out_private", []), tools=not a.no_tools) if full else {}
         downloads, dl_files, marked = [], {}, []
         if a.git:   # third-party skills come from their makers' repos at install; HeyGen's retired ones stay, with its licence
             (mine / "git").mkdir()
-            downloads, dl_files, heygen_licence = fetch_sources(mine / "git")
+            downloads, dl_files, heygen_licence, upstream, pins = fetch_sources(mine / "git")
             leave = {n for d in downloads for n in d["skills"].values()} | \
                     {s.name for s in (CL / "skills").iterdir() for pre in OPTIONAL_SKILLS.values() if s.name.startswith(pre)}
             stage(PACK, False, own, tools=False, own_skills=own_skills, leave_skills=leave)
             marked = keep_retired(PACK, mine / "git", heygen_licence)
+            r_hist, r_pins = retired_history(mine / "git")
             meta["downloads"] = downloads
+            # every version each maker published, so setup can tell their older or newer copy from the person's own change
+            meta["upstream"] = {**upstream, **r_hist}; meta["upstream_pins"] = {**pins, **r_pins}
         else:
-            stage(PACK, False, own, tools=True, own_skills=own_skills)
+            stage(PACK, False, own, tools=not a.no_tools, own_skills=own_skills)
         shipped_files = listing(PACK)                              # what is inside the pack (or the repo)
         files = {**shipped_files, **dl_files}                      # plus what setup downloads, each with its fingerprint
         meta["optional_skills"] = {g: sorted({r.split("/")[1] for r in files if r.startswith(f"skills/{pre}")})
                                    for g, pre in OPTIONAL_SKILLS.items()}
         (PACK / "MANIFEST.json").write_text(json.dumps({**meta, "edition": "shareable",
-            "retired_house_notes": RETIRED_HOUSE + own, "retired_folders": RETIRED_FOLDERS, "files": files}, indent=1), encoding="utf-8")
+            "retired_house_notes": RETIRED_HOUSE + own, "retired_folders": RETIRED_FOLDERS, "files": files}, indent=1), encoding="utf-8", newline="\n")
         hist = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() else {"files": {}, "blocks": {}}
         for r, h in files.items():
             if h not in hist["files"].setdefault(r, []): hist["files"][r].append(h)
         blk = (PACK / "global/CLAUDE.md").read_text(encoding="utf-8")
         hist["blocks"][hashlib.sha256(blk.strip().encode("utf-8")).hexdigest()] = blk
-        HISTORY.write_text(json.dumps(hist, indent=0), encoding="utf-8")
+        HISTORY.write_text(json.dumps(hist, indent=0), encoding="utf-8", newline="\n")
         hide = [x.lower() for x in (cfg or {}).get("traces", []) + own_skills]   # never ship a path naming the owner's own things
         (PACK / "earlier.json").write_text(json.dumps({                 # block texts stay home: their fingerprints are enough
             "files": {r: hs for r, hs in hist["files"].items() if not any(x in r.lower() for x in hide)},
-            "blocks": {k: "" for k in hist["blocks"]}}), encoding="utf-8")
+            "blocks": {k: "" for k in hist["blocks"]}}), encoding="utf-8", newline="\n")
         bad = scan(PACK, cfg) if cfg else []
         if bad:
             for f, t in bad: print(f"  personal trace: {t!r} in {f}")
             raise SystemExit(f"{len(bad)} personal trace(s) found - not packing")
         extra = sorted(r for r, h in mine_files.items() if files.get(r) != h)
+        outside = outside_refs(ref_pairs(mine if full else PACK, own_skills if full else ()),   # read here, while staged
+                               (cfg or {}).get("outside_ok", []), (cfg or {}).get("project_roots", []))
         if full:   # the owner's edition: only what differs from the general pack is locked into owner.bin
             buf = io.BytesIO()
             with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
@@ -426,6 +541,7 @@ def main():
                        f"that it may be redistributed (a private repo doesn't need this): {', '.join(bare)}")
         for d in downloads: print(f"downloaded at install: {d['label']} from {d['repo']} at {d['commit'][:8]}: {', '.join(d['skills'].values())}")
         if marked: print("marked as changed from HeyGen's copy: " + ", ".join(marked))
+    report_outside(outside)
     if a.repo:
         subs = {"@@REPO@@": GIT_REPO, "@@TOOL_REPO@@": TOOL_REPO, "@@MARKETPLACE@@": TOOL_MARKETPLACE, "@@VERSION@@": version,
                 "@@HIGGSFIELD_COUNT@@": str(len(meta["optional_skills"].get("higgsfield", [])))}
@@ -434,6 +550,7 @@ def main():
         size = sum(p.stat().st_size for p in repo.rglob("*") if p.is_file() and ".git" not in p.relative_to(repo).parts)
         print(f"Built the git edition {version} as a repository: {repo} ({len(shipped_files)} pack files, {size / 1e6:.1f} MB; "
               f"{len(dl_files)} more files downloaded at install)")
+        LAST_BUILD.write_text(build + "\n", encoding="utf-8", newline="\n")
         return
     out = out_dir / f"{NAME}-{'git-' if a.git else ''}{version}.zip"
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
@@ -446,6 +563,7 @@ def main():
                      ({"markroom"} if any(r.startswith("skills/markroom/") for r in files) else set()))
     kind += ", git edition: no tools inside" if a.git else f", carrying {', '.join(carried) or 'none of the three tools'}"
     print(f"Built the {kind}: {out} ({out.stat().st_size / 1e6:.1f} MB), with PROMPT.md beside it")
+    LAST_BUILD.write_text(build + "\n", encoding="utf-8", newline="\n")
 
 if __name__ == "__main__":
     main()

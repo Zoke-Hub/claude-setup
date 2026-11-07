@@ -28,7 +28,10 @@ When someone asks to build, make, update or repack the setup file (the setup pac
   the Recycle Bin on Windows), never deleting them for good.
 - **What goes in** is this computer's own setup: its rules, house notes, skills and tools, as the person has them. The
   protected tools follow [[protected-tools]].
-- **Afterwards,** tell them the new zip's name and size and what changed since the last one.
+- **Afterwards,** tell them the new zip's name and size and what changed since the last one. If the build lists **POINTS
+  OUTSIDE THE PACK**, name those notes and the files they point at: no setup file carries anything outside `~/.claude`,
+  so on another computer those notes point at nothing. Offer to bring what's needed into `~/.claude` (a skill, or the
+  private notes for private things).
 
 **Why:** every computer the pack is installed on can pass a setup on, but only the owner's computers can pass on the
 owner's own edition, and only with the code.

@@ -6,21 +6,30 @@ Owner code: if the user's message also holds a code (one word starting with `!`)
 
 Steps:
 1. Unzip the zip into a short temporary folder: ~/Downloads/claude-setup (on Windows %USERPROFILE%\Downloads\claude-setup). If you can't open the attachment as a file, look for Claude-setup-pack-*.zip in Downloads. Read SETUP.md in it fully before doing anything else; it is the detailed step list, and it says which Python command to use (`python3.12` on a Mac, `py -3.12` on Windows).
-2. Run the bootstrap script for this system from the unzipped folder, before anything else:
+2. Check whether this computer has the setup pack already: look for `installed.json` in `~/.claude/setup-pack/` (the same folder under the user's home on Windows).
+   - **Not there:** this is a first install. Do every step below.
+   - **There:** this is an update. Run `sync.py news` with any Python 3 on this computer (with the owner code, if one was accepted) and tell the user in a few lines what this setup file changes: its "What's new" entries and the files it would change. The version number can be the same as the one installed (each build has its own stamp), so go by what `news` says, not the number. Then do only what the update needs:
+     - Step 3: run the bootstrap; it installs only tools that are missing.
+     - Step 4: don't ask again. `install` keeps this computer's transcription languages and Higgsfield choice when those flags are left out; ask only if the user wants to change one. Ask about earshot only if `news` lists a change to it and its tool isn't installed.
+     - Step 5: run `sync.py install` without `--transcription` and `--higgsfield`; add `--cutout-env` or `--parakeet` only if `sync.py check` reports the cut-out tool or Parakeet missing. It writes only the files that are new or changed, keeps the user's own changes, and says what it updated. Then run `sync.py tools` and update the tools that are already installed (offer the others only if the user asks).
+     - Steps 6 and 7: as written. Run the test cut-out or test transcription only if `news` lists a change to the cutout or local-transcribe skill or the cut-out tool.
+     - Steps 8 to 10: skip them, unless `news` lists a change to one of them or `sync.py check` says something there isn't set up yet.
+     - Step 11: as written, but end with the update report at the end of this prompt instead of the full report.
+3. Run the bootstrap script for this system from the unzipped folder, before anything else:
    - Mac: `bash bootstrap-mac.sh`. It checks for Homebrew first.
    - Windows: `powershell -ExecutionPolicy Bypass -File bootstrap-windows.ps1`. It checks for winget first.
    - If the package manager is missing, give the user the exact steps the script prints (they type their own password or click the prompts), wait until they say done, then run it again.
    - If any tools are missing (Python 3.12, ffmpeg, node, uv, yt-dlp, Chrome, ...), tell the user which, then install them with the same script (`--install` on a Mac, `-Install` on Windows). If something needs their password or a click, give them the steps.
    - If it prints a Bonjour note (Windows), pass it on to the user as written: the commands are theirs to run, as administrator, if they want to. It doesn't stop anything.
    - Carry on only when it says READY.
-3. Ask the user which languages this computer should transcribe: English only (about 640 MB), or English + other languages such as Hindi (about 3 GB more). In the same message, ask whether they want the optional Higgsfield skills (8 skills for images, videos, brand kits, product shots, thumbnails and sites; they need their own Higgsfield account).
-4. Tell the user how big the downloads are and how long they'll take, then run `sync.py install --cutout-env --parakeet --transcription english --higgsfield no` (or `multilingual` and `--higgsfield yes`, as they chose) with this system's Python, in the background. It also clears the older version's installs (SETUP.md step 4). Then run `sync.py tools` ("The three tools" in SETUP.md). If it says this setup file installs them from GitHub, ask the user one question that allows several answers: which of Folio, PulseWise and MarkRoom to install (none is fine); then run `sync.py tools --install <their picks, comma-separated>`. If the `claude` command isn't available it prints lines for the user to type in a chat: give them those. If a tool's folder here has the user's changes, it isn't replaced: ask whether to keep it or set it aside (then `--set-aside`). On the owner's edition, and when the setup file carries the tools, there is nothing to ask.
-5. Run `sync.py cleanup` and show the user what it lists (the older version's untouched installs are already cleared). `move` and `tool` items are the pack's own leftovers, unchanged: remove them with `--yes` only after the user says yes. `ask` items are the user's own files or ones they changed: `--yes` never touches them; move one only if the user says yes to that one, with `--move "<path>"` (to the backup, never deleted). An update never undoes the user's changes: `install` lists under "KEPT AS YOU HAD IT" each file it left as they had it and where the pack's new version went; offer to merge any of them.
-6. Run `sync.py check` until it says IN SYNC, then do the test cut-out and the test transcription from SETUP.md. In the report, only say whether each passed.
-7. Check that the watch plugin shows up (watch:watch in your skills). If it doesn't, give the user the two commands from SETUP.md to install it (it's free and works on any account). Once it's there, set it up as SETUP.md describes: local engine, WhisperX small, balanced detail, no API keys.
-8. Read "Claude accounts" in SETUP.md and tell the user which account-side things they may want to set up themselves (plugins, connectors, review boards). With the owner's edition only (skip it on a general install), ask whether to install the Unfold text presets into After Effects; on yes, give them the steps from SETUP.md step 8 (on a Mac a `sudo` command they run in Terminal with After Effects closed, after giving Terminal App Management; on Windows a folder they copy by hand, as there is no installer script). Then the two sound tools ("Sound tools" in SETUP.md): point real-sfx at a sound library with its setup command, and ask before installing earshot's tool (about 2.4 GB).
-9. Briefly tell the user the house rules (4K delivery, motion rules, working rules) so they can say which apply to them, and record their answer as SETUP.md step 7 describes.
-10. If no owner code was accepted, run `sync.py strip-owner --zip "<the setup zip's path>"` (it takes the pack's locked part out of the zip and the folder; skip the `--zip` part if you can't find the zip as a file). Delete the temporary unzip folder. Then end with this report, filled in, and write nothing after it. Print it as Markdown, laid out as it stands (headings, lists, the skills table), not inside a code block. It names no one except Zoke. Keep every description as written; fill in only the <...> parts (a skill's status is installed, updated or unchanged), and leave out the Whisper line if English only was chosen. Leave out the markroom row and the part of "How MarkRoom, PulseWise and Folio work" for any of the three tools that isn't installed (the whole section when none is), and keep the "From GitHub" section only when the tools were installed from GitHub:
+4. Ask the user which languages this computer should transcribe: English only (about 640 MB), or English + other languages such as Hindi (about 3 GB more). In the same message, ask whether they want the optional Higgsfield skills (8 skills for images, videos, brand kits, product shots, thumbnails and sites; they need their own Higgsfield account), and whether to install earshot's listening tool for the earshot skill (about 2.4 GB).
+5. Tell the user how big the downloads are and how long they'll take, then run `sync.py install --cutout-env --parakeet --transcription english --higgsfield no` (or `multilingual` and `--higgsfield yes`, as they chose) with this system's Python, in the background. It also clears the older version's installs (SETUP.md step 4). Then run `sync.py tools` ("The three tools" in SETUP.md). If it says this setup file installs them from GitHub, ask the user one question that allows several answers: which of Folio, PulseWise and MarkRoom to install (none is fine); then run `sync.py tools --install <their picks, comma-separated>`. If the `claude` command isn't available it prints lines for the user to type in a chat: give them those. If a tool's folder here has the user's changes, it isn't replaced: ask whether to keep it or set it aside (then `--set-aside`). On the owner's edition, and when the setup file carries the tools, there is nothing to ask.
+6. Run `sync.py cleanup` and show the user what it lists (the older version's untouched installs are already cleared). `move` and `tool` items are the pack's own leftovers, unchanged: remove them with `--yes` only after the user says yes. `ask` items are the user's own files or ones they changed: `--yes` never touches them; move one only if the user says yes to that one, with `--move "<path>"` (to the backup, never deleted). An update never undoes the user's changes: `install` lists under "KEPT AS YOU HAD IT" each file it left as they had it and where the pack's new version went; offer to merge any of them.
+7. Run `sync.py check` until it says IN SYNC, then do the test cut-out (on the pack's own `extras/cutout-test.jpg`, a CC0 museum photo) and the test transcription from SETUP.md. In the report, only say whether each passed.
+8. Check that the watch plugin shows up (watch:watch in your skills). If it doesn't, give the user the two commands from SETUP.md to install it (it's free and works on any account). Once it's there, set it up as SETUP.md describes: local engine, WhisperX small, balanced detail, no API keys. If its WhisperX warm-up fails on Windows with a symlink error, use the fallback in SETUP.md.
+9. Read "Claude accounts" in SETUP.md and tell the user which account-side things they may want to set up themselves (plugins, connectors, review boards). With the owner's edition only (skip it on a general install), ask whether to install the Unfold text presets into After Effects; on yes, give them the steps from SETUP.md step 8 (on a Mac a `sudo` command they run in Terminal with After Effects closed, after giving Terminal App Management; on Windows a folder they copy by hand, as there is no installer script). Then the two sound tools ("Sound tools" in SETUP.md): point real-sfx at a sound library with its setup command, and, if the user said yes to earshot in step 4, run `sync.py earshot` in the background: it installs earshot's tool at the version this pack was checked with and runs earshot's own checks. If running it is refused (a safety check can block installing a third-party repository), give the user that one command to run themselves, from the unzipped folder.
+10. Briefly tell the user the house rules (4K delivery, motion rules, working rules) so they can say which apply to them, and record their answer as SETUP.md step 7 describes.
+11. If no owner code was accepted, run `sync.py strip-owner --zip "<the setup zip's path>"` (it takes the pack's locked part out of the zip and the folder; skip the `--zip` part if you can't find the zip as a file). Delete the temporary unzip folder. Then end with this report, filled in, and write nothing after it. Print it as Markdown, laid out as it stands (headings, lists, the skills table), not inside a code block. It names no one except Zoke. Keep every description as written; fill in only the <...> parts (a skill's status is installed, updated or unchanged), and leave out the Whisper line if English only was chosen. Leave out the markroom row and the part of "How MarkRoom, PulseWise and Folio work" for any of the three tools that isn't installed (the whole section when none is), and keep the "From GitHub" section only when the tools were installed from GitHub:
 
 ## Setup complete
 
@@ -93,12 +102,14 @@ In `~/.claude/skills`: abilities Claude loads when a task needs them.
 - Stills pan and zoom. Videos play, step frame by frame and go full screen, and every note is pinned to a timecode or a range.
 - You draw markers, arrows, boxes, freehand lines and text, gather as many marks as a point needs into one numbered note, and write its comment; pictures can be pasted into a note. A whole-image or whole-video note covers the overall feel.
 - Claude reads every note, the overall ones included, makes the changes, then replies to each note and closes it.
+- Whenever Claude changes something in the MarkRoom, its message links straight to the file that changed.
 
 **PulseWise** (a mod: new chats in the Claude desktop app)
 
 - A band above the prompt box shows the chat's task list as one bar, a segment per point sized by its time, filling as the work runs. The line above it names what is running, the total % and the time left.
 - Click a segment to open its own bar. Background jobs (renders, agents, scripts) each get a bar under Tracks, and long scripts report real counts through `~/.claude/progress/progress.py`.
 - Other pulses shows the other chats open in the same project, marked "needs input" in amber when one is waiting on you. Done lists what finished and how long it took, and Nudge reminds Claude to bring its task list up to date.
+- On Windows, when a long job or the whole list finishes while the Claude app is behind other windows, its taskbar button flashes until you come back.
 - It runs by itself and uses no Claude usage while it runs.
 
 **Folio** (a mod: new chats in the Claude desktop app, Claude Code 2.1.308 or newer)
@@ -116,5 +127,21 @@ Installed: <the tools installed from GitHub, or none>.
 - **Update one:** `claude plugin update <tool>@zoke` in a terminal, then open a new chat.
 - **What they need:** MarkRoom: Node, Python 3.10+ with Pillow, ffmpeg, and a claude.ai account whose artifacts allow a database, comments and file uploads. Folio: Claude Code 2.1.308 or newer; its summaries use Haiku, on your own usage. PulseWise and Folio: the Claude desktop app.
 - **Open a new chat** so they load.
+
+*Setup pack put together by Zoke.*
+
+---
+
+The update report (step 2, an update), filled in the same way:
+
+## Setup updated
+
+Setup pack <version>, build <this build> (was build <the build installed before, or "an earlier build">)
+
+- **What's new:** <the "What's new" entries `news` listed, one line each, or nothing new in this build>
+- **Changed here:** <the files the install wrote, by area (for example 3 skills updated: animation, markroom, cutout; 2 house notes), or nothing>
+- **Kept as you had it:** <the files the update left as you'd changed them, with where the pack's new versions are (~/.claude/setup-pack/updates/), or nothing>
+- **Check:** <IN SYNC, or what's left>
+- **Backed up:** <the backup folder, or nothing needed>
 
 *Setup pack put together by Zoke.*

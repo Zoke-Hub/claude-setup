@@ -102,7 +102,8 @@ Mac (macOS's own `python3` is 3.9), `py -3.12` on Windows (or `python` if that i
    files, or pack files they changed: `--yes` never touches them; move one only on the user's yes to that one, with
    `--move "<path>"` (to the backup, never deleted). `[report]` items are left for you to sort out by hand with the user.
 6. **Check.** `PY sync.py check` must end with **IN SYNC**. Fix anything it lists, then prove the local tools:
-   - Cut-out: download one public-domain test image (e.g. a museum open-access object photo) to a temp folder, run
+   - Cut-out: copy the pack's own test photo, `extras/cutout-test.jpg` (CC0: Teapot, Cleveland Museum of Art 1940.228),
+     to a temp folder (no need to look for one online), run
      the cut-out venv's Python (`~/.claude/venvs/cutout/bin/python` on a Mac, `~/.claude/venvs/cutout/Scripts/python.exe`
      on Windows) on `~/.claude/skills/cutout/scripts/birefnet_cutout.py <img> <out.png>`, time it, and check the result
      is the same size as the input with clean edges on a plain paper colour. Its last line says the precision and
@@ -136,7 +137,12 @@ Mac (macOS's own `python3` is 3.9), `py -3.12` on Windows (or `python` if that i
      USER line), the user installs it — free, from GitHub, works on any Claude account — in a terminal Claude Code
      session (`claude`): `/plugin marketplace add bradautomates/claude-video` then `/plugin install watch@claude-video`,
      then starts a new session. Then set it up: engine local, WhisperX small, detail balanced, no API keys (config
-     `~/.config/watch/.env`, run with `PY`); never a cloud transcriber.
+     `~/.config/watch/.env`, run with `PY`); never a cloud transcriber. On Windows its WhisperX warm-up can fail with a
+     symlink error (the model download makes links Windows refuses without Developer Mode). Then, with watch's own
+     WhisperX Python (its venv under `~/.cache/watch`), download the model's files one at a time into the same cache:
+     `from huggingface_hub import hf_hub_download, list_repo_files` and `hf_hub_download(repo, f)` for each `f` in
+     `list_repo_files(repo)`, where `repo` is the model the warm-up was fetching (`Systran/faster-whisper-small` for
+     WhisperX small). Then run the setup and warm-up again: they find the model already there.
    - Any plugins and claude.ai connectors they want on this account (see below).
    - **The Unfold text presets for After Effects**, with **Blink in / out** (owner's edition only; skip this on a general
      install. 90 text animation presets: words, lines and characters, each IN and OUT; Blink keys a layer's opacity on or
@@ -157,13 +163,34 @@ Mac (macOS's own `python3` is 3.9), `py -3.12` on Windows (or `python` if that i
 Two skills need one step on each computer after setup:
 
 - **real-sfx** (real recorded sound effects) ships with its stock settings and no library. Point it at a sound
-  library once: `PY ~/.claude/skills/real-sfx/scripts/setup.py init --library main="<the library folder>" --index --uisfx --force`
+  library once: `PY ~/.claude/skills/real-sfx/scripts/setup.py init --library main="<the library folder>" --index --force`
   (the sound-effects skill's own `~/.claude/skills/sound-effects/sfx` by default, with no need to ask; a library the
-  user names if they have one; `--uisfx` fetches its UI sounds from npm, about 9 MB, with Node; `--force` replaces the
+  user names if they have one; no `--uisfx`: its UI sounds are made in code, which the house rule never uses (real-sfx
+  always runs with `--ui library`), so its own check saying "uisfx not installed" is expected; `--force` replaces the
   stock settings; `check` reports what's missing). Its settings and index are this computer's own: an update never
   replaces them. In the git edition real-sfx itself comes from Clipwing's repository during `install` (step 4).
 - **earshot** (Claude's ears for sound) is a skill; its tool, with two listening models, is about 2.4 GB and isn't in
-  the pack. Ask the user first; on their yes, follow the skill's "Where it isn't installed" steps.
+  the pack. Ask the user first (with the first questions); on their yes, run `PY sync.py earshot` in the background. It
+  clones earshot at the version this pack was checked with into `~/.claude/tools/earshot`, makes its venv (CPU torch),
+  fetches its two models and runs earshot's own check, which must end with `problems: []`. A working install is left
+  as it is. If running it is refused (a safety check can block installing a third-party repository), give the user the
+  same command to run themselves from the pack folder.
+
+## Updating a computer that already has the pack
+
+`~/.claude/setup-pack/installed.json` there means the pack was installed before: this run is an update. First
+`PY sync.py news`: it prints the entries of the pack's `CHANGES.md` for the builds after the one installed here, and the
+files this install would change, by area, compared by their contents. Each build has its own stamp (`build` in
+`MANIFEST.json`, recorded in `installed.json` by every install), so this works when the version number stays the same.
+Tell the user what's new, then update only what needs it: the bootstrap installs only missing tools; `install` without
+`--transcription` and `--higgsfield` keeps this computer's choices, and writes only files that are new or changed; the
+one-time steps (the tests, watch, real-sfx's library, earshot, the house-rules question) run again only when `news`
+lists a change to them or `check` says one isn't set up. End with the short update report (PROMPT.md).
+
+Files a third-party skill's maker published (HeyGen's, Clipwing's, Higgsfield's) are told apart from the user's own
+changes: `MANIFEST.json` lists every version each maker published (`upstream`). A file here that is the maker's older
+copy is updated (backed up first); one that is the maker's newer copy is kept and reported as newer; only a file the
+maker never published counts as the user's own change.
 
 ## Updates keep the user's changes
 

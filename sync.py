@@ -209,6 +209,12 @@ def known(rel, h):
     """a setup file wrote exactly this content at this path (this pack, the last install, or an earlier pack)"""
     return h == MANIFEST["files"].get(rel) or h == REC.get("files", {}).get(rel) or h in EARLIER.get("files", {}).get(rel, [])
 
+def changed_here(rel, d):
+    """the copy at d was changed on this computer after a setup file wrote it: it stays, and the new one is parked. The
+    owner's edition has no fingerprints of earlier packs' owner files, so it can tell only where the last install recorded
+    the path; anything else it updates as before (with a backup)"""
+    return not known(rel, sha(d)) and (not OWNER_ED or rel in REC.get("files", {}))
+
 UPSTREAM = MANIFEST.get("upstream", {})          # every version a downloaded skill's maker published: {path: {git blob: time}}
 UPSTREAM_PINS = MANIFEST.get("upstream_pins", {})  # each such skill's pinned commit time
 MAKER_OLDER, MAKER_NEWER = [], []                # this install: makers' older copies updated, newer copies kept
@@ -754,10 +760,10 @@ def compare(project):
             (same := same + 1) if not need else differ.append(str(d) + "  (index lacks: " + ", ".join(sorted(need)) + ")")
             continue
         if not d.exists():
-            if rel in REC.get("files", {}) and not OWNER_ED: yours.append(str(d) + "  (removed by you; kept removed)")
+            if rel in REC.get("files", {}): yours.append(str(d) + "  (removed by you; kept removed)")
             else: missing.append(str(d))
         elif sha(d) != h:
-            if OWNER_ED or known(rel, sha(d)): differ.append(str(d))
+            if not changed_here(rel, d): differ.append(str(d))
             else: yours.append(str(d) + ("  (a newer copy from its maker; kept)" if maker_copy(rel, d) == "newer" else "  (changed by you; kept)"))
         else: same += 1
     if not lang_choice():
@@ -981,15 +987,15 @@ def cmd_install(project, cutout_env, parakeet, transcription=None):
             if new != cur: backup(d); d.write_text(new, encoding="utf-8", newline="\n"); n += 1
             continue
         if not d.exists():
-            if rel in REC.get("files", {}) and not OWNER_ED:       # the person removed a pack file: it stays removed
+            if rel in REC.get("files", {}):                        # the person removed a pack file: it stays removed
                 REMOVED_KEPT.append((d, park(rel))); continue
         elif sha(d) == h: rec[rel] = h; continue
-        elif not OWNER_ED and not known(rel, sha(d)) and (mc := maker_copy(rel, d)) != "older":
+        elif changed_here(rel, d) and (mc := maker_copy(rel, d)) != "older":
             if mc == "newer": MAKER_NEWER.append(d)                # the maker's own newer copy: kept as it is
             else: KEPT.append((d, park(rel)))                      # the person changed it: theirs stays, the new one is parked
             if rel in REC.get("files", {}): rec[rel] = REC["files"][rel]
             continue
-        elif not OWNER_ED and not known(rel, sha(d)): MAKER_OLDER.append(d)   # the maker's older copy: updated (backed up)
+        elif changed_here(rel, d): MAKER_OLDER.append(d)            # the maker's older copy: updated (backed up)
         backup(d); shutil.copy2(src, d); n += 1; rec[rel] = h
         if d.suffix in (".sh", ".py", ".mjs") and os.name != "nt": d.chmod(d.stat().st_mode | 0o111)
     cm = CLAUDE / "CLAUDE.md"                                      # this OS's own sections go after the rules block
@@ -1088,8 +1094,10 @@ def cmd_news():
         if d is None or tool_file(rel) or opt_skip(rel) or seeded(rel) or rel in SECTION_FILES \
                 or rel in ("global/CLAUDE.md", "memory/MEMORY.md"): continue
         if d.exists() and sha(d) == h: continue
-        mc = None if not d.exists() or OWNER_ED or known(rel, sha(d)) else maker_copy(rel, d)
-        kind = ("new" if not d.exists() else "updated" if OWNER_ED or known(rel, sha(d)) else
+        mine = d.exists() and changed_here(rel, d)
+        mc = maker_copy(rel, d) if mine else None
+        kind = ("removed by you, stays removed (the new one is parked)" if not d.exists() and rel in REC.get("files", {}) else
+                "new" if not d.exists() else "updated" if not mine else
                 "updated (an older copy from its maker)" if mc == "older" else "kept (a newer copy from its maker)" if mc == "newer"
                 else "yours, kept (the new one is parked)")
         parts = Path(rel).parts

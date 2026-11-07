@@ -3,6 +3,22 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-07.232208 · version 2026-11-06.073618
+
+- **Rules:** a new working rule, **Releases**: a change that several packages or editions share goes into every one
+  that carries it, in the same release, each tested as a first install and as an update over edited, deleted and added
+  files (`release-every-package.md`).
+
+## Build 2026-11-07.225800 · version 2026-11-07.225800
+
+- **MarkRoom** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update): dragging
+  the playhead on a video's timeline shows the frames as it goes, and so do held arrow keys and the −1f / +1f buttons.
+  Clicking or dragging on the timeline, or dragging a tab, never selects text. New boards keep a keyframe every half
+  second in their review videos, so the preview keeps up with the drag.
+- **Your own changes** stay through an update in the owner's edition too, for every file its last install recorded:
+  the new version is parked beside it, as in the general edition. A pack file you deleted stays deleted, and
+  `sync.py news` now says so instead of listing it as new.
+
 ## Build 2026-11-07.220800 · version 2026-11-06.073618
 
 - **The tools from GitHub** update through the tools repo's `UPDATE.md`: only the tools whose files changed, and also

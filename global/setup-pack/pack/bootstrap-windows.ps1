@@ -65,19 +65,31 @@ foreach ($x in $tools) {
   if (& $x.t) { Ok $x.n $x.why } else { No $x.n ("winget install --id {0} -e{2}   ({1})" -f $x.id, $x.why, $(if ($x.skipDeps) { " --skip-dependencies" } else { "" })); $missing += $x }
 }
 
-# Bonjour's name-lookup add-in (mdnsNSP.dll) with Windows' LSA protection on: Windows blocks the add-in inside lsass and
-# shows a "Local Security Authority" pop-up during some downloads. Setup's own downloads avoid it (git uses OpenSSL
-# here); this only tells the user how to stop it for good. A note, never a blocker.
-function BonjourNote {
+# Bonjour's name-lookup add-in (mdnsNSP.dll) with Windows' LSA protection on: a Bonjour older than 3.1.0.1 (3.0.0.10,
+# from 2011, still comes with some installers) is blocked inside lsass, and Windows shows a "Local Security Authority"
+# pop-up at start-up and during some downloads. Updating Bonjour to 3.1.0.1 stopped it on a Windows 11 PC (no lsass
+# blocks over three start-ups; other protected services still skip the add-in, silently and harmlessly). Setup's own
+# downloads avoid the pop-up (git uses OpenSSL here). A note, never a blocker: Claude offers the update and runs it on
+# the user's yes. $Dlls: the add-in's copies to read the version from (Bonjour's usual folders).
+function BonjourNote([string[]]$Dlls = @("$env:ProgramFiles\Bonjour\mdnsNSP.dll", "${env:ProgramFiles(x86)}\Bonjour\mdnsNSP.dll")) {
   $lsa = Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Lsa" -Name RunAsPPL -ErrorAction SilentlyContinue
   if (-not $lsa -or ($lsa.RunAsPPL -ne 1 -and $lsa.RunAsPPL -ne 2)) { return }
   $cat = (& netsh winsock show catalog 2>$null) -join "`n"
   if ($cat -notmatch "mdnsNSP") { return }
+  $vers = @($Dlls | Where-Object { $_ -and (Test-Path -LiteralPath $_) } | ForEach-Object {
+    $v = (Get-Item -LiteralPath $_).VersionInfo; [version]::new($v.FileMajorPart, $v.FileMinorPart, $v.FileBuildPart, $v.FilePrivatePart) })
+  $old = @($vers | Where-Object { $_ -lt [version]"3.1.0.1" } | Sort-Object)
+  if ($vers.Count -and -not $old.Count) { return }          # 3.1.0.1 or newer everywhere: no pop-up to stop
+  $which = if ($old.Count) { "Bonjour $($old[0])" } else { "A Bonjour of unknown version" }
   Say ""
-  Say "BONJOUR NOTE (nothing to do now; setup itself avoids this):"
-  Say "  Bonjour's name-lookup add-in is installed and Windows' LSA protection is on, so some downloads can bring up a"
-  Say "  'Local Security Authority' pop-up. To stop it for good, the user can run these two lines in PowerShell opened"
-  Say "  as administrator. They remove only Bonjour's name-lookup add-in: the Bonjour service keeps running."
+  Say "BONJOUR NOTE (nothing stops; offer the user this update):"
+  Say "  $which is installed and Windows' LSA protection is on, so Windows blocks Bonjour's name-lookup add-in and"
+  Say "  shows a 'Local Security Authority' pop-up at start-up and during some downloads. Updating Bonjour to 3.1.0.1 stops"
+  Say "  it. On the user's yes, run this (Windows asks for administrator rights; the user clicks Yes):"
+  Say "    winget upgrade --id Apple.Bonjour -e --accept-source-agreements --accept-package-agreements"
+  Say "  (if winget finds no installed package to upgrade, use  winget install --id Apple.Bonjour -e  instead)."
+  Say "  If the pop-up still comes after a restart, the user can run these two lines in PowerShell opened as administrator;"
+  Say "  they remove only Bonjour's name-lookup add-in, and the Bonjour service keeps running:"
   Say '    regsvr32 /u "C:\Program Files\Bonjour\mdnsNSP.dll"'
   Say '    C:\Windows\SysWOW64\regsvr32.exe /u "C:\Program Files (x86)\Bonjour\mdnsNSP.dll"'
   Say "  Or uninstall Bonjour if nothing on the computer needs it. Keep LSA protection on."

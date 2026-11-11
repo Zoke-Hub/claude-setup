@@ -19,6 +19,9 @@ brief), ask for the owner code first, in one question, and check it before doing
   `py -3.12`, the code in `$env:OWNER_CODE`). It prints "Code OK." or "Code was wrong." and builds nothing.
 - **Right code:** go ahead with the locked parts.
 - **Wrong or no code:** do the rest without them, and say exactly what was left out because it is locked.
+- **A code typed recently** in the same chat, for the same piece of work (for example with the request to build, then
+  for a rebuild or two right after it), can be used again without asking. If it was given a long time ago (much
+  earlier in a long chat, before the chat was folded or compacted, or for other work), ask for it again before using it.
 - Never write the code into a file, note, memory or brief, and never repeat it in a message.
 - Building a setup file already asks for the code (`build-setup-file.md`); this covers every other way the locked
   parts could leave.

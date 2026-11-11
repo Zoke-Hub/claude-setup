@@ -3,6 +3,17 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-12.050711 · version 2026-11-06.073618
+
+- **Rules:** the owner code. A code typed recently in the same chat, for the same work, can be used again for a rebuild
+  right after; one given a long time ago is asked for again (`locked-needs-the-code.md`).
+- **MarkRoom** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update): a board
+  you come back to opens where you left it (file, zoom, spot, a video's moment), and switching video versions of the same
+  length keeps the playhead even when their beat labels differ.
+- **Windows:** the bootstrap checks Bonjour's version. A Bonjour older than 3.1.0.1 is what brings up the "Local
+  Security Authority" pop-up at start-up; Claude now offers the update to 3.1.0.1 (one winget line, with an
+  administrator prompt), which stops it. With 3.1.0.1 or newer the note no longer shows.
+
 ## Build 2026-11-07.232208 · version 2026-11-06.073618
 
 - **Rules:** a new working rule, **Releases**: a change that several packages or editions share goes into every one

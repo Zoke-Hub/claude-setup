@@ -106,6 +106,9 @@ RETIRED_MODS = ["pulse"]           # mods an older pack installed under an old n
 RETIRED_FOLDERS = ["ae-presets/unfold"]   # ~/.claude folders an older general pack installed that general packs no longer ship
 NOT_PACKED_SECTIONS = ("# Transcription languages", "# Cut-out settings", "# Personal (not packed)")   # per machine / personal
 PERSONAL_HEAD = "# Personal (not packed)"
+# a Personal line ending in this tag is about this computer alone (its hardware, its paths): it stays in this computer's
+# CLAUDE.md and goes into neither OS's sections file, so another Mac or PC never gets it
+MACHINE_ONLY = "<!-- this machine only -->"
 # the owner's computers only (they come inside owner.bin): traces, own rules, the code check, and OWNER.md
 OWNER_CFG = CL / "house-private/setup-pack-owner.json"
 # the Unfold text presets for After Effects: their home is house-private (with the build tools and renders); only the owner's
@@ -342,6 +345,18 @@ def write_repo(folder, subs, downloads):
     (folder / ".gitignore").write_text("__pycache__/\n.DS_Store\n# the skills setup downloads land here while it installs\n" +
                                        "".join(f"/skills/{n}/\n" for d in downloads for n in d["skills"].values()), encoding="utf-8", newline="\n")
 
+def personal_section(tail):
+    """the owner's Personal section from CLAUDE.md's sections after the rules block, as both OS sections files carry it:
+    without the lines marked MACHINE_ONLY. An unmarked line that names this PC or this Mac gets a NOTE, as it would
+    reach other computers"""
+    mine = next(x for x in re.split(r"\n(?=# (?!#))", "\n" + tail) if x.lstrip().startswith(PERSONAL_HEAD))
+    keep = [ln for ln in mine.splitlines() if MACHINE_ONLY not in ln]
+    for ln in keep:
+        if ln.lstrip().startswith("-") and re.search(r"\bthis (PC|Mac)\b", ln, re.I):
+            print(f"NOTE: a Personal line names this computer but isn't marked {MACHINE_ONLY}, so other computers get it "
+                  f"too: {ln.strip()[:90]}")
+    return "\n".join(keep)
+
 def stage(root, personal, own, leave_out=(), tools=True, own_skills=(), leave_skills=()):
     """stage the pack's own files (global/, skills/, extras/) into root: the owner's edition when personal, without the
     house-private folders in leave_out (work still in progress); tools=False leaves out MarkRoom, PulseWise and Folio;
@@ -373,7 +388,7 @@ def stage(root, personal, own, leave_out=(), tools=True, own_skills=(), leave_sk
     shutil.copy2(CL / "hooks/block-elevenlabs-transcription.py", root / "global/hooks/")    # Windows (same rules)
     shutil.copy2(HERE / "templates/CLAUDE-sections-windows.md", root / "global/")          # Windows' own sections
     if personal:                                                   # the owner's Personal section goes to both OSes
-        mine = next(x for x in re.split(r"\n(?=# (?!#))", "\n" + rules[cut:]) if x.lstrip().startswith(PERSONAL_HEAD))
+        mine = personal_section(rules[cut:])
         for f in ("global/CLAUDE-sections-mac.md", "global/CLAUDE-sections-windows.md"):
             (root / f).write_text((root / f).read_text(encoding="utf-8").rstrip() + "\n\n" + mine.strip() + "\n", encoding="utf-8", newline="\n")
     for s in sorted((CL / "skills").iterdir()):

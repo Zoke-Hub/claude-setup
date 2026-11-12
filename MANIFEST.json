@@ -1,7 +1,7 @@
 {
  "version": "2026-11-06.073618",
- "build": "2026-11-12.050711",
- "made": "2026-11-12 05:07",
+ "build": "2026-11-12.074632",
+ "made": "2026-11-12 07:46",
  "retired_skills": [
   "review-dashboard",
   "redline",
@@ -49,7 +49,7 @@
   {
    "label": "HeyGen's hyperframes skills",
    "repo": "https://github.com/heygen-com/hyperframes",
-   "commit": "6cc734fd24e25c09e28824b5543fa4f85612f02c",
+   "commit": "b4bd8b07397b48eb5f5bdeaa397ba8397fdd380e",
    "skills": {
     "skills/hyperframes": "hyperframes",
     "skills/hyperframes-cli": "hyperframes-cli",
@@ -7259,10 +7259,10 @@
  },
  "upstream_pins": {
   "real-sfx": 1792576847,
-  "hyperframes": 1794438118,
-  "hyperframes-cli": 1794438118,
-  "hyperframes-registry": 1794438118,
-  "media-use": 1794438118,
+  "hyperframes": 1794448676,
+  "hyperframes-cli": 1794448676,
+  "hyperframes-registry": 1794448676,
+  "media-use": 1794448676,
   "higgsfield-brandkit": 1793843003,
   "higgsfield-faceless-video": 1793843003,
   "higgsfield-generate": 1793843003,
@@ -7352,8 +7352,8 @@
   "global/house/subtitle-timing.md": "8208d8c5229b1a9ab2e273364cb116c3a9aca5fc1939acc9b7ba235d343f38ae",
   "global/house/time-to-the-voiceover.md": "7c50da943ccc9a4318f7ef0aa0d1b3581653fc0697f1a0ab167bc6ceddb35d5f",
   "global/house/verify-facts-on-screen.md": "7077e72f35cf804c5223b94f91d44b889fe2ff6a9c29ff9239c7eb612f046145",
-  "global/setup-pack/CHANGES.md": "f17e6b1441c4a55842087ab5142471d0ed6f77d42ce607f0e83ebb1dc54a1d8d",
-  "global/setup-pack/make_pack.py": "795e5dcba3da3b4e61a9f37e3867797f4c579115c31ce34173c467f932cae448",
+  "global/setup-pack/CHANGES.md": "0db51f16d899e99020ad98363e1df20aaf8046d80b8f62dcafa509c50fee2c3f",
+  "global/setup-pack/make_pack.py": "d564f6e391b6bc15269713f73b4263628fe3841a2bba3b82e4867139c734f2b1",
   "global/setup-pack/pack/bootstrap-mac.sh": "844d5ae87fbec65c5167d74af8dd308619c1156a18b8b124f988163b390fb264",
   "global/setup-pack/pack/bootstrap-windows.ps1": "1babff6ed42daadbb7b68dfdd425939d9479174481e5812a66a241721459956c",
   "global/setup-pack/pack/SETUP.md": "f49581e1b2e32cbbfaf5c21208fd371a13360d97a3a4fe4a4902121417e9313a",

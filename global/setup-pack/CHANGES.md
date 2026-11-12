@@ -3,6 +3,13 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-12.074024 · version 2026-11-12.074024
+
+- **Owner's edition:** a line in the Personal section that ends in `<!-- this machine only -->` (a note about one
+  computer's hardware or paths) stays on that computer: the builder leaves it out of both the Mac's and Windows'
+  sections, and names any Personal line about "this PC" or "this Mac" that isn't marked. The Personal section also has
+  three lines it lacked on one computer.
+
 ## Build 2026-11-12.050711 · version 2026-11-06.073618
 
 - **Rules:** the owner code. A code typed recently in the same chat, for the same work, can be used again for a rebuild

@@ -11,6 +11,7 @@ read when. Notes link to each other with [[name]]. Keep this list in step when a
 - [First frame never empty](first-frame-never-empty.md) — frame 0 opens on a partly built shot; the opening is retimed so later beats keep their frames
 - [Time to the voiceover](time-to-the-voiceover.md) — transcribe the voiceover first; a name lands on its spoken word, a title starts a little before it, pauses are holds
 - [Spacing shows groups](spacing-groups.md) — gaps inside a group are smaller than gaps between groups, from one fixed scale, in interfaces and animation frames
+- [Icons over emojis](icons-over-emojis.md) — interfaces and graphics use real icons (SVG, an icon set) sized and centred with their text, not emojis or symbols; soft: a chosen style that calls for emojis wins
 - [Subtitle timing](subtitle-timing.md) — sentence subtitles stay on at least 1 second: hold into a pause, otherwise club with a neighbour and re-break into whole phrases; soft character limit, in sync, same words; not for word-by-word animated captions
 
 **Working rules**

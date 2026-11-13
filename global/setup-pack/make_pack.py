@@ -572,7 +572,8 @@ def main():
         for p in sorted(PACK.rglob("*")):
             if not p.is_file() or p.name == ".DS_Store" or "__pycache__" in p.parts: continue
             z.write(p, f"{NAME}/" + p.relative_to(PACK).as_posix())
-    if (out_dir / "PROMPT.md").resolve() != (HERE / "PROMPT.md").resolve(): shutil.copy2(HERE / "PROMPT.md", out_dir / "PROMPT.md")
+    # shutil.copy, not copy2: the prompt beside a new zip gets the build's date, so the two sort together in a folder
+    if (out_dir / "PROMPT.md").resolve() != (HERE / "PROMPT.md").resolve(): shutil.copy(HERE / "PROMPT.md", out_dir / "PROMPT.md")
     kind = f"full setup file ({len(files)} files + {len(extra)} in the owner's edition)" if full else f"general setup file ({len(files)} files)"
     carried = sorted({r.split("/")[2] for r in files if r.startswith("global/mods/") and not r.startswith("global/mods/.")} |
                      ({"markroom"} if any(r.startswith("skills/markroom/") for r in files) else set()))

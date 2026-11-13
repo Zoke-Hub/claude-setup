@@ -3,6 +3,16 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-14.011914 · version 2026-11-06.073618
+
+- **Rules:** a new, soft one: where an interface or graphic needs an icon, use a real one (SVG or an icon set, sized
+  and centred with its text) rather than an emoji, emoticon or symbol; a style that calls for emojis wins
+  (`icons-over-emojis.md`).
+- **MarkRoom** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-14): Claude replies to each note as soon as its change is made, and marks the notes done once the new round
+  is up. Each note's state is kept in its own fields, and moving a mark after a reply opens the note again.
+- **Setup file builder:** the PROMPT.md beside a new zip gets the build's date, so the two sort together in a folder.
+
 ## Build 2026-11-13.095559 · version 2026-11-06.073618
 
 - **Rules:** the clean-up check also looks for implicit state machines: a mode or lifecycle spread over several flags,

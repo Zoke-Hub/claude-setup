@@ -3,6 +3,23 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-13.095559 · version 2026-11-06.073618
+
+- **Rules:** the clean-up check also looks for implicit state machines: a mode or lifecycle spread over several flags,
+  timers or maybe-empty values, each listed with its states and how it can go wrong (`cleanup-check.md`).
+- **The three tools** (in a setup file that carries them; a GitHub install gets them from the tools' own update, dated
+  2026-11-13):
+  - **MarkRoom:** the tool bar's dividers are centred and both drawn; Alt/Option + arrows switch tabs (← / →) and
+    versions (↑ / ↓), and moving a tab is Alt/Option + Shift + ← / →. Failed note saves are retried, words in the
+    whole-file note survive Claude replying, empty drafts are dropped, undo goes to its own file, and a lost
+    connection reconnects.
+  - **Folio:** after `/clear` nothing from the old chat comes back; "Folding…" and "Packing…" never stick; new output is
+    saved word for word while older parts are summarised; recalled and pinned answers are looked up again once newer
+    parts could change them, and Unpin sticks.
+  - **PulseWise:** a job that stops reporting waits instead of failing, with no false "Stopped" toast or flash; a turn
+    that ends with points open reads "waiting for your reply"; dead jobs don't come back on reload. The progress helper
+    treats `sys.exit(0)` as done.
+
 ## Build 2026-11-12.074024 · version 2026-11-12.074024
 
 - **Owner's edition:** a line in the Personal section that ends in `<!-- this machine only -->` (a note about one

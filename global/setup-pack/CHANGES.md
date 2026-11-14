@@ -3,6 +3,21 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-14.203815 · version 2026-11-06.073618
+
+- **Rules:** the owner code may be used again only within 30 minutes of when it was typed in the chat; after that,
+  Claude asks for it again. Only the time counts (`locked-needs-the-code.md`).
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-14): a fold leaves one short line in the chat, and Claude gets the folded history in a context block of its
+  own. FolioPack's "This chat" also lists files made or used by shell commands (renders above all), and renders are
+  grouped under their animation's name.
+
+## Build 2026-11-14.130117 · version 2026-11-14.130117
+
+- **PulseWise** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-14): the beats' click and hover areas line up with the beats again, and the bars are pressed level with
+  where they are drawn.
+
 ## Build 2026-11-14.011914 · version 2026-11-06.073618
 
 - **Rules:** a new, soft one: where an interface or graphic needs an icon, use a real one (SVG or an icon set, sized

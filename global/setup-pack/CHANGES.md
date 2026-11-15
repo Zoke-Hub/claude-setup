@@ -3,6 +3,19 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-15.125802 · version 2026-11-15.125802
+
+- **Windows:** the Bonjour note no longer offers a Bonjour update, which turned out not to stop the "Local Security
+  Authority" pop-up: 3.1.0.1, the newest, is blocked too. The note now shows wherever Bonjour's name-lookup add-in is
+  in Windows' name-lookup list and LSA protection is on, whatever the version, and gives the two `regsvr32 /u` lines
+  (the user's to run as administrator) or uninstalling Bonjour.
+- **PulseWise** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-15): a job's counts land on its own point (a job run through a shell or interpreter is matched to its
+  command by the script it runs or its name), and every name the bar shows is kept to 32 characters, summarised.
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-15): the Custom slider's knob is larger, sits on the track's centre and covers the rounded end at the
+  lowest and highest stops; the fill blends from blue to amber between 500k and 550k, and nothing lags a drag.
+
 ## Build 2026-11-14.203815 · version 2026-11-06.073618
 
 - **Rules:** the owner code may be used again only within 30 minutes of when it was typed in the chat; after that,

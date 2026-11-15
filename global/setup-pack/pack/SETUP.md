@@ -36,12 +36,12 @@ Mac (macOS's own `python3` is 3.9), `py -3.12` on Windows (or `python` if that i
      If anything is missing (exit code 1), tell the user what and why, then run it again with `-Install`. Windows may
      show a permission prompt for some installers: tell the user to click Yes. If PATH changes don't show up, open a
      new PowerShell window and run the check again.
-     - **A Bonjour note** appears where Bonjour's name-lookup add-in (`mdnsNSP.dll`) is older than 3.1.0.1 (or of unknown
-       version) and LSA protection is on: Windows then blocks the add-in and shows a "Local Security Authority" pop-up at
-       start-up and during some downloads. Setup's own downloads avoid it (git uses OpenSSL on Windows). Offer the update
-       to 3.1.0.1, which stops the pop-up; on the user's yes, run the note's winget line (Windows asks for administrator
-       rights, and the user clicks Yes). The two `regsvr32 /u` lines are a fallback for a pop-up that still comes after a
-       restart: the user's to run, as administrator, never yours. Never suggest turning LSA protection off.
+     - **A Bonjour note** appears where Bonjour's name-lookup add-in (`mdnsNSP.dll`) is in Windows' name-lookup list and
+       LSA protection is on: Windows then blocks the add-in and shows a "Local Security Authority" pop-up at start-up and
+       during some downloads. Setup's own downloads avoid it (git uses OpenSSL on Windows). Updating Bonjour doesn't stop
+       it (3.1.0.1, the newest, is blocked too). Tell the user in a line and give them the note's two `regsvr32 /u` lines,
+       which take out only the add-in (the Bonjour service keeps running), or uninstalling Bonjour if nothing needs it.
+       The lines are the user's to run, as administrator, never yours. Never suggest turning LSA protection off.
    Both install with the system's package manager, then check again. Carry on only once the script prints **READY**.
 3. **Ask the user which languages this computer should transcribe**, before installing:
    - **English only** — Parakeet TDT 0.6B v3 (English and 24 other European languages), about 640 MB. Fast and the

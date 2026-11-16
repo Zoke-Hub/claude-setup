@@ -3,6 +3,15 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-17.003707 · version 2026-11-06.073618
+
+- **Rules:** a MarkRoom file link is the one the skill's `build_board.mjs --link <file id>` prints: `#open-<file id>`,
+  or a plain `#<file id>` on a board whose published page is older than `#open-` links (such a page opened the first
+  tab for them). CLAUDE.md's review-pages line and `dashboard-means-markroom.md` say so.
+- **MarkRoom** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-17): the page carries its version, `--published` records which one a board runs, and the current page also
+  opens a plain `#<file id>`, a live round included.
+
 ## Build 2026-11-15.125802 · version 2026-11-15.125802
 
 - **Windows:** the Bonjour note no longer offers a Bonjour update, which turned out not to stop the "Local Security

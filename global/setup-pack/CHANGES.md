@@ -3,6 +3,24 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-19.125247 · version 2026-11-06.073618
+
+- **PulseWise** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-19): Claude counts its own work on each point, so a beat fills from real counts (no more empty "no count"
+  part); servers and watchers stay off the bar; a command and the job its script starts show as one bar; list
+  changes show at once; a long name gets a short label from Haiku; each new list gets Claude's estimate, logged
+  against the real times in `~/.claude/progress/eta-log.jsonl`; Other pulses shows every local chat on this computer
+  and finds the app's chat records where the Store app keeps them now, so finished chats leave once seen.
+- **Setup guide:** its PulseWise lines say so, that Other pulses covers every local chat, and that PulseWise now uses
+  a little Claude usage (short notes, and a Haiku call for an overlong name).
+
+## Build 2026-11-19.083758 · version 2026-11-19.083758
+
+- **MarkRoom** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-19): a link to a live round opens it when the link opens a closed board; a new round comes forward only in
+  the tab on screen or a related tab (`build_board.mjs --for "<tab>"`), elsewhere it only shows a notice; the Version
+  list sits at the far right of the header. Boards get the new page from their next republish.
+
 ## Build 2026-11-17.003707 · version 2026-11-06.073618
 
 - **Rules:** a MarkRoom file link is the one the skill's `build_board.mjs --link <file id>` prints: `#open-<file id>`,

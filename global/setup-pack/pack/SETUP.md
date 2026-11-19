@@ -344,9 +344,9 @@ In `~/.claude/skills`: abilities Claude loads when a task needs them.
 **PulseWise** (a mod: new chats in the Claude desktop app)
 
 - A band above the prompt box shows the chat's task list as one bar, a segment per point sized by its time, filling as the work runs. The line above it names what is running, the total % and the time left.
-- Click a segment to open its own bar. Background jobs (renders, agents, scripts) each get a bar under Tracks, and long scripts report real counts through `~/.claude/progress/progress.py`.
-- Other pulses shows the other chats open in the same project, marked "needs input" in amber when one is waiting on you. Done lists what finished and how long it took, and Nudge reminds Claude to bring its task list up to date.
-- It runs by itself and uses no Claude usage while it runs.
+- Click a segment to open its own bar. Claude counts its own work on each point, so the bar fills from real counts; background jobs (renders, agents, scripts) each get a bar under Tracks, long scripts report real counts through `~/.claude/progress/progress.py`, and servers or watchers left running stay off the bar.
+- Other pulses shows the other chats open on this computer (local ones, from any project), marked "needs input" in amber when one is waiting on you. Done lists what finished and how long it took, and Nudge reminds Claude to bring its task list and counts up to date.
+- It runs by itself and uses very little Claude usage: a few short notes to Claude (its counts, a new list's estimate), and a Haiku call for a name too long for the bar.
 
 **Folio** (a mod: new chats in the Claude desktop app, Claude Code 2.1.308 or newer)
 

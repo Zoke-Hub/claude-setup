@@ -30,11 +30,13 @@ Read the file that fits before writing the first tween, cutting the first piece 
 
 - `scripts/ae_run.sh` (Mac) and `scripts/ae_run.ps1` (Windows): run every After Effects script through these, never a bare DoScript. `scripts/ae_safe.jsx` is their wrapper.
 - `scripts/joints.py`, `scripts/one_dark.py`, `scripts/pieces_sheet.py`, `scripts/rest_match.py`, `scripts/puppet.py`: the cut-out puppet tools described in `references/puppet-rig.md`.
+- `scripts/outline_text.cjs`: outlines text into SVG paths at build time (fontkit, kerning and ligatures), for any text that moves, scales or sits under a camera move in an HTML / HyperFrames animation (`references/easing.md`, section 4).
 
 ## The rules most often needed
 
 - 25 fps, durations ×1.5, a curve picked for each move; the house curve only where it suits.
 - Titles unfold word by word from the baseline, paragraphs line by line; text is perfectly still once it lands.
+- In HTML / HyperFrames, text that moves, scales or sits under a camera move is outlined to SVG paths (`scripts/outline_text.cjs`): live text snaps to whole pixels and jitters during slow moves.
 - The first frame is never empty. Every animation enters and leaves on a hard cut.
 - Under a voiceover, transcribe first: a name lands on its word, a title starts about 0.4 s before its word, pauses are holds.
 - Gaps inside a group are smaller than gaps between groups.

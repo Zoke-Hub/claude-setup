@@ -3,6 +3,28 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-20.232941 · version 2026-11-06.073618
+
+- **animation skill:** text that moves, scales or sits under a camera move in an HTML / HyperFrames animation is
+  outlined to SVG paths at build time with the new `scripts/outline_text.cjs` (fontkit, kerning and ligatures), since
+  live text snaps to whole pixels and jitters during slow moves. The rule is in `references/easing.md` (section 4 and
+  the checklist) and in the skill's short list.
+- **MarkRoom** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-20): the save status beside "Notes on the whole image" is a short word that is never cut off, with its full
+  sentence on hover; a failed save shows its whole message under the heading.
+- **PulseWise** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-20): a stopped command or agent ends the jobs it reported with, and a job silent for 2 hours leaves the bar;
+  each job lands on its own agent's beat, with the progress lines added to agents' briefs by PulseWise itself; steps
+  count what is inside them; names read better; short lists aren't asked for an estimate; hover boxes no longer stay
+  up after the pointer leaves.
+
+## Build 2026-11-20.130316 · version 2026-11-20.130316
+
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-19): as a chat starts, Folio reads where the project already keeps renders, editing projects, references
+  and sound, and tells Claude to save new files of each kind there; it never moves a file. Auto-save, backup and
+  scratch folders don't count; the `projectLayout` setting turns it off.
+
 ## Build 2026-11-19.125247 · version 2026-11-06.073618
 
 - **PulseWise** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated

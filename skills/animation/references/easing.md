@@ -111,7 +111,26 @@ More rules:
 - No `will-change` on text.
 - No percentage padding on flex items that hold text. Chrome sizes them with zero padding, so long words overflow to one side.
 - Centre labels on a circle by computing `left`/`top` from the measured box and rounding.
-- Large moving text, such as a number flying into a chart cell: round the translate to whole pixels and quantise the scale to 1-px size steps.
+- Large moving text, such as a number flying into a chart cell: round the translate to whole pixels and quantise the scale to 1-px size steps, or outline it (below).
+
+### Text under a camera move or a slow scale: outline it to paths
+
+A slow push-in, pan or continuous scale makes **all live text jitter while the drawing moves smoothly**. Chrome (Skia)
+snaps each text run's baseline to whole device pixels, in SVG `<text>` and HTML text alike, so shapes move by a fraction
+of a pixel each frame and text moves in 1 px steps. Measured on a render (the title's ink centroid against the exact
+camera path, frame by frame): live text's residual is a sawtooth (0.01, 0.11, 0.26, 0.40, then a jump to -0.53 …), the
+same text as paths stays flat within ±0.1 px. Not fixes: un-rounding the camera values, `text-rendering:
+geometricPrecision`. A camera on a CSS-transformed div with `will-change: transform` also flattens it, but scales a
+bitmap; don't use it for text.
+
+- **Any text that moves, scales or sits inside a moving camera group is outlined into SVG paths at build time**, with
+  `scripts/outline_text.cjs` (fontkit, kerning and ligatures applied; usage in its header). It writes
+  `window.GLYPHS[key] = {d, adv, upm, asc, desc}` in font units; place each with
+  `<path d=… transform="translate(x y) scale(size/upm, -size/upm)">`, anchors from `adv`.
+- Live text is fine only in a frame that never moves.
+- Word-by-word and line-by-line reveals still work: give each word or line its own key and animate its group.
+- The outlines are for the browser render only: an After Effects export keeps live text, as its rules say.
+- Check: step through a few frames of the move at 100 %: text and drawing move together, no 1 px hops.
 
 **Verify before every render:**
 - A DOM check of every word on every frame: once a word has landed (opacity 1, no transform), its box, opacity and blur must not change until it fades out. Expected result: "0 words move after landing" for every scene.
@@ -168,7 +187,7 @@ These numbers are starting points: pick each move's curve and length for that mo
 
 1. Every move uses the default curve, or a different calm curve chosen for that move. Search the scene code for any bounce, elastic or overshoot easing.
 2. Titles unfold word by word and paragraphs line by line from the baseline, landing at exactly scale 1; no text sits inside a scaling element.
-3. The text-wiggle check reports 0 for every scene.
+3. The text-wiggle check reports 0 for every scene, and every text under a camera move or slow scale is outlined to paths (section 4).
 4. Contact sheets of each scene look right: no blank first frame on a cut, no element showing over the A-roll before a wipe.
 5. The render is 25 fps and frame-exact.
 6. On-screen figures and quotes trace back to the source document.

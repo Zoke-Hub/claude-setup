@@ -1,7 +1,7 @@
 {
  "version": "2026-11-06.073618",
- "build": "2026-11-20.232941",
- "made": "2026-11-20 23:29",
+ "build": "2026-11-21.192858",
+ "made": "2026-11-21 19:28",
  "retired_skills": [
   "review-dashboard",
   "redline",
@@ -49,7 +49,7 @@
   {
    "label": "HeyGen's hyperframes skills",
    "repo": "https://github.com/heygen-com/hyperframes",
-   "commit": "edd1c90a4ea05afac4bb6bf7e60604bae616f557",
+   "commit": "e65b11e5c2be2c73d3ab0ea5628c51ec13f68a21",
    "skills": {
     "skills/hyperframes": "hyperframes",
     "skills/hyperframes-cli": "hyperframes-cli",
@@ -3136,7 +3136,9 @@
    "ae0300e623223a93724f2ab9f599e65d4981ee67": 1793835155,
    "d65e6fbc66da004e26905fbef63e783a047cb288": 1793892910,
    "d7ce8f536e49f55d06c72cec57337fb7d5303a90": 1794378384,
-   "f761550c7b80bac3476834e60b1b05d044eadfe6": 1794788327
+   "f761550c7b80bac3476834e60b1b05d044eadfe6": 1794788327,
+   "2a57f9d14fd2ccfb89a63433ae825aebae332425": 1795204109,
+   "e3b8ab3e129c70212d236d0b1e1ade6a7ec5e370": 1795219872
   },
   "skills/hyperframes/SKILL.md": {
    "979794ca5486726294b0070f5ca5381da5a36b22": 1775499709,
@@ -3386,7 +3388,8 @@
    "7b1bc6a6c95c02ee03319cc8adaba7e54b020cba": 1793210150,
    "3db24f9e47e55f82177d9518345b90527a29b6aa": 1793787434,
    "f03773cfcd6f71a5722fb1a09639424ed651b43c": 1793835155,
-   "56099a2502861bf99449217d146b801ccefee1dc": 1794788327
+   "56099a2502861bf99449217d146b801ccefee1dc": 1794788327,
+   "dbbead39299bf9b67af9ebe030a94a20343213cb": 1795267736
   },
   "skills/hyperframes-registry/examples/add-block.md": {
    "95bee6ff87928db0f6b3d39008e4f0913600ea79": 1776209244
@@ -3712,7 +3715,8 @@
    "19de7a67700fe705dd7f5df9a9472cbceece7ba6": 1794072254,
    "3978353d62a5f618b350bbde8a5729babe220757": 1794179777,
    "dae84e54b5c68212b80e7719fd4b50b3a85a6bb8": 1794356455,
-   "f0cec96af6a6cffe9e7e6e8c977ab127fabda82d": 1794378384
+   "f0cec96af6a6cffe9e7e6e8c977ab127fabda82d": 1794378384,
+   "468e68c44ec7a6df19b3f5a889ea80bf5eac2c82": 1795215843
   },
   "skills/hyperframes-cli/references/upgrade-info-misc.md": {
    "8ad73809b68daed3dfad132cc72f44ebaafaf3a7": 1781404283,
@@ -3781,7 +3785,10 @@
    "49e387690fe2d61155a1db7342409a2e00d4155c": 1790646334,
    "fcdbd771f7af578f7f818f92ce2fe36c6025abaf": 1791103246,
    "d4b6e4f87105b46ddef0e3989f3c8bc372dc62b5": 1792298108,
-   "a68e83a9a7502ba95a2e493dbbe29f7250547acc": 1794804150
+   "a68e83a9a7502ba95a2e493dbbe29f7250547acc": 1794804150,
+   "e5284a6d0779f69fe2e8a6f11bf7f97cac302372": 1795200467,
+   "7e8916375bfae13b8be5cdf79da911edcbd8d6e9": 1795218294,
+   "f656d7414be6fbffb7d1c608587f749aa7c9cd91": 1795232213
   },
   "skills/media-use/scripts/lib/manifest.test.mjs": {
    "227addf309756efc59507d2ac83b2555f792e233": 1782347318,
@@ -4070,7 +4077,8 @@
    "3b6dcbf4a84c798689e02c0068fb799dc011ab7b": 1783636106,
    "3e1de356bf7727d906e19b859d9fac633c0d3932": 1791126450,
    "c0ab58a8c2b8eb27f3752dc1611e748b465634dc": 1793309120,
-   "dffca2376eda7316f3a4425e6f9c3c2c8cd377fd": 1795117976
+   "dffca2376eda7316f3a4425e6f9c3c2c8cd377fd": 1795117976,
+   "294113ce5f3eedb47fcb4fded7993fc043c1fa46": 1795218294
   },
   "skills/media-use/audio/scripts/lib/bgm.mjs": {
    "d4db76e880e7c67e04d7abcb323aa955a32a8623": 1783395665,
@@ -4158,7 +4166,8 @@
    "043aef066291594e5ce7dc199701083b74dc4765": 1794396490,
    "175895e1d2b3cc0ce1d8fdaabfab626452fd280a": 1794422836,
    "969c68a28ce48a5c9a302d4ee26c189db3c6f6b7": 1794891855,
-   "869f4e8566313211fb9539a412235cc163cb88a6": 1794900022
+   "869f4e8566313211fb9539a412235cc163cb88a6": 1794900022,
+   "f28748d37150b9ea947b6bdba9b02e8d3f72b072": 1795218294
   },
   "skills/media-use/audio/scripts/lib/tts.spawn.test.mjs": {
    "9262f7395d130edf62b9f6715e090f840153e25f": 1783395665,
@@ -4350,7 +4359,8 @@
    "ccf9b244dc385ce530c3620a691c3878720d42d6": 1790551276,
    "0c90818f4868e28b19c2004eeb2efa85c2698dc3": 1794422836,
    "768edc0330ec06c77f51aad54b48ca4b8aaf4ea9": 1794792309,
-   "a7fe760becb49dbeda4b16df69a9a7229bcb0ca0": 1795117976
+   "a7fe760becb49dbeda4b16df69a9a7229bcb0ca0": 1795117976,
+   "216d8da5ecd6b64679d16eec7b8df2f0cdf9e274": 1795232213
   },
   "skills/media-use/scripts/transcript-cut.mjs": {
    "49210abc9f113261c0e908c6ddef38e4715db7b0": 1783395695,
@@ -4359,7 +4369,8 @@
    "1f232d6ae8c1fc2a8efcf00d7df102855ac96f5c": 1791850100,
    "eb0bcbfaf09ca725a6937fc68bb585041d8d1354": 1791850985,
    "904b7fe3baaa8ceeb0a68ebad77c161263e8aeab": 1794422836,
-   "4efb47f1cd51a9a4225946e0f20c45ca6a4fe087": 1795117976
+   "4efb47f1cd51a9a4225946e0f20c45ca6a4fe087": 1795117976,
+   "0342be7c9b6593e4cff75e2353f650db168fb942": 1795232213
   },
   "skills/media-use/scripts/lib/adopt.test.mjs": {
    "a961ae1776473fe149d1a08d05cc0c300b09fa7e": 1783452101
@@ -4573,7 +4584,10 @@
    "131f29d7c00622d7107acb6f5f1cb8295044e0e7": 1792361617,
    "44b95ecafe25aa0fcf78df7ee7eaa0d32976cb56": 1792610371,
    "9e1ac57487c52628c7ad482951e993bdca908cd2": 1792899923,
-   "6a40c3db82746d205e5384ed36f83b18fa90e9ad": 1795073196
+   "6a40c3db82746d205e5384ed36f83b18fa90e9ad": 1795073196,
+   "7d53fb66ca34553688a9ebbd381df3e8561bfcf0": 1795200467,
+   "dc96ce3e8a7362e198a6d5b6a10fcfa9458cd755": 1795227622,
+   "228d058b96e545a94861eda565377b8cc997ed70": 1795247767
   },
   "skills/media-use/scripts/lib/recipe-store.test.mjs": {
    "954291293d2b6f5c9aba157eccf770ed0dd25454": 1784121554
@@ -4846,7 +4860,8 @@
   "skills/media-use/scripts/transcript-cut.test.mjs": {
    "99b52dce4246233fbfe784a0c0ed0c5ec2217411": 1790123330,
    "59a4d55c966beffdf077927d4bd48c71c828654f": 1791850100,
-   "95852adb825d0f7128d51fec4938eb2ce4e839aa": 1791850985
+   "95852adb825d0f7128d51fec4938eb2ce4e839aa": 1791850985,
+   "56bc779e503ee06b60235b6b9ec3bfb3fad89f56": 1795232213
   },
   "skills/media-use/audio/scripts/lib/bgm-volume.mjs": {
    "52ea0ced7d23a597cc35c2b79f711b27977b1a3a": 1790204949
@@ -4875,11 +4890,13 @@
   },
   "skills/media-use/audio/scripts/lib/gemini-tts.mjs": {
    "bf94cb891256bfe0a1375f13037dfd134cad91b9": 1790212883,
-   "b7c3d0c2e44c32ab475108a41da5892431ee3ff6": 1793376204
+   "b7c3d0c2e44c32ab475108a41da5892431ee3ff6": 1793376204,
+   "bf5baa6730e12de852a472ad897f2f93719931bb": 1795218294
   },
   "skills/media-use/audio/scripts/lib/gemini-tts.test.mjs": {
    "7c28e8d55b2e8800424e25986f2500262344479e": 1790212883,
-   "fc616931388ea7b0faa3829618b580a922ea9586": 1793376204
+   "fc616931388ea7b0faa3829618b580a922ea9586": 1793376204,
+   "84b64d54b82508684d37050326b6102cbd5b76bb": 1795218294
   },
   "skills/media-use/scripts/lib/media-home.mjs": {
    "8a9128fd3bf2df83ab4e1e59ce008ce7b075910e": 1790432036
@@ -4936,7 +4953,8 @@
   "skills/media-use/scripts/transcribe.test.mjs": {
    "3f0d2a53b11da8ee1ea59bf3b6e101298a0433bc": 1790551276,
    "30b34e9b21fc30f1348295d82b30bea860aebdf7": 1794396490,
-   "e6ba27ae3fa91da03eee23c13b6be4aa112950a5": 1794792309
+   "e6ba27ae3fa91da03eee23c13b6be4aa112950a5": 1794792309,
+   "3a60c318d408038631529f50a37f98270764a06a": 1795232213
   },
   "skills/media-use/audio/scripts/lib/media-record.mjs": {
    "ed94a691db740e1227e0edbb28bb0a126549912c": 1790640436,
@@ -4953,7 +4971,8 @@
    "b23b1d5d08deb21afca312dd04d6f423e9f05f40": 1794804150
   },
   "skills/media-use/audio/scripts/heygen-tts.test.mjs": {
-   "1730ba8023a4044be781635aae07ab5f9585757b": 1791126450
+   "1730ba8023a4044be781635aae07ab5f9585757b": 1791126450,
+   "10a0e25f00c82098035b8ba646ad22ff73e730e9": 1795218294
   },
   "skills/media-use/audio/scripts/heygen-voice.mjs": {
    "7a5559750bd57316871564ef8822411afaf229eb": 1791126450,
@@ -4980,10 +4999,12 @@
   },
   "skills/media-use/audio/scripts/lib/tts.cleanup.test.mjs": {
    "1275e60706c9accaaa1f785dca86fe42242679d4": 1791839330,
-   "fc45659da8cf248e144c385284828241087adeeb": 1794396490
+   "fc45659da8cf248e144c385284828241087adeeb": 1794396490,
+   "1dcb08a08c093903973954b547898adae2bec7f9": 1795218294
   },
   "skills/media-use/audio/scripts/lib/openverse.mjs": {
-   "87f80aa74d548f9ebe1cff2408f7f5e477e2a3da": 1792298108
+   "87f80aa74d548f9ebe1cff2408f7f5e477e2a3da": 1792298108,
+   "f4e5cc21989bbbad45c79028fb3489a1c25dc76d": 1795232213
   },
   "skills/hyperframes-cli/references/conventions.md": {
    "982f99527cdcb655fad85b7d6927638a35e8489b": 1792610371
@@ -4992,7 +5013,8 @@
    "76e69ed0484fc5fb60f7280a5d365bb162f3a0c2": 1792610371
   },
   "skills/hyperframes-registry/references/search.md": {
-   "a87d4ccb575edbf05ea21abcb654c2bc4299cdfe": 1792610371
+   "a87d4ccb575edbf05ea21abcb654c2bc4299cdfe": 1792610371,
+   "33a215980454de0fa9e416803202b208a2ff8758": 1795267736
   },
   "skills/hyperframes/assets/frame-presets/biennale-yellow/FRAME.md": {
    "c082ea2fefdd47bd2679d72d6a50a3a41aa99eaf": 1792610371
@@ -5261,7 +5283,8 @@
    "77d38e40d2acc6e317d157bce2ae4eaf3e956120": 1794463084,
    "1cc2cf96497e3d2afe7fca61c3b36f1997155af7": 1794724454,
    "c81be513daa7d09830fba812dfa666157a83e751": 1794744735,
-   "d2d028003f40245b9ea29aedfb857502329ae842": 1794765548
+   "d2d028003f40245b9ea29aedfb857502329ae842": 1794765548,
+   "fbea3bcc254accbf311e6d599b7120d757efffe4": 1795206532
   },
   "skills/media-use/scripts/lib/credit-limit.mjs": {
    "02e44c6d5faf247616a731d8d965d221fa89686f": 1793778203,
@@ -5325,6 +5348,10 @@
   "skills/media-use/scripts/memory-output.test.mjs": {
    "e3e1f0ae86a88468cc45d17bd6511768d1685312": 1795065003,
    "2d65199fae7d534b5de12c3d35748289149212c1": 1795117976
+  },
+  "skills/hyperframes-cli/references/unattended.md": {
+   "908990f633079ffcbb353046b04aeb98851c6408": 1795204109,
+   "34ed7059e0429351be403061019e576e617b29fc": 1795219872
   },
   "skills/higgsfield-generate/SKILL.md": {
    "e83775ad19a52f93ec415902a12d3eb80e8d0021": 1777911404,
@@ -7395,10 +7422,10 @@
  },
  "upstream_pins": {
   "real-sfx": 1792576847,
-  "hyperframes": 1795194519,
-  "hyperframes-cli": 1795194519,
-  "hyperframes-registry": 1795194519,
-  "media-use": 1795194519,
+  "hyperframes": 1795267919,
+  "hyperframes-cli": 1795267919,
+  "hyperframes-registry": 1795267919,
+  "media-use": 1795267919,
   "higgsfield-brandkit": 1793843003,
   "higgsfield-faceless-video": 1793843003,
   "higgsfield-generate": 1793843003,
@@ -7455,7 +7482,7 @@
   "extras/video-use-windows-paths.patch": "6f48568d3d90079cb6d6df714d8055313791907e29d78e290329897400768145",
   "global/CLAUDE-sections-mac.md": "d964c428796097cd3b0e41e0c28602e4bf9857f7271780a8359592ab64f0bd60",
   "global/CLAUDE-sections-windows.md": "f859fbc7285b7cf34b87131cb40bb640298777f4de6da1f2422a4c4d0c83ea50",
-  "global/CLAUDE.md": "318bc09014660659918fc37fa327d429f0990071ae02144e77cb0e04529612cf",
+  "global/CLAUDE.md": "dc67546ceec9eb382502c0007cea3af305cee66c3cceb5f29517876c54575aab",
   "global/hooks/block-elevenlabs-transcription.py": "43c0f4237ee11d37730461360b9a03fd432138dc6e04d375a1f8cd56ec4a9c0e",
   "global/hooks/block-elevenlabs-transcription.sh": "b482d506eceec53b943836279d8903802e4b180509d45685c539739a2eec5778",
   "global/house/after-effects-export.md": "537750bf444222965efbf9915cf424251170d67b234e41054ce30c2fc6d14965",
@@ -7481,15 +7508,16 @@
   "global/house/markroom-read-overall-notes.md": "fe9041a2e1a4e8be7dee9d7ad572f00c43258f31f36e357546858e9b5e0f2c90",
   "global/house/motion-rules.md": "cc3bb2116687e3f3d677872355b0e28c7de54f94407ae99c1da2e31a48128c44",
   "global/house/no-personal-assumptions.md": "17a65c7a51da1a7b112e184c9e2745f3d8c1c1b368f0472ae6fed713bd42e979",
+  "global/house/notify-when-waiting.md": "2a70e7cba99c097f0b755e66c3f8d059691229888513297e5dd9af66805d1d1b",
   "global/house/protected-tools.md": "64c018556896c3f20e77e6446b24718e58dc0902ff5de067dc51294b56c1ef75",
-  "global/house/README.md": "8c95862b946396e2a7350fd78ab334099b0ffcb49ab9ba149a26d9e2a2652ad5",
+  "global/house/README.md": "1c1cd51a918b9414326a3082944875a4e7b8d4c864bbfb4e520a66d2511d104f",
   "global/house/reference-study-scope.md": "7ab207dbc525fee31382e0d0cf08e905dbe8e1bb429a7c540fe16ed280b9e714",
   "global/house/release-every-package.md": "cd7f4c6557e30c6bcfc312398860748d094e27ce47648c8ae68ed0fe70555fae",
   "global/house/spacing-groups.md": "9ff1fa91492905d9b37ee9af91181580ba34c860d6214a85a8ca1a5ab0874d82",
   "global/house/subtitle-timing.md": "8208d8c5229b1a9ab2e273364cb116c3a9aca5fc1939acc9b7ba235d343f38ae",
   "global/house/time-to-the-voiceover.md": "7c50da943ccc9a4318f7ef0aa0d1b3581653fc0697f1a0ab167bc6ceddb35d5f",
   "global/house/verify-facts-on-screen.md": "7077e72f35cf804c5223b94f91d44b889fe2ff6a9c29ff9239c7eb612f046145",
-  "global/setup-pack/CHANGES.md": "28ed7351aaec676073d4d82260dafc8c4e19a4411ea48b594d1af241e90c65af",
+  "global/setup-pack/CHANGES.md": "fc2f0370807dbcbe50a685999a69da36f865a84852fe9f2e27e6018e48946720",
   "global/setup-pack/make_pack.py": "70616b9b2635162756febfa6d939016319d9eacd75b4c552a8ddc1e194524bfb",
   "global/setup-pack/pack/bootstrap-mac.sh": "844d5ae87fbec65c5167d74af8dd308619c1156a18b8b124f988163b390fb264",
   "global/setup-pack/pack/bootstrap-windows.ps1": "71d9501e9da060ed2544d2bb58f2157bfdab72cf50a09de4a43bc0a58dd6cfca",
@@ -8161,9 +8189,10 @@
   "skills/hyperframes-cli/references/init-and-scaffold.md": "3932ea29b3604dd76f9e6f93642e4e180999ecb7b3fdf4499443bfc38db82c9f",
   "skills/hyperframes-cli/references/lambda.md": "6e07cfb291e277ebce7bcc244aac8859b1f639e78df24a8ecadc2c913ba5bc23",
   "skills/hyperframes-cli/references/lint-validate-inspect.md": "5a0198691f1a5fdcbf31286a2e7838eda3640f131a292f737a90bc78cfda60eb",
-  "skills/hyperframes-cli/references/preview-render.md": "6408e1975436fc78da1c00cfd962df88e47b72765560cf0b93924a44bf2755e5",
+  "skills/hyperframes-cli/references/preview-render.md": "9b3a3dc2de0b4fec66d69f3d561b6b41d6f726e6520a13ba3a49aef0d8f9b1bf",
+  "skills/hyperframes-cli/references/unattended.md": "37d0fdda467582a3a8d8cd9d173d1f0012d6b7ce7c9d4f4ed1ea635587870217",
   "skills/hyperframes-cli/references/upgrade-info-misc.md": "68a5a0f52d20248cbee60cc3da14a0028e7bf6b6b13d6f2d06002552ef54b1c6",
-  "skills/hyperframes-cli/SKILL.md": "15b47980da048017e715effb6300577454e934cc9a88b091018a98863209ce89",
+  "skills/hyperframes-cli/SKILL.md": "b51b2a7b191dc66ec21a6a7d58b45f0c428c8aa8436904ee15c69f183e7abf40",
   "skills/hyperframes-registry/examples/add-block.md": "0e3353755c4ef55e53570d1266a4a43b2c5aef9bbe41276430e38cfa6580b83a",
   "skills/hyperframes-registry/examples/add-component.md": "d06992d31eec617a91f5c34630c9274c52dd07898bd24f10a869d0d1cab5af29",
   "skills/hyperframes-registry/references/component-quality-bar.md": "f0d4c3c44131bc0791f8a8cc3d2d7478d38045451775af7d20b2dd47cf5f91ac",
@@ -8172,11 +8201,11 @@
   "skills/hyperframes-registry/references/discovery.md": "ca82fcc1e0b2d824b72a8bda99b60d257b23d493fa1d28adbb0548a762cacd04",
   "skills/hyperframes-registry/references/install-locations.md": "83793e7d6aeea9a751755e4bd23ea48182ff9af082287b98a1192343d2571dd1",
   "skills/hyperframes-registry/references/placeholder-material.md": "15adf4a40b26166f64df784aed065adb58051d9ccd5c0c52ad9b71e3b8367a09",
-  "skills/hyperframes-registry/references/search.md": "3da7b42d2a0d8d9e2cbcdd8591da5a83203c424de9f46a995950d374a74531ee",
+  "skills/hyperframes-registry/references/search.md": "8e930565582292ce81c3bd6f36a1bf7bdacc131f3838eaf2445c8915b0cc72f1",
   "skills/hyperframes-registry/references/templates.md": "98e1ef62d3c1264b28139d85a1c9b5a8b7438209914aebef6d9890e3f4275805",
   "skills/hyperframes-registry/references/wiring-blocks.md": "34bf92a4d98c2535f699c141f3df4de4697353e95067d5e6b14a4a6cbb1b651a",
   "skills/hyperframes-registry/references/wiring-components.md": "6c8341c29fdae6de4f9fd1560a668d11cf34731b81fe5a06c9aeb4a000047b2a",
-  "skills/hyperframes-registry/SKILL.md": "70289ff0cfda09de2f58f30e9ba1ffbcc54308a5357bef6a7345100c8ab26842",
+  "skills/hyperframes-registry/SKILL.md": "f54f4b8c61ddae1355fdd84a42515880c1d0cf430b7b6c1c167e24c83eff7fce",
   "skills/media-use/.gitignore": "a299ec0fcdb6bc6670cf9fb22eefe3fcc37730e2e554b7f54e25de88be1ede02",
   "skills/media-use/audio/assets/sfx/chime.mp3": "74823b1b27703c56e0652db838f503c150ce9c2442d47d27430af3d5121d6d12",
   "skills/media-use/audio/assets/sfx/click-soft.mp3": "075e17bdac5c13662a1c9530050e0046f81d4138e00eb3bf30427a7b4404103d",
@@ -8215,8 +8244,8 @@
   "skills/media-use/audio/scripts/carve.test.mjs": "9d45276eb50f709042db34d7fe50b6f91c929489adf5bf6d73d40ddabf141cd9",
   "skills/media-use/audio/scripts/extract-audio-data.py": "5ef8c22de6477f6c847c2069955046b4334fb4de4ebdec5ef7e8ce90d2fadc14",
   "skills/media-use/audio/scripts/gemini-pipeline.test.mjs": "994d02861e3822ee9ec389778351eb681f21a662b920cb6e787e035df6fbff09",
-  "skills/media-use/audio/scripts/heygen-tts.mjs": "0164ac8c32ad54b8000bd2fbe7ba2fc77295d7a9014b80991482f5dad2a7bc2c",
-  "skills/media-use/audio/scripts/heygen-tts.test.mjs": "55f54468f0ba01f24c7a587f1b58d7d128a9c03919dfadd92dc2929aa1e8ed69",
+  "skills/media-use/audio/scripts/heygen-tts.mjs": "7668af09d7277cd51748a667154d8140556fdd9c445c7b4a9387627be5f91148",
+  "skills/media-use/audio/scripts/heygen-tts.test.mjs": "b8e8d93a63081382fc7a5bfbbb8011b28efefdf6184728b1d4f0a066a6a59ba1",
   "skills/media-use/audio/scripts/heygen-voice.mjs": "1ab6d29860c106b49ca0c3dec408d99a8d3297a5bbc953d21f1148c3d8568064",
   "skills/media-use/audio/scripts/heygen-voice.test.mjs": "d0920895246ee7679a424ffa36ed13d3f1bb7c03b8641c8bbb4a4efd4ede320b",
   "skills/media-use/audio/scripts/lib/audio-carve.mjs": "f4438df74a93c1620488f7a8c8121eebccfb71b34ff1ead06f1e6f307b1ed5b8",
@@ -8231,14 +8260,14 @@
   "skills/media-use/audio/scripts/lib/gemini-auth.py": "5ba85af3b5b46bfa04013f5d24b2c5b72dc7677b6cc5ef5ef926de82be4f8542",
   "skills/media-use/audio/scripts/lib/gemini-auth.test.mjs": "c63b96606de89bfa98309511d28938b8349341fd85de6138a73881f1a5e0e98a",
   "skills/media-use/audio/scripts/lib/gemini-auth_test.py": "5f524492aa5d4fa77c45bfed0002a33045677bd1c28027ff80554c9911f32b66",
-  "skills/media-use/audio/scripts/lib/gemini-tts.mjs": "bf003704ac37e81a9e1b500103691c37670f9ff556e1dde3062e2e87873ef914",
-  "skills/media-use/audio/scripts/lib/gemini-tts.test.mjs": "68b3fae36ec470a7c1dc67fc340239af76495c5d3ae5ae26db14bbd7cfc7f5fc",
+  "skills/media-use/audio/scripts/lib/gemini-tts.mjs": "560961701f6cf68e366be75218cc454711da7b3ee92f98f8a3322a24a7ecc3f1",
+  "skills/media-use/audio/scripts/lib/gemini-tts.test.mjs": "a0d062e9ae1165e290f1612f29564b18a8f947feaa0682b64d06f916bd04f4d6",
   "skills/media-use/audio/scripts/lib/heygen.mjs": "95bf08a065f5ede0bb947713d11886d6341c2f529e48f06f83a2bf2ae7e6b9ba",
   "skills/media-use/audio/scripts/lib/heygen.test.mjs": "66fb3bec5e426e226221099457e83fde879dfe817fd8ac1f5df2ed602d8b0163",
   "skills/media-use/audio/scripts/lib/main-module.mjs": "61811e09110856e1439c29875e4a4ad7701ae45d4045f9d1dcb6a7929698e4c0",
   "skills/media-use/audio/scripts/lib/media-record.mjs": "70dc13952b6edd363a27866a9275174bd4aca4b1ce2281e1ba09edbb02c6158f",
   "skills/media-use/audio/scripts/lib/media-record.test.mjs": "c73d535f2a10f56e982155fd6d357d047818998d7553860772e17180c1d8fc6d",
-  "skills/media-use/audio/scripts/lib/openverse.mjs": "e2b176ed6e0b91231debab84ef6633a1a4885e400b9511a39f11e97acef261bd",
+  "skills/media-use/audio/scripts/lib/openverse.mjs": "3a65a537f1a3cb097ef12915f81c81572062f38417046b2681e9b3964e96b84d",
   "skills/media-use/audio/scripts/lib/project-path.mjs": "ce4962e06ee34c9588d4067ddabcfd640a9bea35bf155e1b25ee635cbb22f81a",
   "skills/media-use/audio/scripts/lib/project-path.test.mjs": "61aeae52e51d95fe4a9caf646534b3670c54043bd3d8eb67a6b968ca1accc388",
   "skills/media-use/audio/scripts/lib/python.mjs": "576765c574f5cd94b4b6be515ae9bef871e558d166bbefdf34bfb29a92c2a1df",
@@ -8246,8 +8275,8 @@
   "skills/media-use/audio/scripts/lib/recording.mjs": "74bdb99826b8e962da53f2379173dc1aacb197145a2757f8ad1be03ca8927f31",
   "skills/media-use/audio/scripts/lib/sfx.mjs": "5c443cdf72bf14552f23a468e311b273e1448b49aeca385f2484995217f75d3f",
   "skills/media-use/audio/scripts/lib/sfx.test.mjs": "87bc81631a1dae1e251e13bb219521815f1cc14f7ec30b8d29b38885138f360d",
-  "skills/media-use/audio/scripts/lib/tts.cleanup.test.mjs": "6264e7c39ae5e4c2f27d2727f31de2b957e36339ed257dc4f4b984eedf3c7f85",
-  "skills/media-use/audio/scripts/lib/tts.mjs": "a3eb1db68b2fe8ea76ab6b5fc04efa17462b4345cf6601a474fab90f2d1a41d6",
+  "skills/media-use/audio/scripts/lib/tts.cleanup.test.mjs": "4d5527cbfc159bd34a8dd6a24f2d85b4f9ab313e3950e8d661bac25fd78a0f9c",
+  "skills/media-use/audio/scripts/lib/tts.mjs": "6ffb46784ff757ad39c964dbc428ac895a09a71092ece7a17dde31b4a0b2fde1",
   "skills/media-use/audio/scripts/lib/tts.spawn.test.mjs": "40299540bdc679bae3c616418a156c64664fbf737d3e3e2198071e56c3cd1a57",
   "skills/media-use/audio/scripts/lib/tts.test.mjs": "91713e4eea55f1cb595039bae29a483614f88f9a87d266ea278c590a76188525",
   "skills/media-use/audio/scripts/lib/voice-credit.mjs": "16a45db14f36ba557654f8104df09481e9d34234aebcb4cdc1ff5213bed3d4e5",
@@ -8262,7 +8291,7 @@
   "skills/media-use/luts/README.md": "c06cbbf2aab80cbf8aa25c83497202a63107a61e083b6c199a89d513e8096a3b",
   "skills/media-use/references/audio.md": "b41de88dfb543530c708911110af777cd579a1bec92584bb779d627ea5b86a12",
   "skills/media-use/references/grading.md": "430e2b57dfb64c3acfbdd02317ba967ebb580d42b348686ccffbc175d3de8392",
-  "skills/media-use/references/heygen.md": "9cf82c08f1a114a788c358c79c61c09293089b9314f7f1023fc7388ffbcc6f98",
+  "skills/media-use/references/heygen.md": "d20c9dee647c448285b524861c1c868b1e50e7273a2fefc7e1244aa5db6f9d0d",
   "skills/media-use/references/local.md": "659271d787fe3bdd39f0bc32b1eeb03860b9c76c2672cb71b6bb8d4a88fe4385",
   "skills/media-use/references/media-treatment-recipes.md": "852e7e978af56c9e99ba14f19009da974cd78f99b399ca194dc416c31c49bda5",
   "skills/media-use/references/media-treatments.md": "32b9b3bb6fb3838829ff08dc5650b2eb065086b4bd5db9c431e9629a38e93385",
@@ -8284,14 +8313,14 @@
   "skills/media-use/scripts/lib/duck.mjs": "0930aea672a8cb204d344902cb90442491a8979f9f554f9c7c61cd13666a6846",
   "skills/media-use/scripts/lib/error-diffusion.mjs": "aa718fe95f98087979bab5ea31d68b8e45fbde0c5b874c6888ad21923fb45936",
   "skills/media-use/scripts/lib/index-gen.mjs": "a837b5319a2e916682293509b1665681479868cf37c222c7014fad071d7d7514",
-  "skills/media-use/scripts/lib/manifest.mjs": "f80d1014fa9597edce87620f91bfd9df03789c4a73b0cdcfe023659bff9cb2ce",
+  "skills/media-use/scripts/lib/manifest.mjs": "82ad39fdd9a8fae126d7ad6290fcf5384752ecf410d08bf0c4ff109e4203381c",
   "skills/media-use/scripts/lib/media-fetch.mjs": "6a90740eee3e4765b83b4c9726676b2935a7fbc9990f61ad5b166f9263188366",
   "skills/media-use/scripts/lib/media-home.mjs": "7f69890d7b822f202b44ddec0d8176c767cd8b1da4dfc4d918599c6a05cfecb1",
   "skills/media-use/scripts/lib/npx-sync.mjs": "03346ebeb0e70153050dc5f36f5bafa63807d8e9d823ebf95a4250e9858de6d4",
   "skills/media-use/scripts/lib/parakeet-words.mjs": "d5b66efe6cb8975beab2f523503113c3be3117e687ebc20695e7ab08c2ba1b4d",
   "skills/media-use/scripts/lib/prefs-store.mjs": "960429595e5c5dda3f88f2899852d2ac2322a7d26b27ed8139612d0161fff749",
   "skills/media-use/scripts/lib/received-env.mjs": "7ca608848d08b283e2ecff5e083744b446bd9af57573a884a76bcd22dfb08061",
-  "skills/media-use/scripts/lib/recipe-store.mjs": "55a7f578ce308d0cd3aca5cf878ab70478e4e6c380d662f133b383740e8b3c0f",
+  "skills/media-use/scripts/lib/recipe-store.mjs": "3edf99f5d57e55036f46d1904b2dee41866fa296de71b62c54033dfae25a3706",
   "skills/media-use/scripts/lib/telemetry.mjs": "b817e192cb6a676db4de3a47058edd858815a0e7fb8d9fb80c150085e9284330",
   "skills/media-use/scripts/lib/telemetry.test.mjs": "2733285623440cef340ec50e55a6f2d50e330b8122ceef853cf5e670eab6c76e",
   "skills/media-use/scripts/lib/terminal-text.mjs": "5db8ae7e6b49a64a5b9cf14112074c6a52c14fb2f44e6cfffb883379fbea3054",
@@ -8303,10 +8332,10 @@
   "skills/media-use/scripts/recipe.mjs": "2c5dfe9649ac6d01ba20e2e5aae33dcb4dcadbd7d8300ec97038feb85b63758e",
   "skills/media-use/scripts/resolve-plugin.test.mjs": "544098bb4cf0018a4388db365f57ccbb62f9e6e859d23f9d67bb5ee8a71b0748",
   "skills/media-use/scripts/resolve.mjs": "e4e78ab49d6006c7deae9030d520a7a4238dfbef1976ce219e219b64f8e4247b",
-  "skills/media-use/scripts/transcribe.mjs": "e6251bfee1a49680892ea9c5e25b412a85a33e9e96e3ff4ed10fc0a2dd99695d",
-  "skills/media-use/scripts/transcribe.test.mjs": "3cc6c20225f6f2d38abc7e0eb6d14fefc6e2fc5bb7ff827bb6019b6fccf42ca1",
-  "skills/media-use/scripts/transcript-cut.mjs": "c5b1177a04eb70fbc55a0cadde3f650098c2ed68ed6abb00e5f9677044bcb077",
-  "skills/media-use/scripts/transcript-cut.test.mjs": "af546cd7d473eb5f4258148a8dd8ec637a67a242cd50948abe1e0dcd6f64c527",
+  "skills/media-use/scripts/transcribe.mjs": "31a6df767bb8fedb93fe82a948bd8c3501b776c096d760c81cfaef5901f35374",
+  "skills/media-use/scripts/transcribe.test.mjs": "0bd7ea1262c543c751dbf744a3887902da2fa72cf6cee9626dfd8123027f12b9",
+  "skills/media-use/scripts/transcript-cut.mjs": "55bdc3e6c14443bdd9dba5c5e0c2c006bd4e48b7bb27e59b0fa6c09810c52673",
+  "skills/media-use/scripts/transcript-cut.test.mjs": "8b0a0a9915d862decd690ec2ccfaecd815c6aa0128d5f49a0415dccbd46ac283",
   "skills/media-use/SKILL.md": "2eef0b69ab75e54481ff73b6617b70cb0b7ac620a993e7996248c3a80fee558e",
   "skills/higgsfield-brandkit/agents/openai.yaml": "f932b588c1a907a11ecbeb1cbae72aded4a30b29025c1b2749bf75d4e0bb1d4f",
   "skills/higgsfield-brandkit/references/asset-analysis.md": "187cdb5c3f758f08c0e8fc264674032b2db034d5cefad7a89d5a764a5a3e24ea",

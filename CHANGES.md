@@ -3,6 +3,16 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-21.192858 · version 2026-11-06.073618
+
+- **A new house rule, "Notify when waiting"** (`house/notify-when-waiting.md`, and a line in CLAUDE.md's Communication
+  rule): when work stops because it needs the person's input, Claude sends a notification and opens its message with
+  exactly what's needed, numbered, with the suggested answer.
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-21): a redesign of how Folio keeps a chat: parts and tasks, a ledger of rules, decisions and values, a
+  folded history with a fixed budget, folds in real tokens between a ceiling and a floor, faster recall, a log, and a
+  reworked panel. Each chat's saved data upgrades the first time it loads, keeping every part's number.
+
 ## Build 2026-11-20.232941 · version 2026-11-06.073618
 
 - **animation skill:** text that moves, scales or sits under a camera move in an HTML / HyperFrames animation is

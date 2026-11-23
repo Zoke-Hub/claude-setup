@@ -149,6 +149,20 @@ Grade each picture (curves, levels, tint) so pieces from different sources sit t
 **Lines draw on** wherever there is a line (stems, rings, rules, routes, axes): a draw of 14–30 frames that eases into
 its end (about `cubic-bezier(0.4, 0, 0.2, 1)`; long routes can settle longer).
 
+**A growing line keeps its shape at its moving tip, and what rides on the tip is fixed to it** (user, across projects:
+a connector's tip that tapers and fades as it extends; an arrow whose head lagged its line). While a line extends, it
+is the real line, just shorter: its end taper (or a stroke's rounded, faded tip) sits at the moving tip on every
+frame, never a flat cut made by revealing the finished line through a mask or a dash offset. Its start meets its
+source fully (no gap to the dot, gear or box it comes from). Anything at its end (an arrowhead, a dot, a pen) is
+parented to the tip, so it can never lag, lead or leave a gap. How:
+- **Pen or brush strokes drawn as filled shapes** (tapered, wobbling): rebuild the stroke at the current length each
+  frame, with its noise (wobble, swell, ragged edges) taken from the whole stroke's arc length, so the body is the same
+  every frame and only the tip moves (no boil). Place the head at that frame's tip.
+- **SVG strokes:** animate the path's own end point (or a trim of the path) and give the line its round or tapered cap
+  at the end; a mask reveal is only for lines without an end shape.
+- **After Effects:** Trim Paths End on the line, with the taper on the stroke (Taper, Length Units) so it travels
+  with the end; the head parented to a null that follows the path's end, never keyed separately.
+
 **Camera moves** start gently and settle long (about `cubic-bezier(0.47, 0, 0.26, 1)`); a push-in on a frame can be an
 even S-curve (about `cubic-bezier(0.68, 0, 0.31, 1)`). Frame tight; no zoom-out dip mid-pan; two moves in a row become
 one curved move; a slight drift on the first frame rather than a dead-still one; a section change can be a cut.

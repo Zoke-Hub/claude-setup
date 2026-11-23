@@ -37,6 +37,7 @@ Read the file that fits before writing the first tween, cutting the first piece 
 - 25 fps, durations ×1.5, a curve picked for each move; the house curve only where it suits.
 - Titles unfold word by word from the baseline, paragraphs line by line; text is perfectly still once it lands.
 - In HTML / HyperFrames, text that moves, scales or sits under a camera move is outlined to SVG paths (`scripts/outline_text.cjs`): live text snaps to whole pixels and jitters during slow moves.
+- A growing line is the real line, shorter: its taper or tip shape travels with the moving end every frame (never a flat masked cut), its start meets its source, and an arrowhead or dot on its end is parented to that tip.
 - The first frame is never empty. Every animation enters and leaves on a hard cut.
 - Under a voiceover, transcribe first: a name lands on its word, a title starts about 0.4 s before its word, pauses are holds.
 - Gaps inside a group are smaller than gaps between groups.

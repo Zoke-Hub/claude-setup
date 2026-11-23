@@ -3,6 +3,22 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-23.183626 · version 2026-11-06.073618
+
+- **animation skill:** a growing line is the real line, shorter: its taper or tip shape travels with the moving end on
+  every frame (never a flat masked cut), its start meets its source, and an arrowhead or dot on its end is parented to
+  that tip. The rule is in the skill's short list, `references/easing.md` (section 5) and
+  `references/house/motion-rules.md`.
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-23): a project-folders rule in every chat (Animations, Renders by stage and animation, Segments, References,
+  Work, a README at the top), and Claude offers to tidy a project that has drifted, moving files only on a yes; a copy
+  of each chat's Folio files in the project's Work folder; FolioPacks saved in `Work/Folio/Folio packs` by default; the
+  note on where a project keeps its files now follows the rule; FolioPack no longer hangs on a chat whose quoted script
+  is full of JSON.
+- **PulseWise** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-23): Claude's own count stands aside when a point's background jobs report its work, and one slow call (an
+  upload, a publish, a render) no longer sinks its beat.
+
 ## Build 2026-11-21.192858 · version 2026-11-06.073618
 
 - **A new house rule, "Notify when waiting"** (`house/notify-when-waiting.md`, and a line in CLAUDE.md's Communication

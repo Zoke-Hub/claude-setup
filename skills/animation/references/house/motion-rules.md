@@ -21,7 +21,10 @@ How things enter and move in every motion graphic. The `references/easing.md` sk
   pieces, then small props); the stagger and the length come from the voiceover and the time the frame has, not a fixed
   number. Some can slide out from behind a photo.
 - **Lines draw on:** wherever there is a line (a stem, a ring, a rule, a route, an axis) it draws itself on rather than
-  appearing; an axis can grow in steps as the story covers more of it.
+  appearing; an axis can grow in steps as the story covers more of it. **While a line grows it is the real line,
+  shorter:** its end shape (taper, rounded or faded tip) travels with the moving tip every frame, never a flat
+  masked cut; its start meets its source with no gap; whatever rides on its end (an arrowhead, a dot, a pen) is
+  parented to that tip, so it never lags or leaves a gap (`references/easing.md`, section 5).
 - **Camera:** frame tight on what matters; no zoom-out dip in the middle of a pan; two moves in a row (across, then
   down) become one curved move; a slight drift rather than a dead-still first frame; a section change can be a cut.
   Each move is one smooth move from start to end: no stops, holds or extra steps inside it; the camera only holds or

@@ -1,7 +1,7 @@
 {
  "version": "2026-11-06.073618",
- "build": "2026-11-23.183626",
- "made": "2026-11-23 18:36",
+ "build": "2026-11-25.054844",
+ "made": "2026-11-25 05:48",
  "retired_skills": [
   "review-dashboard",
   "redline",
@@ -49,7 +49,7 @@
   {
    "label": "HeyGen's hyperframes skills",
    "repo": "https://github.com/heygen-com/hyperframes",
-   "commit": "646157c34728327cd8640e659b60bc70d04abd55",
+   "commit": "bf689be3bafae591f9a9f541e6229c873a7fc504",
    "skills": {
     "skills/hyperframes": "hyperframes",
     "skills/hyperframes-cli": "hyperframes-cli",
@@ -3721,7 +3721,8 @@
    "3978353d62a5f618b350bbde8a5729babe220757": 1794179777,
    "dae84e54b5c68212b80e7719fd4b50b3a85a6bb8": 1794356455,
    "f0cec96af6a6cffe9e7e6e8c977ab127fabda82d": 1794378384,
-   "468e68c44ec7a6df19b3f5a889ea80bf5eac2c82": 1795215843
+   "468e68c44ec7a6df19b3f5a889ea80bf5eac2c82": 1795215843,
+   "d70943110ff2b9342cb26b8cb24f527e094feb23": 1795486024
   },
   "skills/hyperframes-cli/references/upgrade-info-misc.md": {
    "8ad73809b68daed3dfad132cc72f44ebaafaf3a7": 1781404283,
@@ -3746,7 +3747,8 @@
    "d21c1d103aaed39821b6de6fecde61741b592842": 1788565998,
    "28eb4957049bbe345c483e488a1b6630db321b9b": 1790298807,
    "de02d476611856493d7419eece0537a8a35775dd": 1793131702,
-   "9f04682260ae40b88f0f086c9db6d798a3880a77": 1794894730
+   "9f04682260ae40b88f0f086c9db6d798a3880a77": 1794894730,
+   "1857be01c7877113b3cebf89756dc6ad4de7e35d": 1795486024
   },
   "skills/hyperframes-registry/references/templates.md": {
    "84d104ef3dde3fe47604c3f437984b45ef6e020b": 1781404283,
@@ -3897,7 +3899,8 @@
    "84480705b2f5d3a0f648a6960d5e5b62aaa59706": 1790030147,
    "a2a0b9ba16327ad57f3e627bbc4f3feb904f8087": 1790546331,
    "02dfac66c8705b619781a26cbc6678de932af4e4": 1794396490,
-   "b6da93b095479a114754331b48ba1a21193e30c1": 1794422836
+   "b6da93b095479a114754331b48ba1a21193e30c1": 1794422836,
+   "a9660b089f75a95de03bd9d1397eee4594ae6490": 1795538525
   },
   "skills/media-use/scripts/eval.mjs": {
    "eb83c96c579cbd83fdb651a67b60e546391c807e": 1782347380,
@@ -4052,7 +4055,8 @@
    "99e28b691f89383420a9c87e9005819499d20ced": 1793670750,
    "bd766f12bbaa07649f5802dd7629ff1e0261709e": 1794744735,
    "70923223ee935fc8e20f0c52fd8e0bf42ffa95a1": 1794765548,
-   "b8900c5e7b6ad4438f9bec6268cad4bd8ec8b431": 1794894730
+   "b8900c5e7b6ad4438f9bec6268cad4bd8ec8b431": 1794894730,
+   "44404d41cda7d210f16ccd6720e767c0398f3b53": 1795544134
   },
   "skills/media-use/audio/scripts/audio.mjs": {
    "a332dc7d3b8b354b3aedc6c9dc5796e88baef587": 1783395665,
@@ -4087,7 +4091,9 @@
    "3e1de356bf7727d906e19b859d9fac633c0d3932": 1791126450,
    "c0ab58a8c2b8eb27f3752dc1611e748b465634dc": 1793309120,
    "dffca2376eda7316f3a4425e6f9c3c2c8cd377fd": 1795117976,
-   "294113ce5f3eedb47fcb4fded7993fc043c1fa46": 1795218294
+   "294113ce5f3eedb47fcb4fded7993fc043c1fa46": 1795218294,
+   "5cd771118744b132cdfb3720601d543250fbc4dd": 1795528317,
+   "50cfb2c7ad5dc0fde7dcbc64c985ecdb19fc7678": 1795544134
   },
   "skills/media-use/audio/scripts/lib/bgm.mjs": {
    "d4db76e880e7c67e04d7abcb323aa955a32a8623": 1783395665,
@@ -4178,7 +4184,8 @@
    "969c68a28ce48a5c9a302d4ee26c189db3c6f6b7": 1794891855,
    "869f4e8566313211fb9539a412235cc163cb88a6": 1794900022,
    "f28748d37150b9ea947b6bdba9b02e8d3f72b072": 1795218294,
-   "3c2ca1354cbfd38b81fffa053721ab2a68e51c16": 1795417956
+   "3c2ca1354cbfd38b81fffa053721ab2a68e51c16": 1795417956,
+   "4f34329306127aeeb165032e1159288629179f97": 1795528317
   },
   "skills/media-use/audio/scripts/lib/tts.spawn.test.mjs": {
    "9262f7395d130edf62b9f6715e090f840153e25f": 1783395665,
@@ -4382,7 +4389,8 @@
    "904b7fe3baaa8ceeb0a68ebad77c161263e8aeab": 1794422836,
    "4efb47f1cd51a9a4225946e0f20c45ca6a4fe087": 1795117976,
    "0342be7c9b6593e4cff75e2353f650db168fb942": 1795232213,
-   "b62e33eeeb5dea750eb1903f8310fbc47d678fde": 1795296527
+   "b62e33eeeb5dea750eb1903f8310fbc47d678fde": 1795296527,
+   "7092fcfa1299fdd618618a05f8d95c571fd40fd8": 1795507508
   },
   "skills/media-use/scripts/lib/adopt.test.mjs": {
    "a961ae1776473fe149d1a08d05cc0c300b09fa7e": 1783452101
@@ -4765,11 +4773,14 @@
    "e844e2b3b3f81dc3b77a52a6958aad18fda3d51b": 1784943727,
    "7e4bfef6ff2eee1fcf2b2b0c489edc37f9f4b138": 1785835415,
    "6c419293d58d5e255f16794dee331cb36db8e852": 1794422836,
-   "358ed0cb2d07a09c37741ca13dda784344e3fc25": 1795117976
+   "358ed0cb2d07a09c37741ca13dda784344e3fc25": 1795117976,
+   "6b50bdc3dbc080241832703c20c826b92ee47ad3": 1795449630,
+   "794790d08dcfc397cb5a1167bad54051ab47ba78": 1795507508
   },
   "skills/media-use/scripts/dither.test.mjs": {
    "fd564badfc099a9516e0cf86434e8ba48522698f": 1784943727,
-   "1e2d61f270e063734e64a6f2ba5ac62c58cae896": 1785835415
+   "1e2d61f270e063734e64a6f2ba5ac62c58cae896": 1785835415,
+   "cf40283f396d1e2994b0bf824e5f8a52bbe9d064": 1795449630
   },
   "skills/media-use/scripts/lib/error-diffusion.mjs": {
    "e59a9c5ab600ba4b32dec45ff2d229778004da64": 1784943727
@@ -4932,7 +4943,8 @@
    "5079cb5747f31517e4ac4a625827bf2d7d301042": 1794963398,
    "bed9619923f8e2d2f29ca3616fe9710a2f405fa5": 1794994009,
    "77acdb3ec0b653edd84d2c57954ae2985a8ebf0d": 1795030452,
-   "d089674a65d19cb4adcda5add75dd79992d8dd45": 1795063918
+   "d089674a65d19cb4adcda5add75dd79992d8dd45": 1795063918,
+   "63e2b10f7b08f862812b7770651f076c2dd68a41": 1795504926
   },
   "skills/hyperframes/scripts/plugin-cli.mjs": {
    "4fa4e6d770abf13289999a687d362e061df71370": 1790543128,
@@ -4946,7 +4958,8 @@
    "154792b4f46aea89cb92c944b71d075a99fb1d9e": 1794963398,
    "2db011cb04f71cfe8080d9699acfd7228c9e627f": 1794994009,
    "79c97a1fb0c4eeeb0890304d01c9a6e4a2153f4b": 1795030452,
-   "caf92f98cf4d191ba889851de9cff7a41e6db947": 1795063918
+   "caf92f98cf4d191ba889851de9cff7a41e6db947": 1795063918,
+   "8a5f82fa5c4f4341c81ab0c9ae18174d84b9b2ff": 1795504926
   },
   "skills/hyperframes/scripts/plugin-cli.test.mjs": {
    "df2d3e5f93ca70846daebf36f42df9979bfc6494": 1790543128,
@@ -4959,12 +4972,14 @@
    "c74847478ddbdd4ede8928ad9ba19a92c03981a8": 1794963398,
    "b2179bd5e26fa219e981d4dd364979d74d0ec580": 1794994009,
    "cbc75c23eb9ea37f982489a6d83439db0202d17c": 1795030452,
-   "a557d3029da7d58adba25594768ed866bb58c8ef": 1795063918
+   "a557d3029da7d58adba25594768ed866bb58c8ef": 1795063918,
+   "d1d57fcd7d1906b3a2bc9344e830f7923e2e3031": 1795504926
   },
   "skills/media-use/scripts/resolve-plugin.test.mjs": {
    "8460ee812f22db91343dcd29835fccc4fea15e27": 1790546331,
    "5b6d46d50bd15a0428f95b801875356f3ec0d4e5": 1794396490,
-   "c199e2856e35c554adaebe01aebc42ca3b3d8b05": 1794422836
+   "c199e2856e35c554adaebe01aebc42ca3b3d8b05": 1794422836,
+   "fde2dbe188f464318cf7d5ee58db282b8a293006": 1795538525
   },
   "skills/media-use/scripts/transcribe.test.mjs": {
    "3f0d2a53b11da8ee1ea59bf3b6e101298a0433bc": 1790551276,
@@ -4989,7 +5004,9 @@
   "skills/media-use/audio/scripts/heygen-tts.test.mjs": {
    "1730ba8023a4044be781635aae07ab5f9585757b": 1791126450,
    "10a0e25f00c82098035b8ba646ad22ff73e730e9": 1795218294,
-   "89740ce4fe0fd090224b7f23ce6c025267993a6d": 1795417956
+   "89740ce4fe0fd090224b7f23ce6c025267993a6d": 1795417956,
+   "c886b229dc6274817ad458c287971352163156a4": 1795528317,
+   "e46156002e08727e4bf94184acf0a9ce3daa1dc8": 1795544134
   },
   "skills/media-use/audio/scripts/heygen-voice.mjs": {
    "7a5559750bd57316871564ef8822411afaf229eb": 1791126450,
@@ -5017,7 +5034,8 @@
   "skills/media-use/audio/scripts/lib/tts.cleanup.test.mjs": {
    "1275e60706c9accaaa1f785dca86fe42242679d4": 1791839330,
    "fc45659da8cf248e144c385284828241087adeeb": 1794396490,
-   "1dcb08a08c093903973954b547898adae2bec7f9": 1795218294
+   "1dcb08a08c093903973954b547898adae2bec7f9": 1795218294,
+   "1c8799666064507283f68ef4390eda4bb9f3fbf8": 1795528317
   },
   "skills/media-use/audio/scripts/lib/openverse.mjs": {
    "87f80aa74d548f9ebe1cff2408f7f5e477e2a3da": 1792298108,
@@ -5182,7 +5200,8 @@
   "skills/hyperframes/references/film.md": {
    "879bc96487b30bad0f0d979c8c81fb84f696cdb5": 1792610371,
    "ae6d515ebec77829dd56ceddd994f1d1b94f5306": 1792913117,
-   "97e4bc8ed5ec4eb93b04d74f2d29602cb74c0f79": 1793828279
+   "97e4bc8ed5ec4eb93b04d74f2d29602cb74c0f79": 1793828279,
+   "fb79f6661dfe4b5811f2950359457538cbc5849c": 1795513458
   },
   "skills/hyperframes/references/format.md": {
    "1c9971d38218d8b96d0d994e3630dbf05b1fd9e2": 1792610371,
@@ -5255,22 +5274,32 @@
   },
   "skills/hyperframes/scripts/bake-basemap.mjs": {
    "55b14bb387e36fcaab68674a285e661364f6c517": 1792610371,
-   "b8a9b8888de4b61a28441b7faccaa00e8dde2d18": 1794422836
+   "b8a9b8888de4b61a28441b7faccaa00e8dde2d18": 1794422836,
+   "03d5942bb4097752655ca53fb9aa5ad2b719c4dd": 1795507508,
+   "337754a79047aea6a3ead251b186ae4b252de03a": 1795513458,
+   "8ce50594336bafc33bc2c00dd386e962075fab66": 1795518390,
+   "3fbc0c10a053835493baa032ce12594b951e5a21": 1795550199
   },
   "skills/hyperframes/scripts/locate.mjs": {
    "173f0111b26288ab2d17d3bbc0f1996be597755b": 1792610371,
    "923445f83af235af9206cccfd95a18d7097c231e": 1794422836,
-   "eb7100d35ce22a0abf680c774e11f2d5092c3036": 1794895516
+   "eb7100d35ce22a0abf680c774e11f2d5092c3036": 1794895516,
+   "4132d9432e8bee12999d2ee34b24f6e28d0d5a7f": 1795507508
   },
   "skills/media-use/audio/scripts/carve.mjs": {
    "4649117fee12f63fe865eccb851bce226b37273b": 1792610371,
    "c672f27880f3b95e90fde6314121a868e0a541eb": 1794422836,
-   "ee2832019f0e5c716c44b8ec177393d52493925a": 1794808329
+   "ee2832019f0e5c716c44b8ec177393d52493925a": 1794808329,
+   "9fda53b53ebfc394203c90fc74168f409d025a01": 1795507508,
+   "fb33b3369c381f10e21ba8944630e54d8e85895e": 1795512311,
+   "72acffa016935fa01deb15d02ca5d6424d006f00": 1795554585
   },
   "skills/media-use/audio/scripts/carve.test.mjs": {
    "bb85137d2305784c94aea7eaa3f57b822d655ac0": 1792610371,
    "338d1f1928c2a9aeb5bcab94201771610f4b96ce": 1794808329,
-   "9f99426b0269920599229aa6bc90358fb3e829df": 1794811331
+   "9f99426b0269920599229aa6bc90358fb3e829df": 1794811331,
+   "786037d21a5371f7f2ed26fb39cd8be68469cf57": 1795512311,
+   "8ab020af7213d476d1c8205d08a17a2d00cd24f5": 1795554585
   },
   "skills/media-use/audio/scripts/extract-audio-data.py": {
    "b76ad9959354ec4a6382fcfc434f379f811f5bf6": 1792610371,
@@ -5284,7 +5313,8 @@
    "b456246bc00aebaf9aa49753136ea6afeae02c8f": 1792610371,
    "99663cb438e2534e9bad289c45bb7432d202a459": 1792936390,
    "8215001560dd8c85f6a995a7525b7877532b0376": 1792964672,
-   "8557eca386d19d7d8e8a8a37f9cd841fd4843171": 1794808329
+   "8557eca386d19d7d8e8a8a37f9cd841fd4843171": 1794808329,
+   "a4d6813377064a81446adb3042cdf7fe12689de8": 1795512311
   },
   "skills/media-use/references/heygen.md": {
    "7cfbcf9c6ca89b4febb6b0970bf431bf033c79f9": 1793366642,
@@ -5315,12 +5345,17 @@
   "skills/media-use/audio/scripts/lib/recording.mjs": {
    "a92e554ba37d0f311cf2fb2f1f55da5ee379243f": 1794082238,
    "2ac286a7e937022bd853f614688ce887da4fa4a2": 1794422836,
-   "e8253b5b5e1b4fbe3da0a0eb5b87bba79d8be1ae": 1794804150
+   "e8253b5b5e1b4fbe3da0a0eb5b87bba79d8be1ae": 1794804150,
+   "7470037bde4b2691957506bbfab3f303748177c5": 1795507508,
+   "2eaa8b56b37850dc6c4419d311692238baa70a25": 1795512311,
+   "1021679d6ba663880a780d07a76ed539f91b338a": 1795554585
   },
   "skills/media-use/audio/scripts/recording.test.mjs": {
    "0bce5d37ef05870453b9ab9346bf5b7d555ad9f5": 1794082238,
    "b78501a214263616cc89c33ff6ce7feca38a84e8": 1794083568,
-   "72eab091da37b92fa6e629bc4f9687142ab4bce0": 1794804150
+   "72eab091da37b92fa6e629bc4f9687142ab4bce0": 1794804150,
+   "0ebe7911bad0d190c4aa6804cc615d1e0a654222": 1795524079,
+   "ecb639749d2288c18e46da8a74e334e930b99641": 1795554585
   },
   "skills/media-use/audio/scripts/lib/voice-credit.mjs": {
    "8adf3e62729fa414dc4c6d0a76a3a187aed9635a": 1794083568
@@ -5351,7 +5386,10 @@
   },
   "skills/media-use/audio/scripts/lib/audio-carve.mjs": {
    "4a33b32bc32dd1a71c04c2f7a4637b4d1ee62b37": 1794808329,
-   "80e4ccd00c805d52e0c084f9f1fc2a8520f45b35": 1794811331
+   "80e4ccd00c805d52e0c084f9f1fc2a8520f45b35": 1794811331,
+   "d7447bf45d4adb9ff1072a3b95ad2c5ab7242891": 1795512311,
+   "a0054ef2f27278afb0ae9e11a6cd1e181677ce2b": 1795548650,
+   "a618d72b833200175217dc399d2dd10835994827": 1795558369
   },
   "skills/hyperframes/scripts/locate.test.mjs": {
    "fa3058f7c5aeb22347f4ee6f825a0216a1581c0f": 1794895516
@@ -5362,7 +5400,8 @@
   },
   "skills/media-use/scripts/lib/received-env.mjs": {
    "f761c33a1cb3ad3364ded01dcdf9325245cbbcab": 1794943599,
-   "bfee878e0264412ddac2015ebee99b5de33b8aa1": 1794959833
+   "bfee878e0264412ddac2015ebee99b5de33b8aa1": 1794959833,
+   "6a91da3f649a5c8e2cb16e299d1d18d81fc9bd16": 1795558369
   },
   "skills/media-use/scripts/memory-output.test.mjs": {
    "e3e1f0ae86a88468cc45d17bd6511768d1685312": 1795065003,
@@ -5371,6 +5410,37 @@
   "skills/hyperframes-cli/references/unattended.md": {
    "908990f633079ffcbb353046b04aeb98851c6408": 1795204109,
    "34ed7059e0429351be403061019e576e617b29fc": 1795219872
+  },
+  "skills/hyperframes/scripts/lib/literal-media-input.mjs": {
+   "0f190cb089a0d278b06a4f47b1624f1234feef47": 1795507508,
+   "85840a06afc924ec847179c6d79cbf4397497739": 1795520938
+  },
+  "skills/hyperframes/scripts/literal-media-paths.test.mjs": {
+   "08d840a5874068ac08b5f8df4e59fab1b4604a05": 1795507508,
+   "7f1708c99d078a5b807df87b4a0bd625830579f7": 1795520938
+  },
+  "skills/media-use/scripts/lib/literal-media-input.mjs": {
+   "0f190cb089a0d278b06a4f47b1624f1234feef47": 1795507508,
+   "85840a06afc924ec847179c6d79cbf4397497739": 1795520938
+  },
+  "skills/media-use/audio/scripts/lib/media-input.mjs": {
+   "8366b8750ee2d90ab7565c51e487ff34e4a38ec5": 1795512311,
+   "e1a44f5f8a3bdd75992aa93f2740ccf85cdd961d": 1795524079,
+   "1ab510e00f8f19b69a756900dd933f1125779fa6": 1795554585
+  },
+  "skills/hyperframes/scripts/bake-basemap.test.mjs": {
+   "15ce291aa5589ecd7ffb8d3be1ce556c10987e20": 1795513458,
+   "829b1c25c7ed50d9421125703f5fae3a9f5d9141": 1795518390,
+   "235d1854f45f6db15ae4a1ba2d2e8c3c07fdcaf8": 1795550199
+  },
+  "skills/hyperframes/scripts/lib/trusted-package.mjs": {
+   "548e2e219ff76c203d3f3d5e9a40ebf4d538b2d7": 1795513458,
+   "4fbd211e50b0a5a3c0b727be8ece0880c080d7f6": 1795518390,
+   "ee6992159003eddd7f7f1428650b380fd2702ee3": 1795550199
+  },
+  "skills/media-use/audio/scripts/media-input.test.mjs": {
+   "4a78fda8b0994f59ef5b0ae3e4349e6ce711dcf1": 1795524079,
+   "dd4e60afdf04436042de314675ab5a2eac3161b0": 1795554585
   },
   "skills/higgsfield-generate/SKILL.md": {
    "e83775ad19a52f93ec415902a12d3eb80e8d0021": 1777911404,
@@ -7441,10 +7511,10 @@
  },
  "upstream_pins": {
   "real-sfx": 1792576847,
-  "hyperframes": 1795435919,
-  "hyperframes-cli": 1795435919,
-  "hyperframes-registry": 1795435919,
-  "media-use": 1795435919,
+  "hyperframes": 1795564155,
+  "hyperframes-cli": 1795564155,
+  "hyperframes-registry": 1795564155,
+  "media-use": 1795564155,
   "higgsfield-brandkit": 1793843003,
   "higgsfield-faceless-video": 1793843003,
   "higgsfield-generate": 1793843003,
@@ -7501,13 +7571,13 @@
   "extras/video-use-windows-paths.patch": "6f48568d3d90079cb6d6df714d8055313791907e29d78e290329897400768145",
   "global/CLAUDE-sections-mac.md": "d964c428796097cd3b0e41e0c28602e4bf9857f7271780a8359592ab64f0bd60",
   "global/CLAUDE-sections-windows.md": "f859fbc7285b7cf34b87131cb40bb640298777f4de6da1f2422a4c4d0c83ea50",
-  "global/CLAUDE.md": "dc67546ceec9eb382502c0007cea3af305cee66c3cceb5f29517876c54575aab",
+  "global/CLAUDE.md": "f90af26ae11ce0fbf09dbe18641d7ccaf1ab7595d3338f95cc6b85ce77feb0e9",
   "global/hooks/block-elevenlabs-transcription.py": "43c0f4237ee11d37730461360b9a03fd432138dc6e04d375a1f8cd56ec4a9c0e",
   "global/hooks/block-elevenlabs-transcription.sh": "b482d506eceec53b943836279d8903802e4b180509d45685c539739a2eec5778",
   "global/house/after-effects-export.md": "537750bf444222965efbf9915cf424251170d67b234e41054ce30c2fc6d14965",
   "global/house/answer-buttons-complete.md": "c93eed9f401f62db31d3fea05a5b03e73e52181fab4cf502520d914167fecaf7",
   "global/house/approve-images-first.md": "5e7689bcf91b2a150a676646c9bbbfb530e085b5b28315c2c588dfe30b96203c",
-  "global/house/ask-before-building.md": "428b2ec730ca8d56423aa6b81eb8913fd8c71c694ab4eccbd39bee33f6e5f7e1",
+  "global/house/ask-before-building.md": "847bb0c9115e4c041e526ecf20fc99a92ac5efbda97e84a9569e28e885eb2980",
   "global/house/ask-before-new-sessions.md": "c8efe03fda652f1b330fce58f2255612e57583af69e65a595ea97d4a026f4cd9",
   "global/house/ask-when-stuck.md": "47bb2f4e1e451e95a59b2decbf56190e6a8d8bb1a77152685d36de43cfa2b6be",
   "global/house/build-ae-export-alongside.md": "aea16852c4bdf0da799e531c1162e6fa38c55a4d098377e6aaf19bd54163d900",
@@ -7519,6 +7589,7 @@
   "global/house/dashboard-means-markroom.md": "480cca86035eb785dc3e3475381ddc2c31a027012e4af1e52de4a4b96af601a2",
   "global/house/delivery-4k.md": "a5bea30664f9574bbf62eec664fce413555cd6a9585f3e21c772fd56fb83e29b",
   "global/house/first-frame-never-empty.md": "0380d3348c2af8c5c2879db3651e2b4cf21a05a390045efbbbc0a90572a599bd",
+  "global/house/footage-rows-first.md": "2f8a5c9662656f252b7f6852d8e3cc5a082040a67af3ea64ae0c8d86bcf8536d",
   "global/house/general-rules-only.md": "5b34822acda54d1161aa7898a9be1f63953c1e85e47a96fe878fc2f206c5188c",
   "global/house/icons-over-emojis.md": "1c97557765e6eafc5e2902c3b8c17ba792f0632a7a5005836b99c6eb870f90aa",
   "global/house/keep-chat-archive.md": "616c5bddcd81972ef6bd4caded8b28b01f7334c49e10d1cfe924041c6bc4a720",
@@ -7529,14 +7600,14 @@
   "global/house/no-personal-assumptions.md": "17a65c7a51da1a7b112e184c9e2745f3d8c1c1b368f0472ae6fed713bd42e979",
   "global/house/notify-when-waiting.md": "2a70e7cba99c097f0b755e66c3f8d059691229888513297e5dd9af66805d1d1b",
   "global/house/protected-tools.md": "64c018556896c3f20e77e6446b24718e58dc0902ff5de067dc51294b56c1ef75",
-  "global/house/README.md": "1c1cd51a918b9414326a3082944875a4e7b8d4c864bbfb4e520a66d2511d104f",
+  "global/house/README.md": "509d49a7af2ee37cd18fe3c3b347b7e46f48854b4dc650f839db4b466108d58e",
   "global/house/reference-study-scope.md": "7ab207dbc525fee31382e0d0cf08e905dbe8e1bb429a7c540fe16ed280b9e714",
   "global/house/release-every-package.md": "cd7f4c6557e30c6bcfc312398860748d094e27ce47648c8ae68ed0fe70555fae",
   "global/house/spacing-groups.md": "9ff1fa91492905d9b37ee9af91181580ba34c860d6214a85a8ca1a5ab0874d82",
   "global/house/subtitle-timing.md": "8208d8c5229b1a9ab2e273364cb116c3a9aca5fc1939acc9b7ba235d343f38ae",
   "global/house/time-to-the-voiceover.md": "7c50da943ccc9a4318f7ef0aa0d1b3581653fc0697f1a0ab167bc6ceddb35d5f",
   "global/house/verify-facts-on-screen.md": "7077e72f35cf804c5223b94f91d44b889fe2ff6a9c29ff9239c7eb612f046145",
-  "global/setup-pack/CHANGES.md": "3d7e347b14fcb57d4f457934f1f5c649e695412a705d4cfc4e21ac131c3f4b40",
+  "global/setup-pack/CHANGES.md": "e2e6f9632f9e497851f88b40fc92986dcc15964eb73190673a872dace42d07e1",
   "global/setup-pack/make_pack.py": "70616b9b2635162756febfa6d939016319d9eacd75b4c552a8ddc1e194524bfb",
   "global/setup-pack/pack/bootstrap-mac.sh": "844d5ae87fbec65c5167d74af8dd308619c1156a18b8b124f988163b390fb264",
   "global/setup-pack/pack/bootstrap-windows.ps1": "71d9501e9da060ed2544d2bb58f2157bfdab72cf50a09de4a43bc0a58dd6cfca",
@@ -8166,13 +8237,13 @@
   "skills/hyperframes/assets/frame-presets/editorial-forest/frame-showcase.html": "bb87b88b91184f4fee7f02eea63ed35d9d378fa89fad8988326e31e82a43dbb1",
   "skills/hyperframes/assets/frame-presets/editorial-forest/FRAME.md": "ceeb2ab768367da1e1f3e1eca36ab9feeb3de3e4d15493319b0044c3d869329c",
   "skills/hyperframes/references/captions.md": "112a08edd277c4f691685bc6f9d9616a15b560a9b57b166b8ce731a780189fd6",
-  "skills/hyperframes/references/film.md": "b684403f725cf720b9f192bafd420ca55f24060114004234a4e46a715de7a183",
+  "skills/hyperframes/references/film.md": "3993a441d2fdff60bb8a50516c7ece78c7d3e0c21de03254967d1dedd2f677b9",
   "skills/hyperframes/references/format.md": "f61ac9f8dced54ccaf17e9e6f3b027bedd4d9ece2ec6dcba39823b06f53a332d",
   "skills/hyperframes/references/look.md": "5128a54cdb75bca2f627170e4a3a9667f4f11cf1579301fc16c53862c29c3ad3",
   "skills/hyperframes/references/motion.md": "bd55ea56343346060cd612a30874996e82f48ac5051ecb2bd1ab01efe4e2fc71",
   "skills/hyperframes/references/overlays.md": "dc055a8f60d1ed61ef6760a7dea651f08b7f4e54e6ef80e65d09b170e3af1d72",
   "skills/hyperframes/references/path-tracing.md": "c45284156bfb77b5151cf6e5b34d47cad8e7da871147e842b4ebe358b187c6b7",
-  "skills/hyperframes/references/plugin-installation.md": "bf50802c1aa41f59cc83371d1114c9b59ba41408265e60c0f16421da487ee027",
+  "skills/hyperframes/references/plugin-installation.md": "d03d3c5a5adf9db71a08e57d5be57ae02a77a9b7587ae97ce351b84dc257fe84",
   "skills/hyperframes/references/review.md": "90886b58db02aaa53e6b91c433748629eda061b18465804b56ebbbab92508e56",
   "skills/hyperframes/references/runtimes.md": "438b527d08c6aaef96f9750d4be68e8b558aebeb6ce96cf39c5338bd170032e5",
   "skills/hyperframes/references/skill-lifecycle.md": "4477242d85ed01eaf7d989ce82d2d833e33fc5654f7164e5b8546597d98ee48c",
@@ -8188,15 +8259,19 @@
   "skills/hyperframes/references/types/launch.md": "1405b663227018d3dd7bfef895bcea3d3dd6c596078316bec30e8686d014f661",
   "skills/hyperframes/references/types/music.md": "868df2814d2a8e8f2bc884372d674320aee43c995fc67d25a109ebfdecb58b4a",
   "skills/hyperframes/references/types/vertical.md": "d722f9c42153fb299fcec756e3b0e9f76837370cdaed52d1af81d66707c2127a",
-  "skills/hyperframes/scripts/bake-basemap.mjs": "fea86ab2e2aab59fa81e4b26d77c0edcaadaf4c41b4455cf359c06047088c40c",
+  "skills/hyperframes/scripts/bake-basemap.mjs": "faca57ecba371be83c889a563284d1b6fff1968b315024f0fedb39b46f7ecce8",
+  "skills/hyperframes/scripts/bake-basemap.test.mjs": "2669b2978392a666d364aafb3eec9e11ecfe58d585ae9456e8450c732b01c22f",
+  "skills/hyperframes/scripts/lib/literal-media-input.mjs": "6f826e4f4c86be58e42cefc44ed31b55757472ca9321b29469732c7b6857f9a3",
   "skills/hyperframes/scripts/lib/main-module.mjs": "61811e09110856e1439c29875e4a4ad7701ae45d4045f9d1dcb6a7929698e4c0",
   "skills/hyperframes/scripts/lib/main-module.test.mjs": "3d0ee22dd8b7acbdf8997c11449f29f13bafe6b20668a478ba504f66ec1ef151",
+  "skills/hyperframes/scripts/lib/trusted-package.mjs": "e9b373563ff773c6e9bd77bd655296f7a3ba34a0bb3ca1aa0451dddc6fb47a3b",
   "skills/hyperframes/scripts/lib/windows-exe-search.mjs": "6a301aa13e97d3e2e3ba7520c350ebec1b09ecafba24afd6a6866d5c3eb3b10f",
   "skills/hyperframes/scripts/lib/windows-exe-search.test.mjs": "11b83c0772e2021fe775ed616ec15418dd155d9c2d377624d0dbc36d0a1db681",
-  "skills/hyperframes/scripts/locate.mjs": "e0db5b3d5caef3de90bf2cee8c2557f3ed442985a02e0710de6beadf93f8001d",
+  "skills/hyperframes/scripts/literal-media-paths.test.mjs": "321ead9c8979af444cf22e43e259aff1d6c7b366492351bd30a15f0a730378ed",
+  "skills/hyperframes/scripts/locate.mjs": "a08bd5641f56fcb58ab4c0988c1d184ee62217816bd4c64ab8c501012b3570e6",
   "skills/hyperframes/scripts/locate.test.mjs": "618123f83e5343f7db4dac5ee1462afe62fbf82e25abee25d0bc8a8c3169f41c",
-  "skills/hyperframes/scripts/plugin-cli.mjs": "27fd4411ad42e40326f5bcd273da986060bcc2e8525a04fe6dbb9d9a8d117a4d",
-  "skills/hyperframes/scripts/plugin-cli.test.mjs": "8908b5bf5febf13ae08af9b2c6dc60dcefb6c3e12bcee32001e5682ad7ef526c",
+  "skills/hyperframes/scripts/plugin-cli.mjs": "9aa1419255daf82317bb051259b3cfd2e6f2889aff26f1e51913bd82b0c9fb24",
+  "skills/hyperframes/scripts/plugin-cli.test.mjs": "bc8504a45fd16886a7227f2ceec6a4b2593dd5164be26d910a53f5c865d27ddd",
   "skills/hyperframes/SKILL.md": "6c67ce2bea9d0078b80aeebbf9fdf10f261b541d4e18d04eef9622db81aa9c8e",
   "skills/hyperframes-cli/references/beats.md": "795f67b5c3fa680968a43e6482685fd55a0adb555d179643bfcb7989d251e69a",
   "skills/hyperframes-cli/references/cloud.md": "31f23ab377e9dcfb137940ee69be0cb579c970a4a2a4401653ffe65a7ded513c",
@@ -8208,14 +8283,14 @@
   "skills/hyperframes-cli/references/init-and-scaffold.md": "3932ea29b3604dd76f9e6f93642e4e180999ecb7b3fdf4499443bfc38db82c9f",
   "skills/hyperframes-cli/references/lambda.md": "39afd65cdc7a8e50badbf55d2b5ab091b30c24846d1e1c99b2bee598dc7e440b",
   "skills/hyperframes-cli/references/lint-validate-inspect.md": "5a0198691f1a5fdcbf31286a2e7838eda3640f131a292f737a90bc78cfda60eb",
-  "skills/hyperframes-cli/references/preview-render.md": "9b3a3dc2de0b4fec66d69f3d561b6b41d6f726e6520a13ba3a49aef0d8f9b1bf",
+  "skills/hyperframes-cli/references/preview-render.md": "228557a61948f3b039cef35032003f5fc9b0e6273e70d4efe0450bfb5247044a",
   "skills/hyperframes-cli/references/unattended.md": "37d0fdda467582a3a8d8cd9d173d1f0012d6b7ce7c9d4f4ed1ea635587870217",
   "skills/hyperframes-cli/references/upgrade-info-misc.md": "68a5a0f52d20248cbee60cc3da14a0028e7bf6b6b13d6f2d06002552ef54b1c6",
   "skills/hyperframes-cli/SKILL.md": "f9666e4c9e23908cb0d3c52c4f712bf5b74b46769a486aecbd072a79781b784a",
   "skills/hyperframes-registry/examples/add-block.md": "0e3353755c4ef55e53570d1266a4a43b2c5aef9bbe41276430e38cfa6580b83a",
   "skills/hyperframes-registry/examples/add-component.md": "d06992d31eec617a91f5c34630c9274c52dd07898bd24f10a869d0d1cab5af29",
   "skills/hyperframes-registry/references/component-quality-bar.md": "f0d4c3c44131bc0791f8a8cc3d2d7478d38045451775af7d20b2dd47cf5f91ac",
-  "skills/hyperframes-registry/references/contributing.md": "5ff53e401e4eac0ddc3b974d3da7c2c0f6850c5d174ff8a58f504a168a3f5b38",
+  "skills/hyperframes-registry/references/contributing.md": "e48fd9cf6a3c53284d6ae95fd5137ce923493dab9bef8cbe9afeda91078b9e18",
   "skills/hyperframes-registry/references/demo-html-pattern.md": "dfc50cd33eff2c2be75437786fc3e851ab0085f7d453fb35b3380ecf9a6e9f04",
   "skills/hyperframes-registry/references/discovery.md": "ca82fcc1e0b2d824b72a8bda99b60d257b23d493fa1d28adbb0548a762cacd04",
   "skills/hyperframes-registry/references/install-locations.md": "83793e7d6aeea9a751755e4bd23ea48182ff9af082287b98a1192343d2571dd1",
@@ -8256,18 +8331,18 @@
   "skills/media-use/audio/references/sfx.md": "b89b14e4d819594d07cf2899e3ca59ceafe743e77e7df46dafdbebe4effebe75",
   "skills/media-use/audio/references/transcribe.md": "5525a555f5356766a5e3333a945b5f90af51f63b2b98210d23e3a605a5de8703",
   "skills/media-use/audio/references/tts-to-captions.md": "15453b0400d145da7467c951b23c21ca01bfaa9339017516b731fed36cd663dd",
-  "skills/media-use/audio/references/tts.md": "a1645f76a995b16053080c7fdc4606cfac6fbdc4638d7c29b92a5126754e4cf2",
+  "skills/media-use/audio/references/tts.md": "800feffe0c047cb58078c7f9b614948e9c53e40c4e91b764a9142b5691a70e63",
   "skills/media-use/audio/scripts/audio.mjs": "8904ff0d5380953eecdbcd724a0b5c80d1292f269ff113c6276059ae81a0cd17",
   "skills/media-use/audio/scripts/audio.test.mjs": "913862cc06d4ba27256df459e1623713dfcc7851c4849338f4122fb82c028bd2",
-  "skills/media-use/audio/scripts/carve.mjs": "1ae83aeac13226b94bc3e7e97e9d1c7e4109dfc6f1ae961714c223fb896d3488",
-  "skills/media-use/audio/scripts/carve.test.mjs": "9d45276eb50f709042db34d7fe50b6f91c929489adf5bf6d73d40ddabf141cd9",
+  "skills/media-use/audio/scripts/carve.mjs": "1b3026468b4698c46325bf6c8f7cfc208653416426b7963fe14ca17f855603eb",
+  "skills/media-use/audio/scripts/carve.test.mjs": "4691163410c9903972ad911598156cf95cd3499b950bf3cb6c6ac0da2366146b",
   "skills/media-use/audio/scripts/extract-audio-data.py": "5ef8c22de6477f6c847c2069955046b4334fb4de4ebdec5ef7e8ce90d2fadc14",
   "skills/media-use/audio/scripts/gemini-pipeline.test.mjs": "994d02861e3822ee9ec389778351eb681f21a662b920cb6e787e035df6fbff09",
-  "skills/media-use/audio/scripts/heygen-tts.mjs": "7668af09d7277cd51748a667154d8140556fdd9c445c7b4a9387627be5f91148",
-  "skills/media-use/audio/scripts/heygen-tts.test.mjs": "4af7b57c3da8329ea575746118b1e41d5238ca0d9a40b6e6a91f74745ef6e5fc",
+  "skills/media-use/audio/scripts/heygen-tts.mjs": "abc532219674732c257883b883ff31e687f423d391af73d7b7e21b5753a8f65a",
+  "skills/media-use/audio/scripts/heygen-tts.test.mjs": "8c91b044679a75639ff5cad55d5b390c352b3b7af37b1ceab4bac6e51c3ae675",
   "skills/media-use/audio/scripts/heygen-voice.mjs": "1ab6d29860c106b49ca0c3dec408d99a8d3297a5bbc953d21f1148c3d8568064",
   "skills/media-use/audio/scripts/heygen-voice.test.mjs": "d0920895246ee7679a424ffa36ed13d3f1bb7c03b8641c8bbb4a4efd4ede320b",
-  "skills/media-use/audio/scripts/lib/audio-carve.mjs": "f4438df74a93c1620488f7a8c8121eebccfb71b34ff1ead06f1e6f307b1ed5b8",
+  "skills/media-use/audio/scripts/lib/audio-carve.mjs": "ad1c03d2ac954245209b9427f5ec7741c431b010d72a5c6cdf9c2df0432e9096",
   "skills/media-use/audio/scripts/lib/audio-meta.mjs": "94e1b4cf242362eeb52bb8a5665b5b50fe4ffdc7854f4366b82e290c33d03890",
   "skills/media-use/audio/scripts/lib/audio-meta.test.mjs": "e6627824e12aec0c19c7d6f28cd8445ed6a341c846b873f467337e1af96e0e7a",
   "skills/media-use/audio/scripts/lib/bgm-volume.mjs": "bb9debebdbd09724f6d07cd10b3982a076639664420ff8caf5f5a36ae7429a8c",
@@ -8284,6 +8359,7 @@
   "skills/media-use/audio/scripts/lib/heygen.mjs": "95bf08a065f5ede0bb947713d11886d6341c2f529e48f06f83a2bf2ae7e6b9ba",
   "skills/media-use/audio/scripts/lib/heygen.test.mjs": "66fb3bec5e426e226221099457e83fde879dfe817fd8ac1f5df2ed602d8b0163",
   "skills/media-use/audio/scripts/lib/main-module.mjs": "61811e09110856e1439c29875e4a4ad7701ae45d4045f9d1dcb6a7929698e4c0",
+  "skills/media-use/audio/scripts/lib/media-input.mjs": "279dd4cfcc8f519574fb0f506255b3cbe83863a6c77d62456c771dd25276afd2",
   "skills/media-use/audio/scripts/lib/media-record.mjs": "70dc13952b6edd363a27866a9275174bd4aca4b1ce2281e1ba09edbb02c6158f",
   "skills/media-use/audio/scripts/lib/media-record.test.mjs": "c73d535f2a10f56e982155fd6d357d047818998d7553860772e17180c1d8fc6d",
   "skills/media-use/audio/scripts/lib/openverse.mjs": "3a65a537f1a3cb097ef12915f81c81572062f38417046b2681e9b3964e96b84d",
@@ -8291,17 +8367,18 @@
   "skills/media-use/audio/scripts/lib/project-path.test.mjs": "61aeae52e51d95fe4a9caf646534b3670c54043bd3d8eb67a6b968ca1accc388",
   "skills/media-use/audio/scripts/lib/python.mjs": "576765c574f5cd94b4b6be515ae9bef871e558d166bbefdf34bfb29a92c2a1df",
   "skills/media-use/audio/scripts/lib/python.test.mjs": "089ccfc875f7df34f7ee109147b0d1c3b39152029b0ae5a798ff3aad661de398",
-  "skills/media-use/audio/scripts/lib/recording.mjs": "74bdb99826b8e962da53f2379173dc1aacb197145a2757f8ad1be03ca8927f31",
+  "skills/media-use/audio/scripts/lib/recording.mjs": "f27773182c6792a9276c44b75a04b7b219a1feae93e65bafb0430c5b3f6d227c",
   "skills/media-use/audio/scripts/lib/sfx.mjs": "5c443cdf72bf14552f23a468e311b273e1448b49aeca385f2484995217f75d3f",
   "skills/media-use/audio/scripts/lib/sfx.test.mjs": "b3eceebc0df5d48424d61b7a9cf8f568c06be9d89d1586e671f113caa296c932",
-  "skills/media-use/audio/scripts/lib/tts.cleanup.test.mjs": "4d5527cbfc159bd34a8dd6a24f2d85b4f9ab313e3950e8d661bac25fd78a0f9c",
-  "skills/media-use/audio/scripts/lib/tts.mjs": "b32d921f9c419ca2d0f2d829aff9ec6a492aa82e9ce611846202690b4634e9d8",
+  "skills/media-use/audio/scripts/lib/tts.cleanup.test.mjs": "84a55fa612e58a3ab3a0bd9159d9f1e67f6287c1738c407944f16a83a1db2726",
+  "skills/media-use/audio/scripts/lib/tts.mjs": "cf98155691523f20674ff1948785a24531f910f005fab61b51015c6bf9c8cb5e",
   "skills/media-use/audio/scripts/lib/tts.spawn.test.mjs": "40299540bdc679bae3c616418a156c64664fbf737d3e3e2198071e56c3cd1a57",
   "skills/media-use/audio/scripts/lib/tts.test.mjs": "91713e4eea55f1cb595039bae29a483614f88f9a87d266ea278c590a76188525",
   "skills/media-use/audio/scripts/lib/voice-credit.mjs": "16a45db14f36ba557654f8104df09481e9d34234aebcb4cdc1ff5213bed3d4e5",
   "skills/media-use/audio/scripts/lib/voice-credit.test.mjs": "c7f3fccb3767b702ee3e99643fe8a44fa255c5a95999aef1535be6455cd2bd5a",
   "skills/media-use/audio/scripts/lyria-recipe.py": "07bcba4a128430545a03e7ced49b9a6750a77d72a3659d67e4e9886fe9731436",
-  "skills/media-use/audio/scripts/recording.test.mjs": "5cdd3402fcab5a722bf331b71b198064fd1a5cb769d4871de7f6e7ada25b0f68",
+  "skills/media-use/audio/scripts/media-input.test.mjs": "86629a7b03b2ceab1137457aa310c506ade174dbf5b7ad61bebb32ec061b4f50",
+  "skills/media-use/audio/scripts/recording.test.mjs": "d26f7f8fc548ee07af6d8b4ee560c02ce78c02472064563e8f23d1d5180c6bdd",
   "skills/media-use/audio/scripts/trusted-program.test.mjs": "00187804c173b1325ac1a7c30e3834bb9fe73d0f75f9516d3de4abb5f201baea",
   "skills/media-use/audio/scripts/trusted_program.py": "9f73bb01cb9a85ec9968d7b4868338725d19592d347401e65d595bbce4e38f33",
   "skills/media-use/audio/scripts/wait-bgm.mjs": "4f85ccad1d3b404f6818212af4f498d14e5907e4e2f682a6d62f6d53d56f56a4",
@@ -8316,15 +8393,15 @@
   "skills/media-use/references/media-treatments.md": "32b9b3bb6fb3838829ff08dc5650b2eb065086b4bd5db9c431e9629a38e93385",
   "skills/media-use/references/memory.md": "55477edafb7f9c8294cafd3f1633b7a1820d538695c0868f9c3ddb6b418dadbc",
   "skills/media-use/references/meta.md": "3651b66e86874b21e9636de65be5a4581f4f394f3c8fc02ddc9128f4dcfa107c",
-  "skills/media-use/references/mixing.md": "b9a96f6a35b06c613f7a731e0b9db9e334acbb8c026ba44f9ce1ca70dec7a3de",
+  "skills/media-use/references/mixing.md": "4c6b9387a4f936573de696da40c64700c3d591f56be73a18dff5ae2dbf1e4b92",
   "skills/media-use/references/operations.md": "e5a52fe98376a1215680dec8c6393f6d5b55055ecdcfb7d07db356904c518603",
   "skills/media-use/references/resolve.md": "676115ab007793b127ab535c7b26ea1bd3a0a10c21806ceaf595b92eb15b3c2c",
   "skills/media-use/references/setup-providers.md": "5cc3c135398435afa6a06e3ba533da871c07d7c5aa2a4dd4d4d5520c119f284b",
   "skills/media-use/references/telemetry-dashboard.md": "bdc30ad1ff84ebe7f5ca835acb9f47b33717e041ea79b41c6f0db489b86094a7",
   "skills/media-use/scripts/audio-duck.mjs": "829ec336c53c25b2629ef551cb990264e478a3a131a43a90d50f474de47ed741",
   "skills/media-use/scripts/compatibility.test.mjs": "3263a2e82b06560d2c0ea9f7e41b3fe46bec624b70c539ccb121b880dae2250e",
-  "skills/media-use/scripts/dither.mjs": "c01d7b8d8a6d671ebb2fef3900bbbdd9f0d536821c87b493c30832cbdee322d2",
-  "skills/media-use/scripts/dither.test.mjs": "c22c3a0ae41647ac3f733b489a6bc6043fd294155d00954be5d901b3cff7d216",
+  "skills/media-use/scripts/dither.mjs": "a711e0dd399c3d6befbb8fe40fdd99e320ce638240796985fd949b043a997853",
+  "skills/media-use/scripts/dither.test.mjs": "9a1e3c6ce0d9544bcf191e7fbbd5457c21b3a663da35eb4d06aa859f78f24b2f",
   "skills/media-use/scripts/eval.mjs": "7627a734cad20cbe2c66af1c7530feac3f7152e7eb70b41aef0aee1ac7e4eb7f",
   "skills/media-use/scripts/lib/config-lock.mjs": "a9d1679e2039be38cd1756a1011f813ae4be0577c2ff77b9ed411b99b1c94275",
   "skills/media-use/scripts/lib/credit-limit.mjs": "a3631bb426d64b73ac37c17ad63d10a01237a2810510762db5151634a17c047e",
@@ -8332,13 +8409,14 @@
   "skills/media-use/scripts/lib/duck.mjs": "0930aea672a8cb204d344902cb90442491a8979f9f554f9c7c61cd13666a6846",
   "skills/media-use/scripts/lib/error-diffusion.mjs": "aa718fe95f98087979bab5ea31d68b8e45fbde0c5b874c6888ad21923fb45936",
   "skills/media-use/scripts/lib/index-gen.mjs": "a837b5319a2e916682293509b1665681479868cf37c222c7014fad071d7d7514",
+  "skills/media-use/scripts/lib/literal-media-input.mjs": "6f826e4f4c86be58e42cefc44ed31b55757472ca9321b29469732c7b6857f9a3",
   "skills/media-use/scripts/lib/manifest.mjs": "c187da38b4e0e6f704608eb1cbd7a0acb092848e82e2680c020ecb6bb26d3e4d",
   "skills/media-use/scripts/lib/media-fetch.mjs": "2e7bdca4fa97e183091fdacd6c45a450f2d23a8c30522025b0666fba04503619",
   "skills/media-use/scripts/lib/media-home.mjs": "7f69890d7b822f202b44ddec0d8176c767cd8b1da4dfc4d918599c6a05cfecb1",
   "skills/media-use/scripts/lib/npx-sync.mjs": "03346ebeb0e70153050dc5f36f5bafa63807d8e9d823ebf95a4250e9858de6d4",
   "skills/media-use/scripts/lib/parakeet-words.mjs": "d5b66efe6cb8975beab2f523503113c3be3117e687ebc20695e7ab08c2ba1b4d",
   "skills/media-use/scripts/lib/prefs-store.mjs": "b72353cefa76f90c720dd35585b2f63c7f464f31edf2cc71e501a8b0e1a001d5",
-  "skills/media-use/scripts/lib/received-env.mjs": "7ca608848d08b283e2ecff5e083744b446bd9af57573a884a76bcd22dfb08061",
+  "skills/media-use/scripts/lib/received-env.mjs": "dfa33ac7ae2f599ed9a8609bee783b898d9b2699d2f2a8ecd800b90aa5991df1",
   "skills/media-use/scripts/lib/recipe-store.mjs": "3edf99f5d57e55036f46d1904b2dee41866fa296de71b62c54033dfae25a3706",
   "skills/media-use/scripts/lib/telemetry.mjs": "b817e192cb6a676db4de3a47058edd858815a0e7fb8d9fb80c150085e9284330",
   "skills/media-use/scripts/lib/telemetry.test.mjs": "2733285623440cef340ec50e55a6f2d50e330b8122ceef853cf5e670eab6c76e",
@@ -8349,11 +8427,11 @@
   "skills/media-use/scripts/memory-output.test.mjs": "a0c6f53ac97ce71034f6bb397d1f1a359f042be668e28a479af31b2961fb3e1f",
   "skills/media-use/scripts/prefs.mjs": "11f00db875882d60af0ad8719bb913bcbf0b08ef5f1b32738276806237f51dcd",
   "skills/media-use/scripts/recipe.mjs": "2c5dfe9649ac6d01ba20e2e5aae33dcb4dcadbd7d8300ec97038feb85b63758e",
-  "skills/media-use/scripts/resolve-plugin.test.mjs": "544098bb4cf0018a4388db365f57ccbb62f9e6e859d23f9d67bb5ee8a71b0748",
-  "skills/media-use/scripts/resolve.mjs": "e4e78ab49d6006c7deae9030d520a7a4238dfbef1976ce219e219b64f8e4247b",
+  "skills/media-use/scripts/resolve-plugin.test.mjs": "e80c1cc31f95d43f82fc27ddb056f7af52612a325793b75347299c5f46f834c8",
+  "skills/media-use/scripts/resolve.mjs": "e9a38245675017a9ea5cf1893fbbec9288c6f6ae8dd531c602959a1a5ddd6f36",
   "skills/media-use/scripts/transcribe.mjs": "31a6df767bb8fedb93fe82a948bd8c3501b776c096d760c81cfaef5901f35374",
   "skills/media-use/scripts/transcribe.test.mjs": "0bd7ea1262c543c751dbf744a3887902da2fa72cf6cee9626dfd8123027f12b9",
-  "skills/media-use/scripts/transcript-cut.mjs": "eaa3c90b73d10b034dc62ce731f7d79d6c75163d756f4ce1b7a77856ac2dcc80",
+  "skills/media-use/scripts/transcript-cut.mjs": "28639533e26bf0468a779b51dbf83f0064d5914323c693fbb4e8753c25eefbb2",
   "skills/media-use/scripts/transcript-cut.test.mjs": "3c900abb184e84fd59059a61a0fa93b57559ff765b19419a06562fa71d09a6e9",
   "skills/media-use/SKILL.md": "4342c0a974e30faf53319ae66650b5aec0e2f4d69dbf9d79e8ee7cc13a60f11a",
   "skills/higgsfield-brandkit/agents/openai.yaml": "f932b588c1a907a11ecbeb1cbae72aded4a30b29025c1b2749bf75d4e0bb1d4f",

@@ -17,6 +17,7 @@ read when. Notes link to each other with [[name]]. Keep this list in step when a
 **Working rules**
 - [Ask before building](ask-before-building.md) — storyboard → questions → numbered still previews → build; from a script, build only the lines sent, read the lines around them, flag mismatches
 - [Approve images first](approve-images-first.md) — numbered contact sheet + licence table, posted in the MarkRoom (every pick sheet goes there, finished object cut-outs don't); wait for picks before any cut-out or use
+- [Footage rows first](footage-rows-first.md) — a breakdown row asking for found footage or archival pictures gets them sourced, posted and picked before the first still; the animation is planned around the picks
 - [Verify facts on screen](verify-facts-on-screen.md) — check every date, quote and claim with sources while building; flag script mismatches
 - [Keep every render](keep-every-render.md) — never overwrite or delete renders or previews; numbered rNN outputs + RENDERS.md log; dated handoff notes, old ones archived as superseded
 - [Reference study scope](reference-study-scope.md) — study a reference's motion, framing, design and entrances only, not its subject; in the user's own finished edit, only their real changes

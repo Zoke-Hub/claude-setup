@@ -3,6 +3,61 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-25.054844 · version 2026-11-06.073618
+
+- **New house rule, "Footage rows first"** (`footage-rows-first.md`): when a breakdown row asks for found footage or
+  archival pictures (type FF, FF in its ADD. column, or footage named in its notes), Claude sources them before the
+  first still, posts the numbered sheet in the MarkRoom, waits for the picks and plans the animation around them. If
+  it's unclear whether the footage goes inside the animation or beside it in the edit, it asks first. CLAUDE.md, the
+  house README and "Ask before building" point to it.
+
+## Build 2026-11-25.053034 · version 2026-11-25.053034
+
+- **MarkRoom** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-25, later):
+  - Notes move along the video timeline: drag a pin to move its moment, or a range note's in or out end to move that
+    end; Shift + drag slides the whole range. Range notes show an in and an out wedge, each pointing outward.
+  - When the tabs are wider than the board, the tab row keeps the open tab in view as the board opens or updates.
+- **PulseWise** (same, dated 2026-11-25): a point not yet done is drawn as big as Claude's estimate for it, so the
+  points ahead show the work they hold.
+
+## Build 2026-11-25.041240 · version 2026-11-25.041240
+
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-25): FolioPack's Saves to box reads "Enter path here", and the line under it reads "Default path:" and the
+  default folder, which still glides when it is too long.
+- **MarkRoom** (same, dated 2026-11-25):
+  - A tab's Version dropdown lists its files newest first by when each was added, so "· latest" is always the newest.
+  - Boards publish on the Claude app's runtime 0.2.96: on its newer runtimes 0.2.98 and 0.2.99, Send notes to Claude is
+    refused. A board already on one of those needs one republish to move back.
+
+## Build 2026-11-24.214028 · version 2026-11-24.214028
+
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-24, later and later still):
+  - FolioPack shows a loading box when a look through the project takes over 2 seconds: what it is doing, the time
+    since it started, a bar, and each step with its count and its own time.
+  - It looks through a big project faster, and Close stops a look. The default folder's whole path shows under Saves
+    to, gliding when it is too long.
+  - A pack carries a MarkRoom board's files and notes, never the board's link; the other computer makes its own board.
+  - Pressing Automatic runs `/autocompact 1000000`, and Watch puts back what was there before.
+- **MarkRoom:** a board of several files no longer shows a count of its images and videos beside its name, and the
+  Marker tool's key is M (it was P).
+
+## Build 2026-11-24.114652 · version 2026-11-24.114652
+
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-24): a call whose text is one of Folio's "[Folio stripped this …]" notes (an old call copied from context
+  into a new message, brief or file) is refused, and Claude is told to write the text out, recalling the part first if
+  it needs the words; reading, searching and Folio's own tools are left alone.
+
+## Build 2026-11-23.210018 · version 2026-11-23.210018
+
+- **Folio** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-23, later): FolioPack lists a project by its own folders, with the Renders folder as it is kept (Drafts, then
+  Final, each with its animations), and opens faster: Haiku sorts at low effort and isn't asked again for 6 hours about
+  files it gave no answer for.
+
 ## Build 2026-11-23.183626 · version 2026-11-06.073618
 
 - **animation skill:** a growing line is the real line, shorter: its taper or tip shape travels with the moving end on

@@ -7,7 +7,8 @@ metadata:
 
 For a new animation the user usually shares a storyboard (photos, sketches or a page) and the line it illustrates.
 
-1. Read the storyboard and the surrounding script (see "Working from a script" below).
+1. Read the storyboard and the surrounding script (see "Working from a script" below). If the line's breakdown row asks
+   for found footage or archival pictures, start sourcing them now ([[footage-rows-first]]).
 2. Ask the questions that change the build first: what the borders or data come from, the look, the framing, where the
    images come from, anything ambiguous in the storyboard.
 3. Show quick still previews of the candidate looks side by side, as numbered stills (never overwritten).

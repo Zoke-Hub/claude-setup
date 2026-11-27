@@ -128,8 +128,7 @@ Mac (macOS's own `python3` is 3.9), `py -3.12` on Windows (or `python` if that i
    logo-recreation, animation) only fixed on this computer, never reworked, motion keyed as authored with AE's own easing on whole frames and no stepped motion,
    letter-by-letter text as one Text Animator, ambient motion as native expressions with Slider Controls, effects made
    with AE's own effects while stills stay stills, the exporter kept current while building, review pages are MarkRoom
-   boards whose marks and overall notes are both read every round, independent steps run in parallel, long jobs report
-   their progress to the progress bar, a stuck step raised in 1–2 minutes instead of waited on, work kept in the chat it was asked in, reply buttons that are whole answers, keep
+   boards whose marks and overall notes are both read every round, a stuck step raised in 1–2 minutes instead of waited on, work kept in the chat it was asked in, reply buttons that are whole answers, keep
    a chat archive, new rules written for every project with nothing from the project they came
    from). Record what they say in a `# Personal (not packed)` section at the end of `~/.claude/CLAUDE.md` (for example
    "4K delivery doesn't apply here: we deliver 1080p"); that section overrides the house rules on this computer. Don't
@@ -287,7 +286,7 @@ In `~/.claude/CLAUDE.md`: instructions Claude follows in every session.
 
 - **No cloud transcription:** speech is never sent to ElevenLabs; a safety hook enforces it.
 - **Video skill routing:** the house rules beat other skills' defaults; real recorded sound only; HyperFrames by default.
-- **How to work:** questions and still previews before building, only the script lines you send (read in context), approve images first (every pick sheet posted in the MarkRoom), verify facts, keep every render and dated handoff notes, symlinks checked before deleting, 4K delivery, cut-outs, cut-out characters and their pieces sheets, logos, review boards, references and your own finished edits studied for motion and your changes, After Effects projects delivered with their assets collected, the author's tools (MarkRoom, PulseWise, Folio, logo-recreation, animation) only fixed, never reworked, maps of India, no assumptions about you, rules kept general, clear communication (independent steps in parallel, within a job too, work kept in its own chat, reply buttons that are whole answers), long jobs shown on the progress bar, and a stuck step raised in 1–2 minutes rather than waited on.
+- **How to work:** questions and still previews before building, only the script lines you send (read in context), approve images first (every pick sheet posted in the MarkRoom), verify facts, keep every render and dated handoff notes, symlinks checked before deleting, 4K delivery, cut-outs, cut-out characters and their pieces sheets, logos, review boards, references and your own finished edits studied for motion and your changes, After Effects projects delivered with their assets collected, the author's tools (MarkRoom, PulseWise, Folio, logo-recreation, animation) only fixed, never reworked, maps of India, no assumptions about you, rules kept general, clear communication (work kept in its own chat, reply buttons that are whole answers), and a stuck step raised in 1–2 minutes rather than waited on.
 - **Reading web pages:** the free Fetch MCP reads pages word for word; web search finds them.
 - **<macOS | Windows> notes:** the Python, ffmpeg and transcription commands that work on this computer.
 
@@ -343,7 +342,7 @@ In `~/.claude/skills`: abilities Claude loads when a task needs them.
 
 **PulseWise** (a mod: new chats in the Claude desktop app)
 
-- A band above the prompt box shows the chat's task list as one bar, a segment per point sized by its time, filling as the work runs. The line above it names what is running, the total % and the time left.
+- A band above the prompt box shows the chat's task list as one bar, a segment per point sized by its time, filling as the work runs. A heading over it says what the list is for, and the line under the heading names the point under way and the part it is on, with the total % at the bar's end.
 - Click a segment to open its own bar. Claude counts its own work on each point, so the bar fills from real counts; background jobs (renders, agents, scripts) each get a bar under Tracks, long scripts report real counts through `~/.claude/progress/progress.py`, and servers or watchers left running stay off the bar.
 - Other pulses shows the other chats open on this computer (local ones, from any project), marked "needs input" in amber when one is waiting on you. Done lists what finished and how long it took, and Nudge reminds Claude to bring its task list and counts up to date.
 - It runs by itself and uses very little Claude usage: a few short notes to Claude (its counts, a new list's estimate), and a Haiku call for a name too long for the bar.
@@ -391,7 +390,7 @@ cleanup and check again with a newer pack.
 | `owner.bin` | opened only with the owner's code (full setup files only) | The owner's own edition, locked: their private notes, their Personal section and credit rule, its own `MANIFEST.json` and `OWNER.md`. Without the code it is never opened. |
 | `bootstrap-mac.sh` | runs from the unzipped folder (macOS) | Checks Homebrew, then installs the tools every skill needs. |
 | `bootstrap-windows.ps1` | runs from the unzipped folder (Windows) | Checks winget, then installs the same tools. |
-| `global/CLAUDE.md` | merged into `~/.claude/CLAUDE.md` | The "# Global rules" block: no ElevenLabs transcription; which video skill wins; how to work in every project (questions and previews before building, motion, approve images first, verify facts, keep every render, 4K delivery / 1080p reviews, cut-outs, cut-out characters and pieces sheets, logos, MarkRoom, references, After Effects, maps of India, no personal assumptions, rules kept general, communication, long jobs on the progress bar); the house notes index; reading web pages (Fetch MCP). |
+| `global/CLAUDE.md` | merged into `~/.claude/CLAUDE.md` | The "# Global rules" block: no ElevenLabs transcription; which video skill wins; how to work in every project (questions and previews before building, motion, approve images first, verify facts, keep every render, 4K delivery / 1080p reviews, cut-outs, cut-out characters and pieces sheets, logos, MarkRoom, references, After Effects, maps of India, no personal assumptions, rules kept general, communication); the house notes index; reading web pages (Fetch MCP). |
 | `global/CLAUDE-sections-mac.md` | added to `~/.claude/CLAUDE.md` on macOS only | Transcription routing (local-transcribe with `python3.12`) and macOS notes (keg-only `ffmpeg-full`, venv paths). |
 | `global/CLAUDE-sections-windows.md` | added to `~/.claude/CLAUDE.md` on Windows only | Transcription routing (`py -3.12`) and Windows notes (`Scripts\python.exe`, the full ffmpeg build, UTF-8 mode, the Python hook). |
 | `global/house/*.md` | `~/.claude/house/` | The notes behind the rules: 4K delivery, motion rules, working rules. CLAUDE.md says which to read when. |

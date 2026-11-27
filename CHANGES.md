@@ -3,6 +3,40 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-27.071403 · version 2026-11-06.073618
+
+- **The three tools work the same without the setup pack** (a GitHub install gets these from the tools' own update,
+  dated 2026-11-27):
+  - **MarkRoom** carries its own rules: "the dashboard" means the MarkRoom, things are *in* it, each changed file gets
+    its own link; every pick sheet goes in it, a tab per sheet; new boards in `Work/MarkRoom/<name>`. On Windows its
+    notes script no longer needs `PYTHONUTF8`, and boards build from PowerShell too.
+  - **PulseWise** tells Claude what the bar is for in four plain aims, lays out each new list with a small model, fills
+    a listed sub-task with the job that does it, keeps the heading over the bar, and folds down to one row with a
+    chevron in its top-right corner.
+  - **Folio**'s folder rule shapes folders to each person's work and keeps every version; FolioPack opens faster on big
+    projects.
+- **The setup guide and prompts** no longer list "independent steps in parallel" and "long jobs on the progress bar" as
+  house rules (PulseWise carries them now), and describe the bar as it is: a heading over it and the point under way,
+  no time left.
+
+## Build 2026-11-27.030814 · version 2026-11-27.030814
+
+- **MarkRoom** (in a setup file that carries the tools; a GitHub install gets it from the tools' own update, dated
+  2026-11-26):
+  - One board for several chats in a project: each tab's Send reaches the chat that posted it.
+  - A whole-file note counts on its tab, in the Version list and in the close-tab message.
+  - A note's colour: a note with no marks takes the colour picked; changing it in the note box changes the note and its
+    timeline marker, not its marks.
+  - A first click on a mark picks its note, a second click picks that one mark, and Delete removes just it.
+- **PulseWise** (same, dated 2026-11-26): each task list gets a heading over the bar; a task's parts are sub-tasks with
+  their own counts, shown when you open its beat (a bar split per part, or a list); every task is counted from its
+  start; Claude is told about work done twice.
+
+## Build 2026-11-25.055932 · version 2026-11-25.055932
+
+- **This setup file carries the house rule "Footage rows first"** (below), which the setup file before it didn't
+  have yet.
+
 ## Build 2026-11-25.054844 · version 2026-11-06.073618
 
 - **New house rule, "Footage rows first"** (`footage-rows-first.md`): when a breakdown row asks for found footage or

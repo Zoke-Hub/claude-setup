@@ -30,6 +30,7 @@ read when. Notes link to each other with [[name]]. Keep this list in step when a
 - [Cut-out pieces sheet](cutout-pieces-sheet.md) — rigged/character animation: ask if a pieces sheet is wanted; if yes, every piece shaped on purpose and shown once, pulled apart in place, approved before animating; show the current state unchanged when asked
 - [Ask before new sessions](ask-before-new-sessions.md) — keep work in the chat it was asked in; move a task to another session or sub-chat only when the user says so, or ask first
 - [Check every cut](check-every-cut.md) — line edges from the audio, not the transcript; a speaker's shot ends on their real end of speech (never their next sentence starting); every cut checked on its frames: no stray frame, no doubled or clipped word
+- [Note the edit's cuts](note-the-edit-cuts.md) — voiceover pieces cut from an edit carry the edit's picture cuts too; every animation and FF insert starts and ends exactly on them, no frames of the neighbouring shot before or after
 - [Ask when stuck](ask-when-stuck.md) — a blocked step not fixed in 1–2 minutes: stop, say what's needed, ask, wait
 - [Notify when waiting](notify-when-waiting.md) — work stopped on the person's input: send a notification and open with what's needed, numbered, with the suggested answer
 - [Clean-up check](cleanup-check.md) — after a feature or a finished piece of work (above all a UI redesign), ask whether to check for dead code, duplicate logic, unused components, unnecessary complexity and implicit state machines; find first, change only what's picked

@@ -62,4 +62,4 @@ This repository carries the setup's own files and the third-party skills whose l
 The setup pack's own files are © 2026 Zoke under the [Use and Share Licence](LICENSE): free to use, paid work included,
 and to share unchanged; your installed copy is yours to adjust. The third-party skills keep their own licences.
 
-Pack version 2026-11-06.073618.
+Pack version 2026-11-27.184752.

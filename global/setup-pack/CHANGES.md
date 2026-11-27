@@ -3,6 +3,20 @@
 Each build of the setup pack has its own stamp, in its heading here. On a computer that has the pack, `sync.py news` lists
 the entries newer than the build installed there, so this list works even when the version number stays the same.
 
+## Build 2026-11-27.184752 · version 2026-11-27.184752
+
+- **A new house rule: note the edit's cuts.** When voiceover pieces are cut out of an edit, the edit's picture cuts around
+  each piece are noted too, and every animation and footage (FF) insert starts and ends exactly on them, so no few frames
+  of the neighbouring shot show before or after (`note-the-edit-cuts.md`, and a line in CLAUDE.md's Cuts rule).
+- **The tools as they are on GitHub today:** Folio starts a new chat on the settings picked last; PulseWise lays out parts
+  only for two or more named things, and test steps count their checks.
+
+## Build 2026-11-27.071514 · version 2026-11-27.071514
+
+- **This setup file carries the changes above** (build 2026-11-27.071403): the three tools as they are on GitHub today
+  (MarkRoom's own rules and Windows fixes, PulseWise's four aims, list layout and fold-down chevron, Folio's work-shaped
+  folders) and the setup guide without its outdated lines.
+
 ## Build 2026-11-27.071403 · version 2026-11-06.073618
 
 - **The three tools work the same without the setup pack** (a GitHub install gets these from the tools' own update,
